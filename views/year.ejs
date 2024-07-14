@@ -1,0 +1,330 @@
+<%- include('includes/head') %>
+
+    <body>
+        <div class="container-wrap">
+            <div class="main-wrapper">
+                <div class="main-one">
+                    <ul style="list-style: none;">
+                        <div style="font-size: 25px;"><b>RGPV</b>Vault</div>
+
+                        <a href="/api/close/dashboard">
+                            <li><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
+                                    class="bi bi-ui-checks-grid" viewBox="0 0 16 16">
+                                    <path
+                                        d="M2 10h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1m9-9h3a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-3a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1m0 9a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1zm0-10a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM2 9a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h3a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2zm7 2a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-3a2 2 0 0 1-2-2zM0 2a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm5.354.854a.5.5 0 1 0-.708-.708L3 3.793l-.646-.647a.5.5 0 1 0-.708.708l1 1a.5.5 0 0 0 .708 0z" />
+                                </svg>
+                                Dashboard
+                        </a>
+                        </li>
+                        <li>
+                            <a href="/api/close/branch">
+                                
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-window-stack" viewBox="0 0 16 16">
+                                    <path d="M4.5 6a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1M6 6a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m2-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0"/>
+                                    <path d="M12 1a2 2 0 0 1 2 2 2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2 2 2 0 0 1-2-2V3a2 2 0 0 1 2-2zM2 12V5a2 2 0 0 1 2-2h9a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1m1-4v5a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V8zm12-1V5a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v2z"/>
+                                  </svg>
+                                  Manage Panel
+                            
+                            </a>
+                        </li>
+        
+                    </ul>
+                </div>
+
+
+                <div class="main-two">
+                    <div class="bread">
+                        <h2>Add Year</h2>
+                        <div class="bread-content">
+                            <a href="#">Dashboard</a>
+                            /
+                            <a href="/api/close/branch/">Branch</a>
+                            /
+                            <a href="/api/close/course/">Course</a>
+                    
+
+                        </div>
+                    </div>
+
+                    <div class="main-section">
+                        <div class="main-top">
+
+                            <div class="btn2">
+
+                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                    data-target="#Modal" data-whatever="@mdo">+</button>
+
+                                <div class="modal fade" id="Modal" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Add Year Information
+                                                </h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+
+
+                                            <div class="modal-body">
+                                                <form  method="post">
+
+                                                    <div class="form-group">
+                                                        <label for="recipient-name" class="col-form-label">Add
+                                                            Year :</label>
+                                      
+                                                        <select name="year_name">
+                                                            <option value="First Years" >First Year</option>
+                                                            <option value="Second Year" >Second Year</option>
+                                                            <option value="Third Year" >Third Year</option>
+                                                            <option value="Fourth Year" >Fourth Year</option>
+                                                            <option value="Fifth Year" >Fifth</option>
+                                                            <option value="Sixth Year">Sixth Year</option>
+                                                        </select>
+                                                    
+                                                    </div>
+                                                    
+                                                    <div class="form-group">
+                                                        <label for="recipient-name" class="col-form-label">Nuemeric
+                                                            Year Value :</label>
+                                      
+                                                        <select name="year_value">
+                                                            <option value="1" >1</option>
+                                                            <option value="2" >2</option>
+                                                            <option value="3" >3</option>
+                                                            <option value="4" >4</option>
+                                                            <option value="5" >5</option>
+                                                            <option value="6">6</option>
+                                                        </select>
+                                                    
+                                                    </div>
+                
+
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                                    </div>
+
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+
+
+                        <div class="main-bottom">
+                            <div class="main-accoridan">
+    
+                                <% if (yearData.length>0) { %>
+                                    <% var index = 0; %>
+                                    <% for( let yearArray of yearData  ) { %>
+                                        <% index++ %>
+                                        <div id="accordion">
+                                            <div style="margin-top: 10px;" class="card">
+                                              <div class="card-header" id="headingOne">
+                                                <h5 class="mb-0">
+                                                  <button class="btn btn-link" data-toggle="collapse" data-target="#<%=index%>" aria-expanded="true" aria-controls="collapseOne">
+                                                <b style="color: black;"><%= yearArray.year_name %></b>
+                                                  </button>
+                                                </h5>
+                                              </div>
+                                              <div id="<%= index %>" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                                                  <div class="card-body">
+                                                 <table class="table align-middle table-sm table-hover">
+                                                    <thead class="thead-dark">
+                                                        <tr>
+                                                        
+                                                            <th scope="col">Course Name</th>
+                                                            <th scope="col" >Semesters*</th>
+                                                            <th scope="col">Delete</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                
+            
+                                                            <td><%= yearArray.course_name %></td>
+
+                                                              <!-- going to semester page with year name and year id -->
+                                                            <td><a href="/api/close/branch/course/year/sem/test/<%= yearArray.year_name %>/<%= yearArray.year_id %>"><button type="button" class="btn btn-primary">Next</button></a></td>
+
+                                                            <!-- deletion operating with year_id -->
+                                                            <form action="/api/close/branch/course/year/<%=yearArray.year_id%>?_method=DELETE" method="post">
+
+                                                               <td><!-- Button trigger modal -->
+                                                                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">
+                                                                   Delete
+                                                                </button>
+                                                                
+                                                                <!-- Modal -->
+                                                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                  <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                      <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLabel">Confirmation For Delete Action</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                          <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                      </div>
+                                                                      <div class="modal-body">
+                                                                        *Warning: Deleting This Year Deletes Corresponding Semesters.
+                                                                      </div>
+                                                                      <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                        <button type="submit" class="btn btn-warning">Submit</button>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                            </td>
+                                                        
+                                                            </form>
+                                                        </tr>
+                                                    </tbody>
+                                                 </table>
+                                                </div>
+                                              </div>
+                                            </div>
+                                    
+                                    <% } %>
+                         
+                                <% } %>
+
+
+                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </div>
+
+
+                
+                </div>
+            </div>
+
+        </div>
+
+        </div>
+
+        </div>
+
+
+        </div>
+        </div>
+        </div>
+
+
+
+    </body>
+
+    </html>
+
+
+
