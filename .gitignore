@@ -1,7 +1,6 @@
 # Ignore node_modules
 node_modules
 
-# Ignore env
+# Ignore env file
 .env
 
-upload.js
