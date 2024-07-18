@@ -129,13 +129,6 @@ db.notes.belongsTo(db.subjects, {
 
 db.sequelize.sync({ force: false }).then(async () => {
   console.log("Re-Sync Done!");
-  // let admin = {
-  //     id: uuidv4(),
-  //     name: "Amit Trivedi",
-  //     email: "deevanshukushwah80@gmail.com",
-  //     password: bcrypt.hashSync("Sample@125502", salt),
-  // // };
-  // await db.admins.create(admin);
 });
 
 module.exports = db;
