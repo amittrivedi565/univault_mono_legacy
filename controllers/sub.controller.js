@@ -66,6 +66,23 @@ exports.createSubjectPost = {
   },
 }
 
+exports.deleteSubject = {
+  controller: async (req, res) => {
+    try {
+      
+      const deleteRecord = await db.subjects.destroy({
+        where: {
+          sub_id: req.params.id
+        },
+      });
+      res.redirect("back");
+    } catch (error) {
+      console.log(error);
+    }
+  },
+};
+
+
 exports.getDesc = {
   controller: async (req, res) => {
     try {
@@ -87,7 +104,7 @@ exports.getTag = {
           sub_id: req.params.id,
         },
       });
-      res.send("Description : " + subData.sub_tags);
+      res.send("Tags : " + subData.sub_tags);
     } catch (error) {}
   },
 };

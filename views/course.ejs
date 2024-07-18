@@ -127,40 +127,12 @@
                                             </td>
                                             <td><a href="/api/close/course/desc/<%= courseArray.course_id %>"><button type="button" class="btn btn-link">View</button></a></td>
                                             <td><a href="/api/close/course/tags/<%= courseArray.course_id %>"><button type=" button" class="btn btn-link">View</button></a></td>
-                                            <td><a href="/api/close/year/<%= courseArray.course_name %>/<%= courseArray.course_id %>"><button type="button" class="btn btn-primary btn-sm">Next</button></a></td>
+                                            <td><a href="/api/close/year/<%= courseArray.course_name %>/<%= courseArray.course_id %>"><button type="button" class="btn btn-sm btn-outline-primary">Next</button></a></td>
                                             <td>
                                                 <form
                                                     action="/api/close/course/<%= courseArray.course_id %>?_method=DELETE"
                                                     method="post">
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-danger btn-sm"
-                                                        data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                                                    Delete
-                                                    </button>
-                                                    <!-- Modal -->
-                                                    <div class="modal fade" id="exampleModal2" tabindex="-1"
-                                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">Confirmation For
-                                                                        Delete Action
-                                                                    </h5>
-                                                                    <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal"
-                                                                        aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    *Warning: Deleting This Branch Deletes Corresponding Courses.
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-bs-dismiss="modal">Close</button>
-                                                                    <button type="submit" class="btn btn-primary">Confirm</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>

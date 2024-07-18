@@ -100,7 +100,7 @@ exports.getTag = {
           branch_id: req.params.id,
         },
       });
-      res.send("Description : " + branchData.branch_tags);
+      res.send("Tags : " + branchData.branch_tags);
     } catch (error) {
       console.log(error.message);
     }

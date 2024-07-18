@@ -103,7 +103,7 @@ exports.getTag = {
       const courseData = await db.courses.findOne({where :{
          course_id : req.params.id
       }})
-      res.send("Description : "+courseData.course_tags)
+      res.send("Tags : "+courseData.course_tags)
     } catch (error) {
       
     }

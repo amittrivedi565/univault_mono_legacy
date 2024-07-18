@@ -54,3 +54,68 @@ exports.notePost = {
     }
   },
 };
+
+
+exports.noteGet = {
+  controller: async (req, res) => {
+    try {
+      const noteData = await db.notes.findAll({
+        where: {
+          sub_id: req.params.id,
+        },
+      });
+      res.render("../views/note.ejs", { noteData });
+    } catch (error) {
+      console.log(error);
+    }
+  },
+};
+ 
+// Delete course by branch
+exports.deleteNote = {
+  controller: async (req, res) => {
+    try {
+      
+      const deleteRecord = await db.notes.destroy({
+        where: {
+      
+          note_id: req.params.id
+        },
+      });
+      res.redirect("back");
+    } catch (error) {
+      console.log(error);
+    }
+  },
+};
+
+exports.getDesc = {
+  controller: async (req, res) => {
+    try {
+      const noteData = await db.notes.findOne({
+        where: {
+          note_id: req.params.id,
+        },
+      });
+      res.json("Description : " + noteData.note_desc);
+    } catch (error) {
+      res.send(error.message)
+    }
+  },
+};
+
+exports.getTag = {
+  controller: async (req, res) => {
+    try {
+      const noteData = await db.notes.findOne({
+        where: {
+          note_id: req.params.id,
+        },
+      });
+      res.json("Tags : " + noteData.note_tags);
+    } catch (error) {
+      res.send(error.message)
+    }
+  },
+};
+

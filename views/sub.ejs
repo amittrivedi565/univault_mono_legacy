@@ -149,46 +149,16 @@
 
                                     <td><a href="/api/close/subject/tags/<%= subArray.sub_id %>"><button type="button" class="btn btn-link">View</button></a></td>
 
-                                    <td><a href="/api/close/note/<%= subArray.sub_name %>/<%= subArray.sub_id %>"><button type="button" class="btn btn-link">Click</button></a></td>
+                                    <td><a href="/api/close/note/<%= subArray.sub_name %>/<%= subArray.sub_id %>"><button type="button" class="btn btn-outline-primary btn-sm">Click</button></a></td>
 
                 
-                                    <form
-                                      action="/api/close/branch/course/<%= subArray.sub_id %>?_method=DELETE"
+                                    <td>
+                                      <form
+                                      action="/api/close/sub/<%= subArray.sub_id %>?_method=DELETE"
                                       method="post">
-
-                                      <td>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal"
-                                          data-target="#exampleModal">
-                                          Delete
-                                        </button>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                          aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                          <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                              <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Confirmation For Delete
-                                                  Action</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                  aria-label="Close">
-                                                  <span aria-hidden="true">&times;</span>
-                                                </button>
-                                              </div>
-                                              <div class="modal-body">
-                                                *Warning: Deleting This Course Deletes Corresponding Years.
-                                              </div>
-                                              <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                  data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-warning">Submit</button>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </td>
-
+                                      <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
                                     </form>
+                                    </td>
                                   </tr>
                                 </tbody>
                               </table>

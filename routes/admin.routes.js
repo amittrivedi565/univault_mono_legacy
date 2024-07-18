@@ -34,20 +34,27 @@ router.post("/sem/:year_name/:id",sem.createSemPost.controller);
 /* Subject Routes */
 router.get("/sub/:sem_name/:id",subs.createSubjectGet.controller);
 router.post("/sub/:sem_name/:id",subs.createSubjectPost.validator,subs.createSubjectPost.controller);
+router.delete("/sub/:id",subs.deleteSubject.controller);
 
 /* Note Routes */
 router.get("/note/:sub_name/:id",notes.noteGet.controller);
 router.post("/note/:sub_name/:id",notes.notePost.controller);
+router.post("/note/link/:sub_name/:id",notes.notePost.controller);
+router.delete("/note/:id",notes.deleteNote.controller);
+
 
 /* Description Routes */
 router.get("/branch/desc/:id",branch.getDesc.controller)
 router.get("/course/desc/:id",course.getDesc.controller)
 router.get("/subject/desc/:id",subs.getDesc.controller)
+router.get("/notes/desc/:id",notes.getDesc.controller)
 
 /* Tags Routes */
 router.get("/branch/tags/:id",branch.getTag.controller)
 router.get("/course/tags/:id",course.getTag.controller)
 router.get("/subject/tags/:id",subs.getTag.controller)
+router.get("/notes/tags/:id",notes.getTag.controller)
+
 
 
 module.exports = router;

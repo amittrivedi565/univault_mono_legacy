@@ -114,10 +114,10 @@
                 <div class="accordion mb-5 " id="accordionFlushExample">
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="flush-headingOne">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-<%=index%>" aria-expanded="false"
-                            aria-controls="flush-collapseOne">
-                        # <%= noteArray.note_name %>
+                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#flush-<%=index%>" aria-expanded="false"
+                          aria-controls="flush-collapseOne">
+                          #<%= noteArray.note_name %>
                         </button>
                         <div id="flush-<%=index%>" class="accordion-collapse collapse"
                             aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
@@ -127,65 +127,35 @@
                                   <tr>
                                   
                                     <th scope="col">Subject</th>
-                                    <th scope="col">Name</th>
+                          
                                     <th scope="col">Description</th>
                                     <th scope="col">Tags</th>
                                     <th scope="col">Notes</th>
-                                    <th scope="col">Link</th>
+                                    <th scope="col">Action</th>
                       
                                   </tr>
                                 </thead>
                                 <tbody>
                                   <tr>
-                                  <td><%= noteArray.sub_name %></td>
-                                  
+                                    <td><%= noteArray.sub_name %></td>
+                      
+            
+                                    <td><a href="/api/close/notes/desc/<%= noteArray.note_id %>"><button type="button" class="btn btn-link">Desc</button></a></td>
+
+                                    <td><a href="/api/close/notes/tags/<%= noteArray.note_id %>"><button type="button" class="btn btn-link">Tags</button></a></td>
+
+                                    <td><a href="/api/close/note/link/<%= noteArray.note_url %>"><button type="button" class="btn btn-link">Click</button></a></td>
+                                   
+                                   
                                     <td>
-                                      <%= noteArray.note_name %>
-                                    </td>
-                                    <td><a href="/api/close/note/desc/<%= noteArray.note_id %>"><button type="button" class="btn btn-link">View</button></a></td>
-
-                                    <td><a href="/api/close/note/tags/<%= noteArray.note_id %>"><button type="button" class="btn btn-link">View</button></a></td>
-
-                                    <td><a href="<%= noteArray.note_url %>"><button type="button" class="btn btn-link">Click</button></a></td>
-
-                
-                                    <form
+                                      <form
                                       action="/api/close/note/<%= noteArray.note_id %>?_method=DELETE"
                                       method="post">
-
-                                      <td>
-                                        <button type="button" class="btn btn-danger" data-toggle="modal"
-                                          data-target="#exampleModal">
-                                          Delete
-                                        </button>
-
-                                        <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                          aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                          <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                              <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Confirmation For Delete
-                                                  Action</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
-                                                  aria-label="Close">
-                                                  <span aria-hidden="true">&times;</span>
-                                                </button>
-                                              </div>
-                                              <div class="modal-body">
-                                                *Warning: This will delete the current note.
-                                              </div>
-                                              <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                  data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-warning">Submit</button>
-                                              </div>
-                                            </div>
-                                          </div>
-                                        </div>
+                                      
+                                      <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                            
+                                  </form>
                                       </td>
-
-                                    </form>
                                   </tr>
                                 </tbody>
                               </table>

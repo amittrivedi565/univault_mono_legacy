@@ -63,21 +63,7 @@
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    
-                                        <!-- <div class="form-group">
-                                            <label for="recipient-name" class="col-form-label">Add
-                                                Year :</label>
-                          
-                                            <select name="year_name">
-                                                <option value="First Years" >First Year</option>
-                                                <option value="Second Year" >Second Year</option>
-                                                <option value="Third Year" >Third Year</option>
-                                                <option value="Fourth Year" >Fourth Year</option>
-                                                <option value="Fifth Year" >Fifth</option>
-                                                <option value="Sixth Year">Sixth Year</option>
-                                            </select>
-                                        
-                                        </div> -->
+            
 
                                         <div class="form-group">
                                             <label for="year_name" class="col-form-label">
@@ -133,7 +119,7 @@
                                             <th scope="col">Course</th>
                                             <th scope="col">Year</th>
                                             <th scope="col">*Semesters</th>
-                                            <th scope="col">*Actions</th>
+                                        
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -146,36 +132,8 @@
                                             </td>
     
                                             <td><a href="/api/close/sem/<%= yearArray.year_name %>/<%= yearArray.year_id %>"><button
-                                                type="button" class="btn btn-primary btn-sm">Next</button></a></td>
-                                                <td>
-                                                <form action="/api/close/year/<%= yearArray.year_id %>?_method=DELETE" method="post">
-                                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal2">Delete</button>
-                                                    
-                                                    <!-- Modal -->
-                                                    <div class="modal fade" id="exampleModal2" tabindex="-1"
-                                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">Confirmation For
-                                                                        Delete Action
-                                                                    </h5>
-                                                                    <button type="button" class="btn-close"
-                                                                        data-bs-dismiss="modal"
-                                                                        aria-label="Close"></button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    *Warning: Deleting This Year Deletes Corresponding Semesters.
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button" class="btn btn-secondary"
-                                                                        data-bs-dismiss="modal">Close</button>
-                                                                    <button type="submit" class="btn btn-primary">Confirm</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
+                                                type="button" class="btn btn-outline-primary btn-sm">Next</button></a></td>
+                            
                                             </td>
                                         </tr>
                                     </tbody>
