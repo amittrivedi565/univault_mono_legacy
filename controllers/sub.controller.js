@@ -1,47 +1,54 @@
-const db = require("../models")
+const path = require("node:path");
+const db = require("../models");
 const { celebrate, Joi, Segments } = require("celebrate");
+const Upload = require("../middlewares/upload.js")
+
 
 // create subject
 exports.createSubjectGet = {
-    controller : async (req,res)=>{
-try {
-    const subData = await db.subjects.findAll({
-        where : {
-            sem_id : req.params.id
-        }
-    })
-    const semData = await db.sem.findAll({})
-    res.render("../views/sub.ejs",{subData,semData})
-} catch (error) {
-    console.log(error)
-}
+  controller: async (req, res) => {
+    try {
+      const subData = await db.subjects.findAll({
+        where: {
+          sem_id: req.params.id,
+        },
+      });
+      const semData = await db.sem.findAll({});
+      res.render("../views/sub.ejs", { subData, semData });
+    } catch (error) {
+      console.log(error);
     }
-}
+  },
+};
 // create subject
 exports.createSubjectPost = {
-    validator: celebrate({
-      [Segments.BODY]: Joi.object().keys({
-        sub_code: Joi.string().required(),
-        sub_name: Joi.string().required(),
-        sub_desc: Joi.string().min(0).max(500).required(),
-        sub_tags: Joi.string().required(),
-        sub_notes: Joi.string().required(),
-        sem_id: Joi.string().optional(),
-        sem_name: Joi.string().optional(),
-      }),
+  validator: celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      sub_code: Joi.string().required(),
+      sub_name: Joi.string().required(),
+      sub_desc: Joi.string().min(0).max(500).required(),
+      sub_tags: Joi.string().required(),
+      sem_id: Joi.string().optional(),
+      sem_name: Joi.string().optional(),
+      note_url : Joi.string().optional(),
+      image : Joi.allow()
     }),
-  
-    controller: async (req, res) => {
-      const data = {
-        sub_code: req.body.sub_code,
-        sub_name: req.body.sub_name,
+  }),
+
+  controller: async (req, res) => {
+    try {
+        const upload = await Upload.cloud(req.file.path)
+        
+        const data = {
+          sub_code: req.body.sub_code,
+          sub_name: req.body.sub_name,
         sub_desc: req.body.sub_desc,
         sub_tags: req.body.sub_tags,
-        sub_notes: req.body.sub_notes,
         sem_name: req.params.sem_name,
+        note_url : upload.secure_url,
         sem_id: req.params.id,
       };
-  
+
       const subjectExists = await db.subjects.findOne({
         where: {
           sub_code: req.body.sub_code,
@@ -49,13 +56,44 @@ exports.createSubjectPost = {
           sem_id: req.params.id,
         },
       });
-  
-      if (subjectExists) {
+
+      if (subjectExists) 
+        {
         res.send("Subject Already Exists");
-      } else {
-        await db.subjects.create(data);
+      } else 
+      {
+        const record = await db.subjects.create(data);
         res.redirect("back");
       }
-    },
-  };
-  
+    } catch (error) {
+      res.send(error.message);
+    }
+  },
+}
+
+exports.getDesc = {
+  controller: async (req, res) => {
+    try {
+      const subData = await db.subjects.findOne({
+        where: {
+          sub_id: req.params.id,
+        },
+      });
+      res.send("Description : " + subData.sub_desc);
+    } catch (error) {}
+  },
+};
+
+exports.getTag = {
+  controller: async (req, res) => {
+    try {
+      const subData = await db.subjects.findOne({
+        where: {
+          sub_id: req.params.id,
+        },
+      });
+      res.send("Description : " + subData.sub_tags);
+    } catch (error) {}
+  },
+};
+

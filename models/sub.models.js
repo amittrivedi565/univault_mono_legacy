@@ -25,14 +25,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      sub_notes: {
+      sem_name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      sem_name : {
-        type : DataTypes.STRING,
-        allowNull : false
-      }
+      note_url: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
     },
     {
       timestamps: false,

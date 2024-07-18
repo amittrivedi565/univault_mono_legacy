@@ -2,7 +2,6 @@ const { where } = require("sequelize");
 const db = require("../models");
 const { celebrate, Joi, Segments } = require("celebrate");
 
-
 // Get all courses by branch get request
 exports.CourseGet = {
   controller: async (req, res) => {
@@ -26,7 +25,7 @@ exports.CourseGet = {
   },
 };
 
-
+// Create course
 exports.createCourse = {
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
@@ -64,10 +63,6 @@ exports.createCourse = {
   },
 };
 
-
-
-
-
 // Delete course by branch
 exports.deleteCourse = {
   controller: async (req, res) => {
@@ -79,10 +74,38 @@ exports.deleteCourse = {
           course_id: id,
         },
       });
-      res.redirect("/api/close/branch");
+      res.redirect('back');
       console.log(deleteRecord);
     } catch (error) {
       console.log(error);
     }
   },
 };
+
+// Get description about course 
+exports.getDesc = {
+  controller : async(req,res)=>{
+    try {
+      const courseData = await db.courses.findOne({where :{
+         course_id : req.params.id
+      }})
+      res.send("Description : "+courseData.course_desc)
+    } catch (error) {
+      
+    }
+  }
+}
+
+// Get tags about course
+exports.getTag = {
+  controller : async(req,res)=>{
+    try {
+      const courseData = await db.courses.findOne({where :{
+         course_id : req.params.id
+      }})
+      res.send("Description : "+courseData.course_tags)
+    } catch (error) {
+      
+    }
+  }
+}

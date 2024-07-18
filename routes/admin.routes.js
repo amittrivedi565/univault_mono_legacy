@@ -5,43 +5,50 @@ const branch = require("../controllers/branch.controller")
 const year = require("../controllers/year.controller")
 const admin = require("../controllers/admin.controller")
 const sem = require("../controllers/sem.controller")
-const subs = require("../controllers/sub.controller")
+const subs = require("../controllers/sub.controller");
+const path = require('path')
+const multer = require('multer')
 
+var uploader = multer({
+    storage : multer.diskStorage({}),
+})
 
 /* Admin Login Route */
 router.post("/login", signin.validator, signin.controller);
 router.get("/dashboard",admin.adminPanelGet.controller)
 
 /* Branch Routes */
-router.get("/branch",branch.createBranchPage.controller);
+router.get("/branch",branch.createBranchGet.controller);
 router.post("/branch",branch.createBranchPost.validator,branch.createBranchPost.controller);
 router.delete("/branch/:id",branch.deleteBranch.controller);
 
-
 /* Course Routes */
-router.get("/branch/course/:id",course.CourseGet.controller);
-router.post("/branch/course/:id",course.createCourse.validator,course.createCourse.controller);
-router.delete("/branch/course/:id",course.deleteCourse.controller)
-
+router.get("/course/:id",course.CourseGet.controller);
+router.post("/course/:id",course.createCourse.validator,course.createCourse.controller);
+router.delete("/course/:id",course.deleteCourse.controller)
 
 /* Year Routes */
-router.get("/branch/course/year/:course_name/:id",year.createYearGet.controller);
-router.post("/branch/course/year/:course_name/:id",year.createYearPost.validator,year.createYearPost.controller);
-router.delete("/branch/course/year/:id",year.deleteYear.controller);
-
-   
+router.get("/year/:course_name/:id",year.createYearGet.controller);
+router.post("/year/:course_name/:id",year.createYearPost.validator,year.createYearPost.controller);
+router.delete("/year/:id",year.deleteYear.controller);
 
 /* Semester Routes */
-router.get("/branch/course/year/sem/test/:year_name/:id",sem.createSemGet.controller);
-router.post("/branch/course/year/sem/test/:year_name/:id",sem.createSemPost.controller);
-// router.put("/sem/:id", (req, res) => res.send(""));
-// router.delete("/sem/:id", (req, res) => res.send(""));
-
+router.get("/sem/:year_name/:id",sem.createSemGet.controller);
+router.post("/sem/:year_name/:id",sem.createSemPost.controller);
 
 /* Subject Routes */
-router.get("/branch/course/year/sem/test/notes/sub/:sem_name/:id",subs.createSubjectGet.controller);
-router.post("/branch/course/year/sem/test/notes/sub/:sem_name/:id",subs.createSubjectPost.validator,subs.createSubjectPost.controller);
-// router.put("/subject/:id", (req, res) => res.send(""));
-// router.delete("/subject/:id", (req, res) => res.send(""));
+router.get("/sub/:sem_name/:id",subs.createSubjectGet.controller);
+router.post("/sub/:sem_name/:id",uploader.single("file"),subs.createSubjectPost.validator,subs.createSubjectPost.controller);
+
+/* Description Routes */
+router.get("/branch/desc/:id",branch.getDesc.controller)
+router.get("/course/desc/:id",course.getDesc.controller)
+router.get("/subject/desc/:id",subs.getDesc.controller)
+
+/* Tags Routes */
+router.get("/branch/tags/:id",branch.getTag.controller)
+router.get("/course/tags/:id",course.getTag.controller)
+router.get("/subject/tags/:id",subs.getTag.controller)
+
 
 module.exports = router;

@@ -1,10 +1,9 @@
 const { where } = require("sequelize");
 const db = require("../models");
 const { celebrate, Joi, Segments } = require("celebrate");
-const flash = require("connect-flash");
 
 // Create Branch Get
-exports.createBranchPage = {
+exports.createBranchGet = {
   controller: async (req, res) => {
     try {
       const branchData = await db.branches.findAll({});
@@ -40,32 +39,70 @@ exports.createBranchPost = {
       });
 
       if (branchExists) {
-        res.send("Error");
+        res.send("branch already exists");
       } else {
         await db.branches.create(data);
         res.redirect("back");
       }
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   },
 };
 
-
 // Delete branch corresponding courses
 exports.deleteBranch = {
-  controller: async (req, res) => {
+  controller: async (req, res, next) => {
     try {
       const id = req.params.id;
-      const branchDelete = await db.branches.destroy({
+      const isValid = await db.branches.findOne({
         where: {
           branch_id: id,
         },
       });
-      console.log(branchDelete);
-      res.redirect("/api/close/branch");
+
+      if (!isValid) {
+        console.log("invalid id ");
+      } else {
+        const branchDelete = await db.branches.destroy({
+          where: {
+            branch_id: id,
+          },
+        });
+        res.redirect("back");
+      }
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
+    }
+  },
+};
+
+exports.getDesc = {
+  controller: async (req, res) => {
+    try {
+      const branchData = await db.branches.findOne({
+        where: {
+          branch_id: req.params.id,
+        },
+      });
+      res.send("Description : " + branchData.branch_desc);
+    } catch (error) {
+      console.log(error.message);
+    }
+  },
+};
+
+exports.getTag = {
+  controller: async (req, res) => {
+    try {
+      const branchData = await db.branches.findOne({
+        where: {
+          branch_id: req.params.id,
+        },
+      });
+      res.send("Description : " + branchData.branch_tags);
+    } catch (error) {
+      console.log(error.message);
     }
   },
 };

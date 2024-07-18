@@ -33,9 +33,9 @@ db.sequelize = sequelize;
 
 db.admins = require("./admin.models")(sequelize, DataTypes);
 
-db.branches = require("./branches.models")(sequelize, DataTypes);
+db.branches = require("./branch.models")(sequelize, DataTypes);
 
-db.courses = require("./courses.models")(sequelize, DataTypes);
+db.courses = require("./course.models")(sequelize, DataTypes);
 
 db.years = require("./year.model")(sequelize, DataTypes);
 
@@ -44,7 +44,7 @@ db.sem = require("./sem.models")(sequelize, DataTypes);
 db.subjects = require("./sub.models")(sequelize, DataTypes);
 
 
-// Association to be applied here using One-Many
+// 1 : M (Branch : Courses)
 db.branches.hasMany(db.courses, {
   foreignKey: "branch_id",
   as: "course",
@@ -59,7 +59,7 @@ db.courses.belongsTo(db.branches, {
 });
 
 
-// Association to be applied here using One-Many
+// 1 : M (Course : Years)
 db.courses.hasMany(db.years, {
   foreignKey: "course_id",
   as: "years",
@@ -75,7 +75,7 @@ db.years.belongsTo(db.courses, {
 });
 
 
-// Association to be applied here using One-Many
+// 1 : M (Year : Sems)
 db.years.hasMany(db.sem, {
   foreignKey: "year_id",
   as: "semester",
@@ -90,7 +90,8 @@ db.sem.belongsTo(db.years, {
   hooks :true
 });
 
-// Association to be applied here using One-Many
+
+// 1 : M (Sem : Subjects)
 db.sem.hasMany(db.subjects, {
   foreignKey: "sem_id",
   as: "subject",
@@ -104,6 +105,7 @@ db.subjects.belongsTo(db.sem, {
   onDelete: "CASCADE",
   hooks :true
 });
+
 
 db.sequelize.sync({ force: false }).then(async () => {
   console.log("Re-Sync Done!");

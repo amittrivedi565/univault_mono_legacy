@@ -1,7 +1,6 @@
 const db = require("../models");
 const { celebrate, Joi, Segments } = require("celebrate");
 
-// Create Year Get
 exports.createYearGet = {
   controller: async (req, res) => {
     try {
@@ -18,7 +17,7 @@ exports.createYearGet = {
   },
 };
 
-// Create Year Post
+// Create year 
 exports.createYearPost = {
   // validating incoming data
   validator: celebrate({
@@ -53,8 +52,9 @@ exports.createYearPost = {
       });
 
       if (courseChecker) {
+
         if (yearChecker) {
-          res.send("This year already exists");
+          res.send("year already exists");
         } 
         else 
         {
@@ -62,7 +62,7 @@ exports.createYearPost = {
           res.redirect("back");
         }
       } else {
-        res.send("Invalid CourseID");
+        res.send("course already exists");
       }
     } catch (error) {
       console.log(error);
@@ -70,6 +70,7 @@ exports.createYearPost = {
   },
 };
 
+// Delete year
 exports.deleteYear = {
   controller: async (req, res) => {
     try {

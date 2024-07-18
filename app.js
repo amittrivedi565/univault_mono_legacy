@@ -7,7 +7,6 @@ const path = require("path");
 const { errors } = require("celebrate");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
-const flash = require("connect-flash");
 const methodOverride = require("method-override")
 
 const PORT = config.PORT || 3000;
@@ -25,7 +24,6 @@ app.use(
 
   })
 );
-app.use(flash());
 
 // CORS + BODY_PARSE
 const corsOptions = {
@@ -34,10 +32,6 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-app.use(function(req, res, next){
-  res.locals.message = req.flash();
-  next();
-});
 // parse application/json
 app.use(bodyparser.json({ limit: "50mb" }));
 
