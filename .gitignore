@@ -1,1 +1,7 @@
-sixth commit
+# Ignore node_modules
+node_modules
+
+# Ignore env
+.env
+
+upload.js
