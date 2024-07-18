@@ -28,14 +28,13 @@ exports.createSubjectPost = {
       sub_tags: Joi.string().required(),
       sem_id: Joi.string().optional(),
       sem_name: Joi.string().optional(),
-      note_url : Joi.string().optional(),
-      image : Joi.allow()
     }),
   }),
 
   controller: async (req, res) => {
-    try {
-    
+    try { 
+
+        
         const data = {
         sub_code: req.body.sub_code,
         sub_name: req.body.sub_name,
@@ -49,14 +48,14 @@ exports.createSubjectPost = {
         where: {
           sub_code: req.body.sub_code,
           sub_name: req.body.sub_name,
-          sem_id: req.params.id,
         },
       });
 
       if (subjectExists) 
         {
         res.send("Subject Already Exists");
-      } else 
+      } 
+      else 
       {
         const record = await db.subjects.create(data);
         res.redirect("back");

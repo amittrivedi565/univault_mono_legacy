@@ -29,10 +29,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      note_url: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
     },
     {
       timestamps: false,

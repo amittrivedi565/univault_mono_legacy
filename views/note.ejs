@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="main-right-bread">
-                <b>Subject Page</b>
+                <b>Notes Page</b>
                 
       
           
@@ -63,34 +63,34 @@
                         <div class="modal-dialog">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Create Subjects</h1>
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Create Note</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     
                                     <div class="form-group">
-                                      <label for="recipient-name" class="col-form-label">Subject
-                                        Code:</label>
-                                      <input name="sub_code" type="text" class="form-control" id="recipient-name">
-          
-                                    </div>
-                                    <div class="form-group">
-                                      <label for="recipient-name" class="col-form-label">Subject
+                                      <label for="recipient-name" class="col-form-label">Note
                                         Name:</label>
-                                      <input name="sub_name" type="text" class="form-control" id="recipient-name">
+                                      <input name="note_name" type="text" class="form-control" id="recipient-name">
                                     </div>
 
                                     <div class="form-group">
-                                      <label for="message-text" class="col-form-label">Subject
+                                      <label for="message-text" class="col-form-label">Note
                                         Description:</label>
-                                      <textarea name="sub_desc" class="form-control" id="message-text"></textarea>
+                                      <textarea name="note_desc" class="form-control" id="message-text"></textarea>
                                     </div>
           
                                     <div class="form-group">
-                                      <label for="recipient-name" class="col-form-label">Subject
+                                      <label for="recipient-name" class="col-form-label">Note
                                         Tags:</label>
-                                      <input name="sub_tags" type="text" class="form-control" id="recipient-name">
+                                      <input name="note_tags" type="text" class="form-control" id="recipient-name">
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="recipient-name" class="col-form-label">Note
+                                          URL :</label>
+                                        <input name="note_url" type="text" class="form-control" id="recipient-name">
+                                      </div>
                                     
                                 </div>
 
@@ -107,9 +107,9 @@
                 </div>
             </div>
             <div class="main-right-bottom">
-                <% if (subData.length>0) { %>
+                <% if (noteData.length>0) { %>
                 <% var index=0; %>
-                <% for( let subArray of subData ) { %>
+                <% for( let noteArray of noteData ) { %>
                 <% index++ %>
                 <div class="accordion mb-5 " id="accordionFlushExample">
                     <div class="accordion-item">
@@ -117,7 +117,7 @@
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#flush-<%=index%>" aria-expanded="false"
                             aria-controls="flush-collapseOne">
-                        # <%= subArray.sub_name %>
+                        # <%= noteArray.note_name %>
                         </button>
                         <div id="flush-<%=index%>" class="accordion-collapse collapse"
                             aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
@@ -126,8 +126,7 @@
                                 <thead class="thead-dark">
                                   <tr>
                                   
-                                    <th scope="col">Semester</th>
-                                    <th scope="col">Code</th>
+                                    <th scope="col">Subject</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Description</th>
                                     <th scope="col">Tags</th>
@@ -138,22 +137,20 @@
                                 </thead>
                                 <tbody>
                                   <tr>
-                                  <td><%= subArray.sem_name %></td>
+                                  <td><%= noteArray.sub_name %></td>
+                                  
                                     <td>
-                                      <%= subArray.sub_code %>
+                                      <%= noteArray.note_name %>
                                     </td>
-                                    <td>
-                                      <%= subArray.sub_name %>
-                                    </td>
-                                    <td><a href="/api/close/subject/desc/<%= subArray.sub_id %>"><button type="button" class="btn btn-link">View</button></a></td>
+                                    <td><a href="/api/close/note/desc/<%= noteArray.note_id %>"><button type="button" class="btn btn-link">View</button></a></td>
 
-                                    <td><a href="/api/close/subject/tags/<%= subArray.sub_id %>"><button type="button" class="btn btn-link">View</button></a></td>
+                                    <td><a href="/api/close/note/tags/<%= noteArray.note_id %>"><button type="button" class="btn btn-link">View</button></a></td>
 
-                                    <td><a href="/api/close/note/<%= subArray.sub_name %>/<%= subArray.sub_id %>"><button type="button" class="btn btn-link">Click</button></a></td>
+                                    <td><a href="<%= noteArray.note_url %>"><button type="button" class="btn btn-link">Click</button></a></td>
 
                 
                                     <form
-                                      action="/api/close/branch/course/<%= subArray.sub_id %>?_method=DELETE"
+                                      action="/api/close/note/<%= noteArray.note_id %>?_method=DELETE"
                                       method="post">
 
                                       <td>
@@ -176,7 +173,7 @@
                                                 </button>
                                               </div>
                                               <div class="modal-body">
-                                                *Warning: Deleting This Course Deletes Corresponding Years.
+                                                *Warning: This will delete the current note.
                                               </div>
                                               <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary"

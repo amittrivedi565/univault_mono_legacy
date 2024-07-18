@@ -43,6 +43,8 @@ db.sem = require("./sem.models")(sequelize, DataTypes);
 
 db.subjects = require("./sub.models")(sequelize, DataTypes);
 
+db.notes = require("./notes.model")(sequelize, DataTypes);
+
 
 // 1 : M (Branch : Courses)
 db.branches.hasMany(db.courses, {
@@ -105,6 +107,24 @@ db.subjects.belongsTo(db.sem, {
   onDelete: "CASCADE",
   hooks :true
 });
+
+
+// 1 : M (Suject : Notes)
+db.subjects.hasMany(db.notes, {
+  foreignKey: "sub_id",
+  as: "notes",
+  onDelete: "CASCADE",
+  hooks :true
+});
+
+db.notes.belongsTo(db.subjects, {
+  foreignKey: "sub_id",
+  as: "subject",
+  onDelete: "CASCADE",
+  hooks :true
+});
+
+
 
 
 db.sequelize.sync({ force: false }).then(async () => {
