@@ -4,4 +4,4 @@ node_modules
 # Ignore env
 .env
 
-.upload
+upload.js
