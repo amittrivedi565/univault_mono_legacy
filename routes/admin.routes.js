@@ -6,12 +6,6 @@ const year = require("../controllers/year.controller")
 const admin = require("../controllers/admin.controller")
 const sem = require("../controllers/sem.controller")
 const subs = require("../controllers/sub.controller");
-const path = require('path')
-const multer = require('multer')
-
-var uploader = multer({
-    storage : multer.diskStorage({}),
-})
 
 /* Admin Login Route */
 router.post("/login", signin.validator, signin.controller);
@@ -38,7 +32,7 @@ router.post("/sem/:year_name/:id",sem.createSemPost.controller);
 
 /* Subject Routes */
 router.get("/sub/:sem_name/:id",subs.createSubjectGet.controller);
-router.post("/sub/:sem_name/:id",uploader.single("file"),subs.createSubjectPost.validator,subs.createSubjectPost.controller);
+router.post("/sub/:sem_name/:id",subs.createSubjectPost.validator,subs.createSubjectPost.controller);
 
 /* Description Routes */
 router.get("/branch/desc/:id",branch.getDesc.controller)

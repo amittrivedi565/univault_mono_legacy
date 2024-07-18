@@ -1,8 +1,6 @@
 const path = require("node:path");
 const db = require("../models");
 const { celebrate, Joi, Segments } = require("celebrate");
-const Upload = require("../middlewares/upload.js")
-
 
 // create subject
 exports.createSubjectGet = {
@@ -37,15 +35,13 @@ exports.createSubjectPost = {
 
   controller: async (req, res) => {
     try {
-        const upload = await Upload.cloud(req.file.path)
-        
+    
         const data = {
-          sub_code: req.body.sub_code,
-          sub_name: req.body.sub_name,
+        sub_code: req.body.sub_code,
+        sub_name: req.body.sub_name,
         sub_desc: req.body.sub_desc,
         sub_tags: req.body.sub_tags,
         sem_name: req.params.sem_name,
-        note_url : upload.secure_url,
         sem_id: req.params.id,
       };
 
