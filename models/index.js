@@ -125,7 +125,7 @@ db.notes.belongsTo(db.subjects, {
 });
 
 
-db.sequelize.sync({ force: true }).then(async () => {
+db.sequelize.sync({ force: false }).then(async () => {
   console.log("Re-Sync Done!");
 });
 

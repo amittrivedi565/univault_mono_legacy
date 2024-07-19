@@ -6,7 +6,8 @@ const year = require("../controllers/year.controller")
 const admin = require("../controllers/admin.controller")
 const sem = require("../controllers/sem.controller")
 const subs = require("../controllers/sub.controller");
-const notes = require("../controllers/note.controller")
+const notes = require("../controllers/note.controller");
+const {profilePdf} = require("../middlewares/upload.js")
 
 /* Admin Login Route */
 router.post("/login", signin.validator, signin.controller);
@@ -38,10 +39,9 @@ router.delete("/sub/:id",subs.deleteSubject.controller);
 
 /* Note Routes */
 router.get("/note/:sub_name/:id",notes.noteGet.controller);
-router.post("/note/:sub_name/:id",notes.notePost.controller);
+router.post("/note/:sub_name/:id",profilePdf.single("pdf"),notes.notePost.controller)
 router.post("/note/link/:sub_name/:id",notes.notePost.controller);
 router.delete("/note/:id",notes.deleteNote.controller);
-
 
 /* Description Routes */
 router.get("/branch/desc/:id",branch.getDesc.controller)

@@ -55,7 +55,7 @@
 
                 <div class="addModal">
                     <!-- Button trigger modal -->
-    <form method="post">
+    <form method="post" enctype="multipart/form-data" >
                   
                     <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
                     <!-- Modal -->
@@ -87,9 +87,9 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="recipient-name" class="col-form-label">Note
-                                          URL :</label>
-                                        <input name="note_url" type="text" class="form-control" id="recipient-name">
+                                        <label for="recipient-name" class="col-form-label">Upload File
+                                          :</label>
+                                        <input name="pdf" type="file" class="form-control" id="recipient-name">
                                       </div>
                                     
                                 </div>
@@ -144,7 +144,7 @@
 
                                     <td><a href="/api/close/notes/tags/<%= noteArray.note_id %>"><button type="button" class="btn btn-link">Tags</button></a></td>
 
-                                    <td><a href="/api/close/note/link/<%= noteArray.note_url %>"><button type="button" class="btn btn-link">Click</button></a></td>
+                                    <td><a href="<%= noteArray.note_url %>"><button type="button" class="btn btn-sm btn-outline-success">Click</button></a></td>
                                    
                                    
                                     <td>

@@ -1,5 +1,6 @@
 const db = require("../models");
 const { celebrate, Joi, Segments } = require("celebrate");
+const { uploadPdf } = require('../middlewares/upload')
 
 exports.noteGet = {
   controller: async (req, res) => {
@@ -24,15 +25,18 @@ exports.notePost = {
       note_tags: Joi.string().required(),
       sub_id: Joi.string().required(),
       sub_name: Joi.string().required(),
+      note_url : Joi.string().required(),
+      pdf : Joi.optional()
     }),
   }),
   controller: async (req, res) => {
     try {
+         console.log(req.files)
         const data = {
             note_name: req.body.note_name,
             note_desc: req.body.note_desc,
             note_tags: req.body.note_tags,
-            note_url: req.body.note_url,
+            note_url : req.file.location,
             sub_name: req.params.sub_name,
             sub_id: req.params.id,
           };
@@ -46,27 +50,12 @@ exports.notePost = {
           if (noteExists) {
              res.send("already exists!")
           } else {
+        
             const record = await db.notes.create(data);
             res.redirect("back");
           }
     } catch (error) {
         res.send(error.message)
-    }
-  },
-};
-
-
-exports.noteGet = {
-  controller: async (req, res) => {
-    try {
-      const noteData = await db.notes.findAll({
-        where: {
-          sub_id: req.params.id,
-        },
-      });
-      res.render("../views/note.ejs", { noteData });
-    } catch (error) {
-      console.log(error);
     }
   },
 };
@@ -118,4 +107,3 @@ exports.getTag = {
     }
   },
 };
-

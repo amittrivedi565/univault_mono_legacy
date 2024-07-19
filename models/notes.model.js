@@ -26,7 +26,7 @@ module.exports = (sequelize, DataTypes) => {
         },
         note_url: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         sub_name: {
             type: DataTypes.STRING,
