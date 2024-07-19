@@ -18,6 +18,7 @@ exports.noteGet = {
 };
 
 exports.notePost = {
+  
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
       note_name: Joi.string().required(),

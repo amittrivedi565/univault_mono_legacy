@@ -21,4 +21,4 @@ const storage = multerS3({
 
 const upload = multer({storage: storage})
 
-exports.profilePdf = upload; 
+exports.uploadPdf = upload; 
