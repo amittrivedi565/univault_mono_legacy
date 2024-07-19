@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
         },
 
         note_desc: {
-          type: DataTypes.STRING,
+          type: "LONGTEXT",
           allowNull: false,
         },
 

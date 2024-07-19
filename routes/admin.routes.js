@@ -10,7 +10,7 @@ const notes = require("../controllers/note.controller")
 
 /* Admin Login Route */
 router.post("/login", signin.validator, signin.controller);
-router.get("/dashboard",admin.adminPanelGet.controller)
+router.get("/dashboard",admin.adminGet.controller)
 
 /* Branch Routes */
 router.get("/branch",branch.createBranchGet.controller);
@@ -55,6 +55,7 @@ router.get("/course/tags/:id",course.getTag.controller)
 router.get("/subject/tags/:id",subs.getTag.controller)
 router.get("/notes/tags/:id",notes.getTag.controller)
 
+router.get("/test")
 
 
 module.exports = router;

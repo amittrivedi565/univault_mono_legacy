@@ -1,7 +1,7 @@
 const db = require("../models");
 
-exports.adminPanelGet = {
+exports.adminGet = {
     controller: async (req, res) => {
-     res.render("adminDash")
+     res.render("../views/dashboard.ejs")
   }};
   

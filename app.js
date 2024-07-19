@@ -9,6 +9,7 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const methodOverride = require("method-override")
 
+
 const PORT = config.PORT || 3000;
 const HOST = config.HOST;
 app.use(express.urlencoded({ extended: false }));
@@ -52,7 +53,7 @@ app.use("/", require("./routes/index.routes"));
 app.use(errors());
 
 app.use("*", (req, res) => {
-  res.status(404).render("../views/404");
+  res.status(404).render("../views/404",);
 });
 
 app.listen(PORT, () => {
