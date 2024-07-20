@@ -1,5 +1,7 @@
 const { where } = require("sequelize");
 const db = require("../models");
+const { celebrate, Joi, Segments } = require("celebrate");
+
 
 exports.createSemGet = {
   controller: async (req, res) => {
@@ -16,6 +18,13 @@ exports.createSemGet = {
 };
 
 exports.createSemPost = {
+  validator: celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      sem_name: Joi.string().required(),
+      year_name: Joi.string().required(),
+      year_id: Joi.string().required(),
+    }),
+  }),
   controller: async (req, res) => {
     try {
       const semRecord = {
