@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const  {signin}  = require("../controllers/auth.controller");
+const {signin}  = require("../controllers/auth.controller");
 const course = require("../controllers/course.controller")
 const branch = require("../controllers/branch.controller")
 const year = require("../controllers/year.controller")

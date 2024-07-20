@@ -9,7 +9,6 @@ const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const methodOverride = require("method-override")
 
-
 const PORT = config.PORT || 3000;
 const HOST = config.HOST;
 app.use(express.urlencoded({ extended: false }));
@@ -35,8 +34,8 @@ app.use(cors(corsOptions));
 
 // parse application/json
 app.use(bodyparser.json({ limit: "50mb" }));
-
 app.use(methodOverride("_method"))
+
 // Set Static Folder
 app.use("/public", express.static(path.join(__dirname, "/public")));
 
