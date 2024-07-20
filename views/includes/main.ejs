@@ -73,13 +73,13 @@
                                     <td>
                                         <%= branchArray.branch_name %>
                                     </td>
-                                    <td><a href="/api/close/branch/desc/<%= branchArray.branch_id %>"><button type="button" class="btn btn-link">View</button></a></td>
-                                    <td><a href="/api/close/branch/tags/<%= branchArray.branch_id %>"><button type="button" class="btn btn-link">View</button></a></td>
-                                    <td><a href="/api/close/course/<%= branchArray.branch_id %>"><button
+                                    <td><a href="/close/branch/desc/<%= branchArray.branch_id %>"><button type="button" class="btn btn-link">View</button></a></td>
+                                    <td><a href="/close/branch/tags/<%= branchArray.branch_id %>"><button type="button" class="btn btn-link">View</button></a></td>
+                                    <td><a href="/close/course/<%= branchArray.branch_id %>"><button
                                         type="button" class="btn btn-outline-primary btn-sm">Next</button></a></td>
                                     <td>
                                         <form
-                                            action="/api/close/branch/<%= branchArray.branch_id %>?_method=DELETE"
+                                            action="/close/branch/<%= branchArray.branch_id %>?_method=DELETE"
                                             method="post">
                                              
                                             <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
