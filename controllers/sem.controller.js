@@ -10,7 +10,7 @@ exports.createSemGet = {
         },
       });
 
-      res.render("../views/sem.ejs", { semData });
+      res.render("../views/admin/sem.ejs", { semData });
     } catch (error) {}
   },
 };

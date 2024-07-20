@@ -12,7 +12,7 @@ exports.createSubjectGet = {
         },
       });
       const semData = await db.sem.findAll({});
-      res.render("../views/sub.ejs", { subData, semData });
+      res.render("../views/admin/sub.ejs", { subData, semData });
     } catch (error) {
       console.log(error);
     }

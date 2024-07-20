@@ -7,7 +7,7 @@ exports.createBranchGet = {
   controller: async (req, res) => {
     try {
       const branchData = await db.branches.findAll({});
-      res.render("../views/branch.ejs", { branchData });
+      res.render("../views/admin/branch.ejs", { branchData });
     } catch (error) {
       console.log(error);
     }

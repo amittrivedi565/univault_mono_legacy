@@ -15,7 +15,7 @@ exports.CourseGet = {
         },
       });
 
-      res.render("../views/course.ejs", {
+      res.render("../views/admin/course.ejs", {
         branchData,
         courseData
       });

@@ -10,7 +10,7 @@ exports.noteGet = {
           sub_id: req.params.id,
         },
       });
-      res.render("../views/note.ejs", { noteData });
+      res.render("../views/admin/note.ejs", { noteData });
     } catch (error) {
       console.log(error);
     }

@@ -10,7 +10,7 @@ exports.createYearGet = {
           course_id: req.params.id,
         },
       });
-      res.render("../views/year.ejs", { yearData, courseData });
+      res.render("../views/admin/year.ejs", { yearData, courseData });
     } catch (error) {
       console.log(error);
     }
