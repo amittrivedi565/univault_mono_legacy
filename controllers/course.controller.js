@@ -8,16 +8,12 @@ exports.CourseGet = {
   controller: async (req, res) => {
     try {
 
-        const branchData = await db.branches.findAll({
-                include : [{
-                  model : db.courses,
-                  as : "course",
-                  attributes :['course_code','course_name','course_desc','course_tags'],
-                  where : {
-                    branch_id : req.params.id
-                  }
-                }]
-              })
+        const branchData = await db.branches.findOne({
+          raw: true,
+          where : {
+            branch_id : req.params.id
+          }
+        })
 
      const courseData = await db.courses.findAll({
       raw: true,
@@ -25,6 +21,8 @@ exports.CourseGet = {
         branch_id : req.params.id
       }
       })
+      
+      console.log(branchData);
       console.log(courseData);
       res.render("../views/admin/course.ejs", { courseData ,branchData});
     } catch (error) {

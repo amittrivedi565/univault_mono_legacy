@@ -1,23 +1,23 @@
 const jwt = require("jsonwebtoken")
+const authConfig = require("../config/auth.config")
 
 const authVerify = (req,res,next)=>{
 try{
-    let token = req.headers.authorization;
+    let token = req.cookies['api-auth'];
     if(token)
     {
-    token = token.split(" ")[1];
-    let user = jwt.verify(token,SECRET_KEY);
-    req.userID = user.id;
+        req.user = jwt.verify(token,authConfig.JWT_SECRET_KEY);
+        console.log(req.user);
     }
     else{
-        res.status(401).json({message : "Unauth"})
+        res.redirect('/close/login');
     }
     next();
-}catch(error){
-    console.log(error);
-    res.status(401).json({message : "Unauth"});
-
 }
+catch(error){
+    console.log(error);
+    res.status(401).json({message : "Unauthorized"});
+    }
 };
 
 module.exports = authVerify;

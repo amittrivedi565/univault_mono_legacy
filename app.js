@@ -8,11 +8,12 @@ const { errors } = require("celebrate");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const methodOverride = require("method-override")
+const authVerify  = require("./middlewares/verifyjwt")
 
 const PORT = config.PORT || 3000;
 const HOST = config.HOST;
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser("GoodCar"));
+app.use(cookieParser());
 app.use(
   session({
     secret: "API",
@@ -21,7 +22,6 @@ app.use(
     },
     resave: true,
     saveUninitialized : true
-
   })
 );
 

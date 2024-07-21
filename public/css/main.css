@@ -17,6 +17,7 @@
     min-height: 100vh;
     background-color: #FFFFFF;
     border-right: 0.5px solid gainsboro;
+
  /* box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23); */
 }
 
@@ -25,8 +26,8 @@
     display: flex;
     width: 100%;
     min-height: 6vh;
-    color: black;
     background-color: white;
+    color: black;
     font-size: 2.5vh;
     text-decoration: none;
     justify-content: center;
@@ -140,4 +141,3 @@ label ,select
 { 
         font-size: 1.5vh !important ;
 }
-

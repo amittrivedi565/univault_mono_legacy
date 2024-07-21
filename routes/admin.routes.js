@@ -13,17 +13,18 @@ const authVerify = require("../middlewares/verifyjwt.js")
 /* Admin Login Route */
 router.get("/login",auth.signInGet.controller)
 router.post("/login",auth.signInPost.validator,auth.signInPost.controller)
-router.get("/dashboard",admin.adminGet.controller)
+router.post("/logout",auth.signInPost.validator,auth.signInPost.controller)
+router.get("/dashboard",authVerify,admin.adminGet.controller)
 
 /* Branch Routes */
-router.get("/branch",branch.createBranchGet.controller);
-router.post("/branch",branch.createBranchPost.validator,branch.createBranchPost.controller);
-router.delete("/branch/:id",branch.deleteBranch.controller);
+router.get("/branch",authVerify,branch.createBranchGet.controller);
+router.post("/branch",authVerify,branch.createBranchPost.validator,branch.createBranchPost.controller);
+router.delete("/branch/:id",authVerify,branch.deleteBranch.controller);
 
 /* Course Routes */
-router.get("/course/:id",course.CourseGet.controller);
-router.post("/course/:id",course.createCourse.validator,course.createCourse.controller);
-router.delete("/course/:id",course.deleteCourse.controller)
+router.get("/course/:id",authVerify,course.CourseGet.controller);
+router.post("/course/:id",authVerify,course.createCourse.validator,course.createCourse.controller);
+router.delete("/course/:id",authVerify,course.deleteCourse.controller)
 
 /* Year Routes */
 router.get("/year/:course_name/:id",year.createYearGet.controller);

@@ -14,6 +14,17 @@ exports.signInGet = {
     }
 }
 
+exports.signOut = {
+    controller: async (req,res) => {
+        try {
+            res.clearCookie('api-auth');
+            res.redirect('/close/login');
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+}
+
 exports.signInPost = {
     validator: celebrate({
         [Segments.BODY]: Joi.object().keys({
@@ -54,7 +65,7 @@ exports.signInPost = {
                 httpOnly : true,
                 secure : false
             })
-            res.json('',)
+            res.redirect('/close/branch')
         } catch (error) {
             console.log(error);
             res.status(500).json({ message: "Something went wrong" });
