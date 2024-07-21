@@ -1,25 +1,20 @@
 const { where } = require("sequelize");
 const db = require("../models");
 const { celebrate, Joi, Segments } = require("celebrate");
+const { raw } = require("body-parser");
 
 // Get all courses by branch get request
 exports.CourseGet = {
   controller: async (req, res) => {
     try {
-      
+  
       const courseData = await db.courses.findAll({
         where: {
           branch_id: req.params.id
         },
       });
-      // const courseData = await db.branches.findAll({
-      //   raw : true,
-      //   include : [{
-      //     model : db.courses,
-      //     as : "course",
-      //     attributes :['course_code','course_name','course_desc','course_tags']
-      //   }]
-      // })
+      
+      console.log(courseData)
       res.render("../views/admin/course.ejs", {courseData});
     } catch (error) {
       res.status(201).send(error);
@@ -51,8 +46,7 @@ exports.createCourse = {
     const courseExists = await db.courses.findOne({
       where: {
         course_code: req.body.course_code,
-        course_name: req.body.course_name,
-        branch_id: req.params.id,
+        course_name: req.body.course_name
       },
     });
 
@@ -111,3 +105,14 @@ exports.getTag = {
     }
   }
 }
+
+ // const courseData = await db.branches.findAll({
+      //   include : [{
+      //     model : db.courses,
+      //     as : "course",
+      //     attributes :['course_code','course_name','course_desc','course_tags'],
+      //     where : {
+      //       branch_id : req.params.id
+      //     }
+      //   }]
+      // })

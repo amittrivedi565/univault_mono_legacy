@@ -64,7 +64,7 @@ db.colleges.belongsTo(db.admins, {
 });
 
 
-// 1 : M (Admin : Branches)
+// 1 : M (College : Branches)
 db.colleges.hasMany(db.branches, {
   foreignKey: "college_id",
   as: "branch",
@@ -161,7 +161,7 @@ db.notes.belongsTo(db.subjects, {
 });
 
 
-db.sequelize.sync({ force: true }).then(async () => {
+db.sequelize.sync({ force: false }).then(async () => {
   console.log("Re-Sync Done!");
 
   // let admin = ({
