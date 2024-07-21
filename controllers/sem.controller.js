@@ -6,7 +6,7 @@ const { celebrate, Joi, Segments } = require("celebrate");
 exports.createSemGet = {
   controller: async (req, res) => {
     try {
-      const semData = await db.sem.findAll({
+      const semData = await db.sems.findAll({
         where: {
           year_id: req.params.id,
         },
@@ -40,7 +40,7 @@ exports.createSemPost = {
       if (semCheck) {
         res.send("Already Exists");
       } else {
-        await db.sem.create(semRecord);
+        await db.sems.create(semRecord);
         res.redirect("back");
       }
     } catch (error) {

@@ -23,3 +23,10 @@ JWT_TOKEN_EXP_TIME='20m'
 
 ```
 # rgpv_note_app
+
+
+# TODO_LIST
+
+- auth (jwt)
+- flow-diagram
+-

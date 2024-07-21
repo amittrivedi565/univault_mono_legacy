@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const {signin}  = require("../controllers/auth.controller");
+const auth  = require("../controllers/auth.controller");
 const course = require("../controllers/course.controller")
 const branch = require("../controllers/branch.controller")
 const year = require("../controllers/year.controller")
@@ -8,9 +8,11 @@ const sem = require("../controllers/sem.controller")
 const subs = require("../controllers/sub.controller");
 const notes = require("../controllers/note.controller");
 const {uploadPdf} = require("../middlewares/upload.js")
+const {requireAuth} = require("../middlewares/verifyjwt.js")
 
 /* Admin Login Route */
-router.post("/login", signin.validator, signin.controller);
+router.get("/login",auth.signInGet.controller)
+router.post("/login",auth.signInPost.validator,auth.signInPost.controller)
 router.get("/dashboard",admin.adminGet.controller)
 
 /* Branch Routes */
@@ -55,7 +57,6 @@ router.get("/course/tags/:id",course.getTag.controller)
 router.get("/subject/tags/:id",subs.getTag.controller)
 router.get("/notes/tags/:id",notes.getTag.controller)
 
-router.get("/test")
 
 
 module.exports = router;

@@ -4,7 +4,16 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const db = require("../models");
 
-const signin = {
+exports.signInGet = {
+    controller : async(req,res)=>{
+        try {
+            res.render("../views/auth.ejs")
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+}
+exports.signInPost = {
     validator: celebrate({
         [Segments.BODY]: Joi.object().keys({
             email: Joi.string().required(),
@@ -40,22 +49,10 @@ const signin = {
                     expiresIn: authConfig.JWT_TOKEN_EXP_TIME,
                 }
             );
-
-            res.status(201).json({
-                user: {
-                    id: existingUser.id,
-                    name: existingUser.name,
-                    email: existingUser.email,
-                },
-                token: token,
-            });
+            res.redirect('/close/dashboard',{token:token})
         } catch (error) {
             console.log(error);
             res.status(500).json({ message: "Something went wrong" });
         }
     },
-};
-
-module.exports = {
-    signin,
 };

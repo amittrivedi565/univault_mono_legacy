@@ -31,6 +31,8 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
+db.colleges = require("./college.model")(sequelize, DataTypes);
+
 db.admins = require("./admin.models")(sequelize, DataTypes);
 
 db.branches = require("./branch.models")(sequelize, DataTypes);
@@ -39,11 +41,45 @@ db.courses = require("./course.models")(sequelize, DataTypes);
 
 db.years = require("./year.model")(sequelize, DataTypes);
 
-db.sem = require("./sem.models")(sequelize, DataTypes);
+db.sems = require("./sem.models")(sequelize, DataTypes);
 
 db.subjects = require("./sub.models")(sequelize, DataTypes);
 
 db.notes = require("./notes.model")(sequelize, DataTypes);
+
+
+// 1 : M (Admin : Colleges)
+db.admins.hasMany(db.colleges, {
+  foreignKey: "admin_id",
+  as: "college",
+  onDelete: "CASCADE",
+  hooks: true
+});
+
+db.colleges.belongsTo(db.admins, {
+  foreignKey: "admin_id",
+  as: "admin",
+  onDelete: "CASCADE",
+  hooks :true
+});
+
+
+// 1 : M (Admin : Branches)
+db.colleges.hasMany(db.branches, {
+  foreignKey: "college_id",
+  as: "branch",
+  onDelete: "CASCADE",
+  hooks: true
+});
+
+db.branches.belongsTo(db.colleges, {
+  foreignKey: "college_id",
+  as: "college",
+  onDelete: "CASCADE",
+  hooks :true
+});
+
+
 
 
 // 1 : M (Branch : Courses)
@@ -78,14 +114,14 @@ db.years.belongsTo(db.courses, {
 
 
 // 1 : M (Year : Sems)
-db.years.hasMany(db.sem, {
+db.years.hasMany(db.sems, {
   foreignKey: "year_id",
   as: "semester",
   onDelete: "CASCADE",
   hooks :true
 });
 
-db.sem.belongsTo(db.years, {
+db.sems.belongsTo(db.years, {
   foreignKey: "year_id",
   as: "years",
   onDelete: "CASCADE",
@@ -94,14 +130,14 @@ db.sem.belongsTo(db.years, {
 
 
 // 1 : M (Sem : Subjects)
-db.sem.hasMany(db.subjects, {
+db.sems.hasMany(db.subjects, {
   foreignKey: "sem_id",
   as: "subject",
   onDelete: "CASCADE",
   hooks :true
 });
 
-db.subjects.belongsTo(db.sem, {
+db.subjects.belongsTo(db.sems, {
   foreignKey: "sem_id",
   as: "semester",
   onDelete: "CASCADE",
@@ -125,8 +161,19 @@ db.notes.belongsTo(db.subjects, {
 });
 
 
-db.sequelize.sync({ force: false }).then(async () => {
+db.sequelize.sync({ force: true }).then(async () => {
   console.log("Re-Sync Done!");
+
+  let admin = ({
+    name: "abc",
+    email: "xyz@com",
+    password: bcrypt.hashSync("123", salt),
+   
+  })
+  await db.admins.create(admin)
+
 });
+
+
 
 module.exports = db;

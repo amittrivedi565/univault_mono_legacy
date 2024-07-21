@@ -11,7 +11,7 @@ exports.createSubjectGet = {
           sem_id: req.params.id,
         },
       });
-      const semData = await db.sem.findAll({});
+      const semData = await db.sems.findAll({});
       res.render("../views/admin/sub.ejs", { subData, semData });
     } catch (error) {
       console.log(error);

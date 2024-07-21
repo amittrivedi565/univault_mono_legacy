@@ -33,7 +33,7 @@ exports.createCourse = {
       course_name: Joi.string().required(),
       course_desc: Joi.string().min(0).max(500).required(),
       course_tags: Joi.string().required(),
-      branch_id: Joi.string().optional(),
+      branch_id: Joi.string().required(),
     }),
   }),
 
