@@ -12,7 +12,6 @@ exports.CourseGet = {
           branch_id: req.params.id
         },
       });
-
       // const courseData = await db.branches.findAll({
       //   raw : true,
       //   include : [{
