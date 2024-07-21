@@ -13,6 +13,7 @@ exports.signInGet = {
         }
     }
 }
+
 exports.signInPost = {
     validator: celebrate({
         [Segments.BODY]: Joi.object().keys({

@@ -6,21 +6,24 @@ const { celebrate, Joi, Segments } = require("celebrate");
 exports.CourseGet = {
   controller: async (req, res) => {
     try {
-       
-      const branchData = await db.branches.findAll()
-
+      
       const courseData = await db.courses.findAll({
         where: {
           branch_id: req.params.id
         },
       });
 
-      res.render("../views/admin/course.ejs", {
-        branchData,
-        courseData
-      });
+      // const courseData = await db.branches.findAll({
+      //   raw : true,
+      //   include : [{
+      //     model : db.courses,
+      //     as : "course",
+      //     attributes :['course_code','course_name','course_desc','course_tags']
+      //   }]
+      // })
+      res.render("../views/admin/course.ejs", {courseData});
     } catch (error) {
-      console.log(error);
+      res.status(201).send(error);
     }
   },
 };
@@ -77,7 +80,7 @@ exports.deleteCourse = {
       res.redirect('back');
       console.log(deleteRecord);
     } catch (error) {
-      console.log(error);
+      res.status(201).send(error);
     }
   },
 };
@@ -91,7 +94,7 @@ exports.getDesc = {
       }})
       res.send("Description : "+courseData.course_desc)
     } catch (error) {
-      
+      res.status(201).send(error);
     }
   }
 }
@@ -105,7 +108,7 @@ exports.getTag = {
       }})
       res.send("Tags : "+courseData.course_tags)
     } catch (error) {
-      
+      res.status(201).send(error);
     }
   }
 }

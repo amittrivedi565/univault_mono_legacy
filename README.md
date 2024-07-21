@@ -29,4 +29,5 @@ JWT_TOKEN_EXP_TIME='20m'
 
 - auth (jwt)
 - flow-diagram
--
+- breakpoint (api)
+- custom errors & response
