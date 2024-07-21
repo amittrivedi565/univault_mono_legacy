@@ -50,7 +50,11 @@ exports.signInPost = {
                     expiresIn: authConfig.JWT_TOKEN_EXP_TIME,
                 }
             );
-            res.redirect('/close/dashboard',{token:token})
+            res.cookie("api-auth",token,{
+                httpOnly : true,
+                secure : false
+            })
+            res.json('',)
         } catch (error) {
             console.log(error);
             res.status(500).json({ message: "Something went wrong" });

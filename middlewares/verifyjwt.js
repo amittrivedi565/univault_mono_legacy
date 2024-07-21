@@ -1,24 +1,23 @@
-const jwt  = require('jsonwebtoken')
-const config = require('../config/auth.config')
+const jwt = require("jsonwebtoken")
 
-const requireAuth = (req,res,next)=>{
-     const token = req.cookies.jwt
-     if (token) {
-          jwt.verify(token,config.JWT_SECRET_KEY,(err,decodedToken)=>{
-               if(err){
-                    console.log(err.message)
-               }
-               else{
-                    console.log(decodedToken);
-                    next();
-               }
-          })
-     }
-     else{
-          res.redirect("/login")
-     }
+const authVerify = (req,res,next)=>{
+try{
+    let token = req.headers.authorization;
+    if(token)
+    {
+    token = token.split(" ")[1];
+    let user = jwt.verify(token,SECRET_KEY);
+    req.userID = user.id;
+    }
+    else{
+        res.status(401).json({message : "Unauth"})
+    }
+    next();
+}catch(error){
+    console.log(error);
+    res.status(401).json({message : "Unauth"});
 
 }
-module.exports = {
-     requireAuth
-}
+};
+
+module.exports = authVerify;

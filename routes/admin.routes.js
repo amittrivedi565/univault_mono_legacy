@@ -8,7 +8,7 @@ const sem = require("../controllers/sem.controller")
 const subs = require("../controllers/sub.controller");
 const notes = require("../controllers/note.controller");
 const {uploadPdf} = require("../middlewares/upload.js")
-const {requireAuth} = require("../middlewares/verifyjwt.js")
+const authVerify = require("../middlewares/verifyjwt.js")
 
 /* Admin Login Route */
 router.get("/login",auth.signInGet.controller)

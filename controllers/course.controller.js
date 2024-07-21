@@ -7,16 +7,28 @@ const { raw } = require("body-parser");
 exports.CourseGet = {
   controller: async (req, res) => {
     try {
-  
-      const courseData = await db.courses.findAll({
-        where: {
-          branch_id: req.params.id
-        },
-      });
-      
-      console.log(courseData)
-      res.render("../views/admin/course.ejs", {courseData});
+
+        const branchData = await db.branches.findAll({
+                include : [{
+                  model : db.courses,
+                  as : "course",
+                  attributes :['course_code','course_name','course_desc','course_tags'],
+                  where : {
+                    branch_id : req.params.id
+                  }
+                }]
+              })
+
+     const courseData = await db.courses.findAll({
+      raw: true,
+      where : {
+        branch_id : req.params.id
+      }
+      })
+      console.log(courseData);
+      res.render("../views/admin/course.ejs", { courseData ,branchData});
     } catch (error) {
+      console.log(error)
       res.status(201).send(error);
     }
   },
@@ -46,15 +58,17 @@ exports.createCourse = {
     const courseExists = await db.courses.findOne({
       where: {
         course_code: req.body.course_code,
-        course_name: req.body.course_name
+        course_name: req.body.course_name,
       },
     });
 
     if (courseExists) {
       res.send("Course Already Exists");
     } else {
-      await db.courses.create(data);
+    const record = await db.courses.create(data);
+      console.log(record)
       res.redirect("back");
+    
     }
   },
 };
@@ -70,7 +84,7 @@ exports.deleteCourse = {
           course_id: id,
         },
       });
-      res.redirect('back');
+      res.redirect("back");
       console.log(deleteRecord);
     } catch (error) {
       res.status(201).send(error);
@@ -78,41 +92,34 @@ exports.deleteCourse = {
   },
 };
 
-// Get description about course 
+// Get description about course
 exports.getDesc = {
-  controller : async(req,res)=>{
+  controller: async (req, res) => {
     try {
-      const courseData = await db.courses.findOne({where :{
-         course_id : req.params.id
-      }})
-      res.send("Description : "+courseData.course_desc)
+      const courseData = await db.courses.findOne({
+        where: {
+          course_id: req.params.id,
+        },
+      });
+      res.send("Description : " + courseData.course_desc);
     } catch (error) {
       res.status(201).send(error);
     }
-  }
-}
+  },
+};
 
 // Get tags about course
 exports.getTag = {
-  controller : async(req,res)=>{
+  controller: async (req, res) => {
     try {
-      const courseData = await db.courses.findOne({where :{
-         course_id : req.params.id
-      }})
-      res.send("Tags : "+courseData.course_tags)
+      const courseData = await db.courses.findOne({
+        where: {
+          course_id: req.params.id,
+        },
+      });
+      res.send("Tags : " + courseData.course_tags);
     } catch (error) {
       res.status(201).send(error);
     }
-  }
-}
-
- // const courseData = await db.branches.findAll({
-      //   include : [{
-      //     model : db.courses,
-      //     as : "course",
-      //     attributes :['course_code','course_name','course_desc','course_tags'],
-      //     where : {
-      //       branch_id : req.params.id
-      //     }
-      //   }]
-      // })
+  },
+};
