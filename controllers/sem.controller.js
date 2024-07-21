@@ -32,7 +32,7 @@ exports.createSemPost = {
         year_name: req.params.year_name,
         year_id: req.params.id,
       };
-      const semCheck = await db.sem.findOne({ where : {
+      const semCheck = await db.sems.findOne({ where : {
         year_id : req.params.id,
         sem_name : req.body.sem_name
 
