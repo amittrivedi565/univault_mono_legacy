@@ -27,7 +27,5 @@ JWT_TOKEN_EXP_TIME='20m'
 
 # TODO_LIST
 
-- auth (jwt)
-- flow-diagram
-- breakpoint (api)
 - custom errors & response
+- client ui/ux

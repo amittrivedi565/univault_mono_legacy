@@ -27,36 +27,36 @@ router.post("/course/:id",authVerify,course.createCourse.validator,course.create
 router.delete("/course/:id",authVerify,course.deleteCourse.controller)
 
 /* Year Routes */
-router.get("/year/:course_name/:id",year.createYearGet.controller);
-router.post("/year/:course_name/:id",year.createYearPost.validator,year.createYearPost.controller);
-router.delete("/year/:id",year.deleteYear.controller);
+router.get("/year/:course_name/:id",authVerify,year.createYearGet.controller);
+router.post("/year/:course_name/:id",authVerify,year.createYearPost.validator,year.createYearPost.controller);
+router.delete("/year/:id",authVerify,year.deleteYear.controller);
 
 /* Semester Routes */
-router.get("/sem/:year_name/:id",sem.createSemGet.controller);
-router.post("/sem/:year_name/:id",sem.createSemPost.controller);
+router.get("/sem/:year_name/:id",authVerify,sem.createSemGet.controller);
+router.post("/sem/:year_name/:id",authVerify,sem.createSemPost.controller);
 
 /* Subject Routes */
-router.get("/sub/:sem_name/:id",subs.createSubjectGet.controller);
-router.post("/sub/:sem_name/:id",subs.createSubjectPost.validator,subs.createSubjectPost.controller);
-router.delete("/sub/:id",subs.deleteSubject.controller);
+router.get("/sub/:sem_name/:id",authVerify,subs.createSubjectGet.controller);
+router.post("/sub/:sem_name/:id",authVerify,subs.createSubjectPost.validator,subs.createSubjectPost.controller);
+router.delete("/sub/:id",authVerify,subs.deleteSubject.controller);
 
 /* Note Routes */
-router.get("/note/:sub_name/:id",notes.noteGet.controller);
-router.post("/note/:sub_name/:id",uploadPdf.single("pdf"),notes.notePost.controller)
-router.post("/note/link/:sub_name/:id",notes.notePost.controller);
-router.delete("/note/:id",notes.deleteNote.controller);
+router.get("/note/:sub_name/:id",authVerify,notes.noteGet.controller);
+router.post("/note/:sub_name/:id",authVerify,uploadPdf.single("pdf"),notes.notePost.controller)
+router.post("/note/link/:sub_name/:id",authVerify,notes.notePost.controller);
+router.delete("/note/:id",authVerify,notes.deleteNote.controller);
 
 /* Description Routes */
-router.get("/branch/desc/:id",branch.getDesc.controller)
-router.get("/course/desc/:id",course.getDesc.controller)
-router.get("/subject/desc/:id",subs.getDesc.controller)
-router.get("/notes/desc/:id",notes.getDesc.controller)
+router.get("/branch/desc/:id",authVerify,branch.getDesc.controller)
+router.get("/course/desc/:id",authVerify,course.getDesc.controller)
+router.get("/subject/desc/:id",authVerify,subs.getDesc.controller)
+router.get("/notes/desc/:id",authVerify,notes.getDesc.controller)
 
 /* Tags Routes */
-router.get("/branch/tags/:id",branch.getTag.controller)
-router.get("/course/tags/:id",course.getTag.controller)
-router.get("/subject/tags/:id",subs.getTag.controller)
-router.get("/notes/tags/:id",notes.getTag.controller)
+router.get("/branch/tags/:id",authVerify,branch.getTag.controller)
+router.get("/course/tags/:id",authVerify,course.getTag.controller)
+router.get("/subject/tags/:id",authVerify,subs.getTag.controller)
+router.get("/notes/tags/:id",authVerify,notes.getTag.controller)
 
 
 
