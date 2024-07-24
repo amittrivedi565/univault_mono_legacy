@@ -3,25 +3,25 @@ module.exports = (sequelize, DataTypes) => {
   const Note = sequelize.define(
     "notes",
     {
-      note_id: {
+      id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
         primaryKey: true,
       },
-      note_name: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      note_desc: {
+      desc: {
         type: "LONGTEXT",
         allowNull: false,
       },
-      note_tags: {
+      tags: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      note_url: {
+      url: {
         type: DataTypes.STRING,
         allowNull: true,
       },

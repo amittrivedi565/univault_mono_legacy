@@ -1,5 +1,5 @@
 const { where } = require("sequelize");
-const db = require("../models");
+const db = require("../../models");
 const { celebrate, Joi, Segments } = require("celebrate");
 
 
@@ -20,7 +20,7 @@ exports.createSemGet = {
 exports.createSemPost = {
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
-      sem_name: Joi.string().required(),
+      name: Joi.string().required(),
       year_name: Joi.string().required(),
       year_id: Joi.string().required(),
     }),
@@ -28,14 +28,14 @@ exports.createSemPost = {
   controller: async (req, res) => {
     try {
       const semRecord = {
-        sem_name: req.body.sem_name,
+        name: req.body.name,
         year_name: req.params.year_name,
         year_id: req.params.id,
       };
       const semCheck = await db.sems.findOne({ where : {
-        year_id : req.params.id,
-        sem_name : req.body.sem_name
-
+        name : req.body.name,
+        year_id : req.params.id
+        
       } });
       if (semCheck) {
         res.send("Already Exists");

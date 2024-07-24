@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="main-right-bread">
-                <b><%= branchData.branch_name %> / Course Page</b>
+                <b><%= branchData.name %> / Course Page</b>
            
                 <div class="addModal">
                     <!-- Button trigger modal -->
@@ -70,22 +70,22 @@
                                       <div class="form-group">
                                         <label for="recipient-name" class="col-form-label">Course
                                         Code:</label>
-                                        <input name="course_code" type="text" class="form-control" id="recipient-name">
+                                        <input name="code" type="text" class="form-control" id="recipient-name">
                                     </div>
                                         <div class="form-group">
                                             <label for="recipient-name" class="col-form-label">Course
                                             Name:</label>
-                                            <input name="course_name" type="text" class="form-control" id="recipient-name">
+                                            <input name="name" type="text" class="form-control" id="recipient-name">
                                         </div>
                                         <div class="form-group">
                                             <label for="message-text" class="col-form-label">Course
                                             Description:</label>
-                                            <textarea name="course_desc" class="form-control" id="message-text"></textarea>
+                                            <textarea name="desc" class="form-control" id="message-text"></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for="recipient-name" class="col-form-label">Course
                                             Tags:</label>
-                                            <input name="course_tags" type="text" class="form-control" id="recipient-name">
+                                            <input name="tags" type="text" class="form-control" id="recipient-name">
                                         </div>
                                 </div>
                                 <div class="modal-footer">
@@ -111,7 +111,7 @@
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#flush-<%=index%>" aria-expanded="false"
                             aria-controls="flush-collapseOne">
-                     <%= courseArray.course_name %> 
+                     <%= courseArray.name %> 
                         </button>
                     </h2>
 
@@ -131,14 +131,14 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                            <%= courseArray.course_name %>
+                                            <%= courseArray.name %>
                                             </td>
-                                            <td><a href="/close/course/desc/<%= courseArray.course_id %>"><button type="button" class="btn btn-link">View</button></a></td>
-                                            <td><a href="/close/course/tags/<%= courseArray.course_id %>"><button type=" button" class="btn btn-link">View</button></a></td>
-                                            <td><a href="/close/year/<%= courseArray.course_name %>/<%= courseArray.course_id %>"><button type="button" class="btn btn-sm btn-outline-primary">Next</button></a></td>
+                                            <td><a href="/close/course/desc/<%= courseArray.id %>"><button type="button" class="btn btn-link">View</button></a></td>
+                                            <td><a href="/close/course/tags/<%= courseArray.id %>"><button type=" button" class="btn btn-link">View</button></a></td>
+                                            <td><a href="/close/year/<%= courseArray.name %>/<%= courseArray.id %>"><button type="button" class="btn btn-sm btn-outline-primary">Next</button></a></td>
                                             <td>
                                                 <form
-                                                    action="/close/course/<%= courseArray.course_id %>?_method=DELETE"
+                                                    action="/close/course/<%= courseArray.id %>?_method=DELETE"
                                                     method="post">
                                                     <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
                                                 </form>

@@ -1,5 +1,5 @@
 const { where } = require("sequelize");
-const db = require("../models");
+const db = require("../../models");
 const { celebrate, Joi, Segments } = require("celebrate");
 const { raw } = require("body-parser");
 
@@ -9,21 +9,18 @@ exports.CourseGet = {
     try {
 
         const branchData = await db.branches.findOne({
-          raw: true,
           where : {
-            branch_id : req.params.id
+            id : req.params.id
           }
         })
 
      const courseData = await db.courses.findAll({
-      raw: true,
       where : {
         branch_id : req.params.id
       }
       })
       
-      console.log(branchData);
-      console.log(courseData);
+
       res.render("../views/admin/course.ejs", { courseData ,branchData});
     } catch (error) {
       console.log(error)
@@ -36,27 +33,27 @@ exports.CourseGet = {
 exports.createCourse = {
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
-      course_code: Joi.string().required(),
-      course_name: Joi.string().required(),
-      course_desc: Joi.string().min(0).max(500).required(),
-      course_tags: Joi.string().required(),
-      branch_id: Joi.string().optional(),
+      code: Joi.string().required(),
+      name: Joi.string().required(),
+      desc: Joi.string().min(0).max(500).required(),
+      tags: Joi.string().required(),
+      id: Joi.string().optional(),
     }),
   }),
 
   controller: async (req, res) => {
     const data = {
-      course_code: req.body.course_code,
-      course_name: req.body.course_name,
-      course_desc: req.body.course_desc,
-      course_tags: req.body.course_tags,
+      code: req.body.code,
+      name: req.body.name,
+      desc: req.body.desc,
+      tags: req.body.tags,
       branch_id: req.params.id,
     };
 
     const courseExists = await db.courses.findOne({
       where: {
-        course_code: req.body.course_code,
-        course_name: req.body.course_name,
+        code: req.body.code,
+        name: req.body.name,
       },
     });
 
@@ -64,7 +61,6 @@ exports.createCourse = {
       res.send("Course Already Exists");
     } else {
     const record = await db.courses.create(data);
-      console.log(record)
       res.redirect("back");
     
     }
@@ -74,16 +70,13 @@ exports.createCourse = {
 // Delete course by branch
 exports.deleteCourse = {
   controller: async (req, res) => {
-    const id = req.params.id;
     try {
-      const id = req.params.id;
       const deleteRecord = await db.courses.destroy({
         where: {
-          course_id: id,
+         id : req.params.id
         },
       });
       res.redirect("back");
-      console.log(deleteRecord);
     } catch (error) {
       res.status(201).send(error);
     }
@@ -96,10 +89,10 @@ exports.getDesc = {
     try {
       const courseData = await db.courses.findOne({
         where: {
-          course_id: req.params.id,
+          id: req.params.id,
         },
       });
-      res.send("Description : " + courseData.course_desc);
+      res.send("Description : " + courseData.desc);
     } catch (error) {
       res.status(201).send(error);
     }
@@ -112,10 +105,10 @@ exports.getTag = {
     try {
       const courseData = await db.courses.findOne({
         where: {
-          course_id: req.params.id,
+          id: req.params.id,
         },
       });
-      res.send("Tags : " + courseData.course_tags);
+      res.send("Tags : " + courseData.tags);
     } catch (error) {
       res.status(201).send(error);
     }

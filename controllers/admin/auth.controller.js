@@ -1,8 +1,8 @@
 const { celebrate, Joi, Segments } = require("celebrate");
-const authConfig = require("../config/auth.config");
+const authConfig = require("../../config/auth.config");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const db = require("../models");
+const db = require("../../models");
 
 exports.signInGet = {
     controller : async(req,res)=>{

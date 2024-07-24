@@ -67,7 +67,7 @@
                                     <form method="post">
                                         <div class="form-group">
                                             <label for="recipient-name" class="col-form-label">Sem Name:</label>
-                                            <select  name="sem_name"> 
+                                            <select  name="name"> 
                                                 <option value="" selected data-id="0">Select</option>
                                                 <option value="First Semesters" data-id="1">First Semesters</option>
                                                 <option value="Second Semesters" data-id="2">Second Semesters</option>
@@ -103,7 +103,7 @@
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#flush-<%=index%>" aria-expanded="false"
                             aria-controls="flush-collapseOne">
-                        # <%= semArray.sem_name %>
+                        # <%= semArray.name %>
                         </button>
                         <div id="flush-<%=index%>" class="accordion-collapse collapse"
                             aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
@@ -120,9 +120,9 @@
                                     <tbody>
                                         
                                         <tr>
-                                         <td><%= semArray.sem_name %> </td>
+                                         <td><%= semArray.name %> </td>
                                             <td><%= semArray.year_name  %></td>
-                                            <td><a href="/close/sub/<%= semArray.sem_name %>/<%= semArray.sem_id %>"><button type="button" class="btn btn-outline-primary btn-sm">Next</button></a></td>                               
+                                            <td><a href="/close/sub/<%= semArray.name %>/<%= semArray.id %>"><button type="button" class="btn btn-outline-primary btn-sm">Next</button></a></td>                               
                                         </tr>
                                     </tbody>
                                 </table>

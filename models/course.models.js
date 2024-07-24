@@ -2,25 +2,25 @@ const { allow } = require("joi");
 const Sequelize = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   const Course = sequelize.define("course", {
-    course_id: {
+    id: {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV4,
       allowNull: false,
       primaryKey: true,
     },
-    course_name: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    course_code:{
+    code:{
       type: DataTypes.STRING,
       allowNull: false,
     },
-    course_desc: {
+    desc: {
       type:"LONGTEXT",
       allowNull: false,
     },
-    course_tags: {
+    tags: {
       type: DataTypes.STRING,
       allowNull: false,
     },

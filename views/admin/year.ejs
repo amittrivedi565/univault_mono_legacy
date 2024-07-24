@@ -68,7 +68,7 @@
                                         <div class="form-group">
                                             <label for="year_name" class="col-form-label">
                                                 Year Value :</label>
-                                                <select  name="year_name" id="a" class="user-select"> 
+                                                <select  name="name" id="a" class="user-select"> 
                                                     <option value="" selected data-id="0">Select</option>
                                                     <option value="First Year" data-id="1">First Year</option>
                                                     <option value="Second Year" data-id="2">Second Year</option>
@@ -76,7 +76,7 @@
                                                     <option value="Fourth Year" data-id="4">Fourth Year</option>
                                                   </select>
 
-                                                  <select name="year_value" id="b" class="auto-select" > 
+                                                  <select name="value" id="b" class="auto-select" > 
                                                     <option value=""selected ></option>
                                                     <option name="year_value" value="1">1</option>
                                                     <option name="year_value" value="2">2</option>
@@ -108,7 +108,7 @@
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#flush-<%=index%>" aria-expanded="false"
                             aria-controls="flush-collapseOne">
-                        # <%= yearArray.year_name %>
+                        # <%= yearArray.name %>
                         </button>
                         <div id="flush-<%=index%>" class="accordion-collapse collapse"
                             aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
@@ -128,10 +128,10 @@
                                                 <%= yearArray.course_name %>
                                             </td>
                                             <td>
-                                                <%= yearArray.year_name %>
+                                                <%= yearArray.name %>
                                             </td>
     
-                                            <td><a href="/close/sem/<%= yearArray.year_name %>/<%= yearArray.year_id %>"><button
+                                            <td><a href="/close/sem/<%= yearArray.name %>/<%= yearArray.id %>"><button
                                                 type="button" class="btn btn-outline-primary btn-sm">Next</button></a></td>
                             
                                             </td>

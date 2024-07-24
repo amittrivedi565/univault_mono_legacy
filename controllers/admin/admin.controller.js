@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("../../models");
 
 exports.adminGet = {
     controller: async (req, res) => {

@@ -65,17 +65,17 @@
                                         <div class="form-group">
                                             <label for="recipient-name" class="col-form-label">Branch
                                             Name:</label>
-                                            <input name="branch_name" type="text" class="form-control" id="recipient-name">
+                                            <input name="name" type="text" class="form-control" id="recipient-name">
                                         </div>
                                         <div class="form-group">
                                             <label for="message-text" class="col-form-label">Branch
                                             Description:</label>
-                                            <textarea name="branch_desc" class="form-control" id="message-text"></textarea>
+                                            <textarea name="desc" class="form-control" id="message-text"></textarea>
                                         </div>
                                         <div class="form-group">
                                             <label for="recipient-name" class="col-form-label">Branch
                                             Tags:</label>
-                                            <input name="branch_tags" type="text" class="form-control" id="recipient-name">
+                                            <input name="tags" type="text" class="form-control" id="recipient-name">
                                         </div>
                                 </div>
                                 <div class="modal-footer">
@@ -100,7 +100,7 @@
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#flush-<%=index%>" aria-expanded="false"
                             aria-controls="flush-collapseOne">
-                        # <%= branchArray.branch_name %>
+                        # <%= branchArray.name %>
                         </button>
                         <div id="flush-<%=index%>" class="accordion-collapse collapse"
                             aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
@@ -118,15 +118,15 @@
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <%= branchArray.branch_name %>
+                                                <%= branchArray.name %>
                                             </td>
-                                            <td><a href="/close/branch/desc/<%= branchArray.branch_id %>"><button type="button" class="btn btn-link">View</button></a></td>
-                                            <td><a href="/close/branch/tags/<%= branchArray.branch_id %>"><button type="button" class="btn btn-link">View</button></a></td>
-                                            <td><a href="/close/course/<%= branchArray.branch_id %>"><button
+                                            <td><a href="/close/branch/desc/<%= branchArray.id %>"><button type="button" class="btn btn-link">View</button></a></td>
+                                            <td><a href="/close/branch/tags/<%= branchArray.id %>"><button type="button" class="btn btn-link">View</button></a></td>
+                                            <td><a href="/close/course/<%= branchArray.id %>"><button
                                                 type="button" class="btn btn-outline-primary btn-sm">Next</button></a></td>
                                             <td>
                                                 <form
-                                                    action="/close/branch/<%= branchArray.branch_id %>?_method=DELETE"
+                                                    action="/close/branch/<%= branchArray.id %>?_method=DELETE"
                                                     method="post">
                                                      
                                                     <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>

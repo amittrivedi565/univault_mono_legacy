@@ -6,6 +6,6 @@ const openRoutes = require("./open.routes");
 router.use("/close", adminRoutes);
 
 /* Common or Open Routes (anyone can access) */
-router.use("/open", openRoutes);
+router.use("/", openRoutes);
 
 module.exports = router;

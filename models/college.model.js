@@ -3,24 +3,24 @@ const { validate } = require("uuid");
 
 module.exports = (sequelize, DataTypes) => {
   const College = sequelize.define("college", {
-    college_id: {
+    id: {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV4,
       allowNull: false,
       primaryKey: true,
     },
-    college_name: {
+    name: {
       type: DataTypes.STRING,
       allowNull: false,
       // unique : true
     },
-    college_desc: {
+    desc: {
       type: "LONGTEXT",
       allowNull: false,
       // unique : true
 
     },
-    college_tags: {
+    tags: {
       type: DataTypes.STRING,
       allowNull: false,
 

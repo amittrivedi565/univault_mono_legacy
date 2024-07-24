@@ -1,5 +1,5 @@
 const { where } = require("sequelize");
-const db = require("../models");
+const db = require("../../models");
 const { celebrate, Joi, Segments } = require("celebrate");
 
 // Create Branch Get
@@ -19,22 +19,22 @@ exports.createBranchPost = {
   // validating incoming data
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
-      branch_name: Joi.string().required(),
-      branch_tags: Joi.string().required(),
-      branch_desc: Joi.string().min(0).max(2500).required(),
+      name: Joi.string().required(),
+      tags: Joi.string().required(),
+      desc: Joi.string().min(0).max(2500).required(),
     }),
   }),
   controller: async (req, res) => {
     try {
       const data = {
-        branch_name: req.body.branch_name,
-        branch_desc: req.body.branch_desc,
-        branch_tags: req.body.branch_tags,
+        name: req.body.name,
+        desc: req.body.desc,
+        tags: req.body.tags,
       };
 
       const branchExists = await db.branches.findOne({
         where: {
-          branch_name: req.body.branch_name,
+          name: req.body.name,
         },
       });
 
@@ -57,7 +57,7 @@ exports.deleteBranch = {
       const id = req.params.id;
       const isValid = await db.branches.findOne({
         where: {
-          branch_id: id,
+          id: id,
         },
       });
 
@@ -66,7 +66,7 @@ exports.deleteBranch = {
       } else {
         const branchDelete = await db.branches.destroy({
           where: {
-            branch_id: id,
+            id: id,
           },
         });
         res.redirect("back");
@@ -82,10 +82,10 @@ exports.getDesc = {
     try {
       const branchData = await db.branches.findOne({
         where: {
-          branch_id: req.params.id,
+          id: req.params.id,
         },
       });
-      res.send("Description : " + branchData.branch_desc);
+      res.send("Description : " + branchData.desc);
     } catch (error) {
       console.log(error.message);
     }
@@ -97,10 +97,10 @@ exports.getTag = {
     try {
       const branchData = await db.branches.findOne({
         where: {
-          branch_id: req.params.id,
+          id: req.params.id,
         },
       });
-      res.send("Tags : " + branchData.branch_tags);
+      res.send("Tags : " + branchData.tags);
     } catch (error) {
       console.log(error.message);
     }

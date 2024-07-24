@@ -16,7 +16,7 @@ try{
 }
 catch(error){
     console.log(error);
-    res.status(401).json({message : "Unauthorized"});
+    res.redirect("/close/login")
     }
 };
 

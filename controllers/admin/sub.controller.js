@@ -1,5 +1,5 @@
 const path = require("node:path");
-const db = require("../models");
+const db = require("../../models");
 const { celebrate, Joi, Segments } = require("celebrate");
 
 // create subject
@@ -22,10 +22,10 @@ exports.createSubjectGet = {
 exports.createSubjectPost = {
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
-      sub_code: Joi.string().required(),
-      sub_name: Joi.string().required(),
-      sub_desc: Joi.string().min(0).max(500).required(),
-      sub_tags: Joi.string().required(),
+      code: Joi.string().required(),
+      name: Joi.string().required(),
+      desc: Joi.string().min(0).max(500).required(),
+      tags: Joi.string().required(),
       sem_id: Joi.string().optional(),
       sem_name: Joi.string().optional(),
     }),
@@ -36,18 +36,18 @@ exports.createSubjectPost = {
 
         
         const data = {
-        sub_code: req.body.sub_code,
-        sub_name: req.body.sub_name,
-        sub_desc: req.body.sub_desc,
-        sub_tags: req.body.sub_tags,
-        sem_name: req.params.sem_name,
+        code: req.body.code,
+        name: req.body.name,
+        desc: req.body.desc,
+        tags: req.body.tags,
         sem_id: req.params.id,
+        sem_name: req.params.sem_name,
       };
 
       const subjectExists = await db.subjects.findOne({
         where: {
-          sub_code: req.body.sub_code,
-          sub_name: req.body.sub_name,
+          code: req.body.code,
+          name: req.body.name,
         },
       });
 
@@ -72,7 +72,7 @@ exports.deleteSubject = {
       
       const deleteRecord = await db.subjects.destroy({
         where: {
-          sub_id: req.params.id
+          id: req.params.id
         },
       });
       res.redirect("back");
@@ -88,10 +88,10 @@ exports.getDesc = {
     try {
       const subData = await db.subjects.findOne({
         where: {
-          sub_id: req.params.id,
+          id: req.params.id,
         },
       });
-      res.send("Description : " + subData.sub_desc);
+      res.send("Description : " + subData.desc);
     } catch (error) {}
   },
 };
@@ -101,10 +101,10 @@ exports.getTag = {
     try {
       const subData = await db.subjects.findOne({
         where: {
-          sub_id: req.params.id,
+          id: req.params.id,
         },
       });
-      res.send("Tags : " + subData.sub_tags);
+      res.send("Tags : " + subData.tags);
     } catch (error) {}
   },
 };

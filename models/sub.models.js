@@ -3,32 +3,36 @@ module.exports = (sequelize, DataTypes) => {
   const Subject = sequelize.define(
     "subject",
     {
-      sub_id: {
+      id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
         primaryKey: true,
       },
-      sub_code: {
+      code: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      sub_name: {
+      name: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      sub_desc: {
+      desc: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      sub_tags: {
+      tags: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      sem_name: {
-        type: DataTypes.STRING,
+      sem_id: {
+        type: Sequelize.UUID,
         allowNull: false,
       },
+      sem_name : { 
+        type : DataTypes.STRING,
+        allowNull : false
+      }
     },
     {
       timestamps: false,

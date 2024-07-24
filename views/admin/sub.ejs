@@ -71,25 +71,25 @@
                                     <div class="form-group">
                                       <label for="recipient-name" class="col-form-label">Subject
                                         Code:</label>
-                                      <input name="sub_code" type="text" class="form-control" id="recipient-name">
+                                      <input name="code" type="text" class="form-control" id="recipient-name">
           
                                     </div>
                                     <div class="form-group">
                                       <label for="recipient-name" class="col-form-label">Subject
                                         Name:</label>
-                                      <input name="sub_name" type="text" class="form-control" id="recipient-name">
+                                      <input name="name" type="text" class="form-control" id="recipient-name">
                                     </div>
 
                                     <div class="form-group">
                                       <label for="message-text" class="col-form-label">Subject
                                         Description:</label>
-                                      <textarea name="sub_desc" class="form-control" id="message-text"></textarea>
+                                      <textarea name="desc" class="form-control" id="message-text"></textarea>
                                     </div>
           
                                     <div class="form-group">
                                       <label for="recipient-name" class="col-form-label">Subject
                                         Tags:</label>
-                                      <input name="sub_tags" type="text" class="form-control" id="recipient-name">
+                                      <input name="tags" type="text" class="form-control" id="recipient-name">
                                     </div>
                                     
                                 </div>
@@ -117,7 +117,7 @@
                         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                             data-bs-target="#flush-<%=index%>" aria-expanded="false"
                             aria-controls="flush-collapseOne">
-                        # <%= subArray.sub_name %>
+                        # <%= subArray.name %>
                         </button>
                         <div id="flush-<%=index%>" class="accordion-collapse collapse"
                             aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
@@ -140,21 +140,21 @@
                                   <tr>
                                   <td><%= subArray.sem_name %></td>
                                     <td>
-                                      <%= subArray.sub_code %>
+                                      <%= subArray.code %>
                                     </td>
                                     <td>
-                                      <%= subArray.sub_name %>
-                                    </td>
-                                    <td><a href="/close/subject/desc/<%= subArray.sub_id %>"><button type="button" class="btn btn-link">View</button></a></td>
+                                      <%= subArray.name %>
+                                    <
+                                    <td><a href="/close/subject/desc/<%= subArray.id %>"><button type="button" class="btn btn-link">View</button></a></td>
 
-                                    <td><a href="/close/subject/tags/<%= subArray.sub_id %>"><button type="button" class="btn btn-link">View</button></a></td>
+                                    <td><a href="/close/subject/tags/<%= subArray.id %>"><button type="button" class="btn btn-link">View</button></a></td>
 
-                                    <td><a href="/close/note/<%= subArray.sub_name %>/<%= subArray.sub_id %>"><button type="button" class="btn btn-outline-primary btn-sm">Click</button></a></td>
+                                    <td><a href="/close/note/<%= subArray.name %>/<%= subArray.id %>"><button type="button" class="btn btn-outline-primary btn-sm">Click</button></a></td>
 
                 
                                     <td>
                                       <form
-                                      action="/close/sub/<%= subArray.sub_id %>?_method=DELETE"
+                                      action="/close/sub/<%= subArray.id %>?_method=DELETE"
                                       method="post">
                                       <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
                                     </form>

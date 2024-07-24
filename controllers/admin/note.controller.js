@@ -1,6 +1,6 @@
-const db = require("../models");
+const db = require("../../models");
 const { celebrate, Joi, Segments } = require("celebrate");
-const { uploadPdf } = require('../middlewares/upload')
+const { uploadPdf } = require('../../middlewares/upload')
 
 exports.noteGet = {
   controller: async (req, res) => {
@@ -34,17 +34,17 @@ exports.notePost = {
     try {
          console.log(req.files)
         const data = {
-            note_name: req.body.note_name,
-            note_desc: req.body.note_desc,
-            note_tags: req.body.note_tags,
-            note_url : req.file.location,
-            sub_name: req.params.sub_name,
+            name: req.body.name,
+            desc: req.body.desc,
+            tags: req.body.tags,
+            url : req.file.location,
             sub_id: req.params.id,
+            sub_name: req.params.sub_name,
           };
     
           const noteExists = await db.notes.findOne({
             where: {
-              note_name: req.body.note_name,
+              name: req.body.name,
             },
           });
     
@@ -69,7 +69,7 @@ exports.deleteNote = {
       const deleteRecord = await db.notes.destroy({
         where: {
       
-          note_id: req.params.id
+          id: req.params.id
         },
       });
       res.redirect("back");
@@ -84,10 +84,10 @@ exports.getDesc = {
     try {
       const noteData = await db.notes.findOne({
         where: {
-          note_id: req.params.id,
+            id: req.params.id,
         },
       });
-      res.json("Description : " + noteData.note_desc);
+      res.json("Description : " + noteData.desc);
     } catch (error) {
       res.send(error.message)
     }
@@ -99,10 +99,10 @@ exports.getTag = {
     try {
       const noteData = await db.notes.findOne({
         where: {
-          note_id: req.params.id,
+          id: req.params.id,
         },
       });
-      res.json("Tags : " + noteData.note_tags);
+      res.json("Tags : " + noteData.tags);
     } catch (error) {
       res.send(error.message)
     }

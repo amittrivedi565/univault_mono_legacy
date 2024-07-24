@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("../../models");
 const { celebrate, Joi, Segments } = require("celebrate");
 
 exports.createYearGet = {
@@ -22,17 +22,17 @@ exports.createYearPost = {
   // validating incoming data
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
-      year_name: Joi.string().required(),
-      year_value: Joi.string().required(),
-      course_name: Joi.string().optional(),
+      name: Joi.string().required(),
+      value: Joi.string().required(),
       course_id: Joi.string().optional(),
+      course_name: Joi.string().optional(),
     }),
   }),
   controller: async (req, res) => {
     try {
       const yearRecord = {
-        year_name: req.body.year_name,
-        year_value : req.body.year_value,
+        name: req.body.name,
+        value : req.body.value,
         course_name: req.params.course_name,
         course_id: req.params.id,
       };
@@ -41,12 +41,12 @@ exports.createYearPost = {
 
       const courseChecker = await db.courses.findOne({
         where: {
-          course_id: id,
+          id: id,
         },
       });
       const yearChecker = await db.years.findOne({
         where: {
-          year_name: req.body.year_name,
+          name: req.body.name,
           course_id: req.params.id,
         },
       });
@@ -76,7 +76,7 @@ exports.deleteYear = {
     try {
       const deleteRecord = await db.years.destroy({
         where: {
-          year_id: req.params.id
+          id: req.params.id
         },
       });
       res.redirect("back")
