@@ -7,7 +7,7 @@ const db = require("../../models");
 exports.signInGet = {
     controller : async(req,res)=>{
         try {
-            res.render("../views/auth.ejs")
+            res.render("../views/admin/auth.ejs")
         } catch (error) {
             console.log(error.message)
         }

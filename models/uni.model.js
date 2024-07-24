@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const { validate } = require("uuid");
 
 module.exports = (sequelize, DataTypes) => {
-  const College = sequelize.define("college", {
+  const University = sequelize.define("university", {
     id: {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV4,
@@ -25,9 +25,13 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
 
     },
+    admin_id: {
+      type: Sequelize.UUID,
+      allowNull: false,
+    },
   // If don't want updatedAt
   },{
     timestamps : false
   });
-  return College;
+  return University;
 };

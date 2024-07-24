@@ -31,9 +31,9 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.colleges = require("./college.model")(sequelize, DataTypes);
-
 db.admins = require("./admin.models")(sequelize, DataTypes);
+
+db.university = require("./uni.model")(sequelize, DataTypes);
 
 db.branches = require("./branch.models")(sequelize, DataTypes);
 
@@ -49,14 +49,14 @@ db.notes = require("./notes.model")(sequelize, DataTypes);
 
 
 // 1 : M (Admin : Colleges)
-db.admins.hasMany(db.colleges, {
+db.admins.hasMany(db.university, {
   foreignKey: "admin_id",
-  as: "college",
+  as: "university",
   onDelete: "CASCADE",
   hooks: true
 });
 
-db.colleges.belongsTo(db.admins, {
+db.university.belongsTo(db.admins, {
   foreignKey: "admin_id",
   as: "admin",
   onDelete: "CASCADE",
@@ -65,16 +65,16 @@ db.colleges.belongsTo(db.admins, {
 
 
 // 1 : M (College : Branches)
-db.colleges.hasMany(db.branches, {
-  foreignKey: "college_id",
+db.university.hasMany(db.branches, {
+  foreignKey: "uni_id",
   as: "branch",
   onDelete: "CASCADE",
   hooks: true
 });
 
-db.branches.belongsTo(db.colleges, {
-  foreignKey: "college_id",
-  as: "college",
+db.branches.belongsTo(db.university, {
+  foreignKey: "uni_id",
+  as: "university",
   onDelete: "CASCADE",
   hooks :true
 });
@@ -161,16 +161,15 @@ db.notes.belongsTo(db.subjects, {
 });
 
 
-db.sequelize.sync({ force: true }).then(async () => {
+db.sequelize.sync({ force: false }).then(async () => {
   console.log("Re-Sync Done!");
 
-  let admin = ({
-    name: "abc",
-    email: "abc",
-    password: bcrypt.hashSync("123", salt),
-   
-  })
-  await db.admins.create(admin)
+  // let admin = ({
+  //   name: "abc",
+  //   email: "abc",
+  //   password: bcrypt.hashSync("123", salt),
+  // })
+  // await db.admins.create(admin)
 
 });
 
