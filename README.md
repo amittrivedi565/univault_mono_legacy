@@ -1,4 +1,4 @@
-# rgpv_note_app
+# notes_application
 
 
 ### Create .env
@@ -20,7 +20,6 @@ DB_DIALECT='mysql'
 # JWT Token
 JWT_SECRET_KEY='I LOVE JWTs'
 JWT_TOKEN_EXP_TIME='20m'
-
 
 ```
 
