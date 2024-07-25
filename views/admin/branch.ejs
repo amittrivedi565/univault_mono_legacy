@@ -1,137 +1,102 @@
 <%- include('includes/head.ejs') %>
-        <div class="main">
-        <div class="main-left">
-            <div class="main-left-top">
-                <a href="#">Uni<b>Vault</b></a>
-            </div>
-            <div class="main-left-bottom">
-                <a href="/close/dashboard">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stack" viewBox="0 0 16 16">
-                        <path d="m14.12 10.163 1.715.858c.22.11.22.424 0 .534L8.267 15.34a.6.6 0 0 1-.534 0L.165 11.555a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.66zM7.733.063a.6.6 0 0 1 .534 0l7.568 3.784a.3.3 0 0 1 0 .535L8.267 8.165a.6.6 0 0 1-.534 0L.165 4.382a.299.299 0 0 1 0-.535z"/>
-                        <path d="m14.12 6.576 1.715.858c.22.11.22.424 0 .534l-7.568 3.784a.6.6 0 0 1-.534 0L.165 7.968a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0z"/>
-                    </svg>
-                    Dashboard
-                </a>
-                <a href="/close/branch">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-front" viewBox="0 0 16 16">
-                        <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2zm5 10v2a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-2v5a2 2 0 0 1-2 2z"/>
-                    </svg>
-                    Application
-                </a>
-            </div>
+    <div class="main">
+        <%- include('partials/sidebar') %>
+    <div class="main-right">
+        <%- include('partials/nav') %>
+        <div class="main-right-top">
+           <b><a href="#">Branch Page</a></b>
+           <div class="addModal">
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                 <div class="modal-dialog">
+                    <div class="modal-content">
+                       <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Create Branch</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                       </div>
+                       <div class="modal-body">
+                          <form method="post">
+                             <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Branch
+                                Name:</label>
+                                <input name="name" type="text" class="form-control" id="recipient-name">
+                             </div>
+                             <div class="form-group">
+                                <label for="message-text" class="col-form-label">Branch
+                                Description:</label>
+                                <textarea name="desc" class="form-control" id="message-text"></textarea>
+                             </div>
+                             <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Branch
+                                Tags:</label>
+                                <input name="tags" type="text" class="form-control" id="recipient-name">
+                             </div>
+                       </div>
+                       <div class="modal-footer">
+                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                       <button type="submit" class="btn btn-primary">Save changes</button>
+                       </div>
+                    </div>
+                    </form>
+                 </div>
+              </div>
+           </div>
         </div>
-        <div class="main-right">
-            <div class="main-right-navbar">
-                <div class="admin">
-                    <div class="admin-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                            class="bi bi-person-fill-check" viewBox="0 0 16 16">
-                            <path
-                                d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                            <path
-                                d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
-                        </svg>
-                    </div>
-                    <div class="admin-name"><a href="#"><b>Admin Panel</b></a></div>
-                </div>
+        <div class="main-right-bottom">
+            <% if (branchData.length>0) { %>
+            <% var index=0; %>
+            <% for( let branchArray of branchData ) { %>
+            <% index++ %>
+            <div class="accordion mb-5 " id="accordionFlushExample">
+               <div class="accordion-item">
+                  <h2 class="accordion-header" id="flush-headingOne">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                     data-bs-target="#flush-<%=index%>" aria-expanded="false"
+                     aria-controls="flush-collapseOne">
+                  # <%= branchArray.name %>
+                  </button>
+                  <div id="flush-<%=index%>" class="accordion-collapse collapse"
+                     aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                     <div class="accordion-body">
+                        <table class="table table-sm-5 table-hover">
+                           <thead >
+                              <tr>
+                                 <th scope="col">Name</th>
+                                 <th scope="col">Description</th>
+                                 <th scope="col">Tags</th>
+                                 <th scope="col">*Courses</th>
+                                 <th scope="col">*Actions</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td>
+                                    <%= branchArray.name %>
+                                 </td>
+                                 <td><a href="/close/branch/desc/<%= branchArray.id %>"><button type="button" class="btn btn-link">View</button></a></td>
+                                 <td><a href="/close/branch/tags/<%= branchArray.id %>"><button type="button" class="btn btn-link">View</button></a></td>
+                                 <td><a href="/close/course/<%= branchArray.id %>"><button
+                                    type="button" class="btn btn-outline-primary btn-sm">Next</button></a></td>
+                                 <td>
+                                    <form
+                                       action="/close/branch/<%= branchArray.id %>?_method=DELETE"
+                                       method="post">
+                                       <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                    </form>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+               <% } %>
             </div>
-            <div class="main-right-bread">
-               <b><a href="#">Branch Page</a></b>
-                <div class="addModal">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Create Branch</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form method="post">
-                                        <div class="form-group">
-                                            <label for="recipient-name" class="col-form-label">Branch
-                                            Name:</label>
-                                            <input name="name" type="text" class="form-control" id="recipient-name">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="message-text" class="col-form-label">Branch
-                                            Description:</label>
-                                            <textarea name="desc" class="form-control" id="message-text"></textarea>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="recipient-name" class="col-form-label">Branch
-                                            Tags:</label>
-                                            <input name="tags" type="text" class="form-control" id="recipient-name">
-                                        </div>
-                                </div>
-                                <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save changes</button>
-                                </div>
-                            </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="main-right-bottom">
-                <% if (branchData.length>0) { %>
-                <% var index=0; %>
-                <% for( let branchArray of branchData ) { %>
-                <% index++ %>
-                <div class="accordion mb-5 " id="accordionFlushExample">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-headingOne">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-<%=index%>" aria-expanded="false"
-                            aria-controls="flush-collapseOne">
-                        # <%= branchArray.name %>
-                        </button>
-                        <div id="flush-<%=index%>" class="accordion-collapse collapse"
-                            aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">
-                                <table class="table table-sm-5 table-hover">
-                                    <thead >
-                                        <tr>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Description</th>
-                                            <th scope="col">Tags</th>
-                                            <th scope="col">*Courses</th>
-                                            <th scope="col">*Actions</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>
-                                                <%= branchArray.name %>
-                                            </td>
-                                            <td><a href="/close/branch/desc/<%= branchArray.id %>"><button type="button" class="btn btn-link">View</button></a></td>
-                                            <td><a href="/close/branch/tags/<%= branchArray.id %>"><button type="button" class="btn btn-link">View</button></a></td>
-                                            <td><a href="/close/course/<%= branchArray.id %>"><button
-                                                type="button" class="btn btn-outline-primary btn-sm">Next</button></a></td>
-                                            <td>
-                                                <form
-                                                    action="/close/branch/<%= branchArray.id %>?_method=DELETE"
-                                                    method="post">
-                                                     
-                                                    <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
-                                                
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <% } %>
-                </div>
-                <% } %>
-            </div>
-
-</div>
+            <% } %>
+         </div>
+    </div>
+    <%- include('partials/script.ejs') %>
 </body>
 <html>

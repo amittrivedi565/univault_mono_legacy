@@ -1,128 +1,93 @@
-<%- include('includes/head') %>
-        <div class="main">
-        <div class="main-left">
-            <div class="main-left-top">
-                <a href="#">Uni<b>Vault</b></a>
-            </div>
-            <div class="main-left-bottom">
-                <a href="/close/home">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stack" viewBox="0 0 16 16">
-                        <path d="m14.12 10.163 1.715.858c.22.11.22.424 0 .534L8.267 15.34a.6.6 0 0 1-.534 0L.165 11.555a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0l5.317-2.66zM7.733.063a.6.6 0 0 1 .534 0l7.568 3.784a.3.3 0 0 1 0 .535L8.267 8.165a.6.6 0 0 1-.534 0L.165 4.382a.299.299 0 0 1 0-.535z"/>
-                        <path d="m14.12 6.576 1.715.858c.22.11.22.424 0 .534l-7.568 3.784a.6.6 0 0 1-.534 0L.165 7.968a.299.299 0 0 1 0-.534l1.716-.858 5.317 2.659c.505.252 1.1.252 1.604 0z"/>
-                    </svg>
-                    Dashboard
-                </a>
-                <a href="/close/branch">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-front" viewBox="0 0 16 16">
-                        <path d="M0 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v2h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-2H2a2 2 0 0 1-2-2zm5 10v2a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1V6a1 1 0 0 0-1-1h-2v5a2 2 0 0 1-2 2z"/>
-                    </svg>
-                    Application
-                </a>
-            </div>
-        </div>
+<%- include('includes/head.ejs') %>
+<html>
+<body>
+
+    <div class="main">
+      <%- include('partials/sidebar') %>
         <div class="main-right">
-            <div class="main-right-navbar">
-                <div class="admin">
-                    <div class="admin-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
-                            class="bi bi-person-fill-check" viewBox="0 0 16 16">
-                            <path
-                                d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0" />
-                            <path
-                                d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4" />
-                        </svg>
-                    </div>
-                    <div class="admin-name"><a href="#"><b>Admin name!</b></a></div>
-                </div>
-            </div>
-            <div class="main-right-bread">
+            <%- include('partials/nav') %>
+            <div class="main-right-top">
                 <b>Semester Page</b>
-    
-            
-
                 <div class="addModal">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Create Semesters</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form method="post">
-                                        <div class="form-group">
-                                            <label for="recipient-name" class="col-form-label">Sem Name:</label>
-                                            <select  name="name"> 
-                                                <option value="" selected data-id="0">Select</option>
-                                                <option value="First Semesters" data-id="1">First Semesters</option>
-                                                <option value="Second Semesters" data-id="2">Second Semesters</option>
-                                                <option value="Third Semesters" data-id="3">Third Semesters</option>
-                                                <option value="Fourth Semesters" data-id="4">Fourth Semesters</option>
-                                                <option value="Fifth Semesters" data-id="4">Fifth Semesters</option>
-                                                <option value="Sixth Semesters" data-id="4">Sixth Semesters</option>
-                                                <option value="Seventh Semesters" data-id="4">Seventh Semesters</option>
-                                                <option value="Eight Semesters" data-id="4">Eight Semesters</option>
-
-
-                                              </select>
-                                        </div>
-                                </div>
-                                <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Save changes</button>
-                                </div>
+                   <!-- Button trigger modal -->
+                   <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
+                   <!-- Modal -->
+                   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      <div class="modal-dialog">
+                         <div class="modal-content">
+                            <div class="modal-header">
+                               <h1 class="modal-title fs-5" id="exampleModalLabel">Create Semesters</h1>
+                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            </form>
-                        </div>
-                    </div>
+                            <div class="modal-body">
+                               <form method="post">
+                                  <div class="form-group">
+                                     <label for="recipient-name" class="col-form-label">Sem Name:</label>
+                                     <select  name="name">
+                                        <option value="" selected data-id="0">Select</option>
+                                        <option value="First Semesters" data-id="1">First Semesters</option>
+                                        <option value="Second Semesters" data-id="2">Second Semesters</option>
+                                        <option value="Third Semesters" data-id="3">Third Semesters</option>
+                                        <option value="Fourth Semesters" data-id="4">Fourth Semesters</option>
+                                        <option value="Fifth Semesters" data-id="4">Fifth Semesters</option>
+                                        <option value="Sixth Semesters" data-id="4">Sixth Semesters</option>
+                                        <option value="Seventh Semesters" data-id="4">Seventh Semesters</option>
+                                        <option value="Eight Semesters" data-id="4">Eight Semesters</option>
+                                     </select>
+                                  </div>
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                         </div>
+                         </form>
+                      </div>
+                   </div>
                 </div>
-            </div>
-            <div class="main-right-bottom">
+             </div>
+
+             <div class="main-right-bottom">
                 <% if (semData.length>0) { %>
                 <% var index=0; %>
                 <% for( let semArray of semData ) { %>
                 <% index++ %>
                 <div class="accordion mb-5 " id="accordionFlushExample">
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="flush-headingOne">
-                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#flush-<%=index%>" aria-expanded="false"
-                            aria-controls="flush-collapseOne">
-                        # <%= semArray.name %>
-                        </button>
-                        <div id="flush-<%=index%>" class="accordion-collapse collapse"
-                            aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">
-                                <table class="table table-sm table-hover">
-                                    <thead >
-                                        <tr>
-                                            <th scope="col">Sem</th>
-                                            <th scope="col">Years</th>
-                                            <th scope="col">*Subjects</th>
-                                        
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        
-                                        <tr>
-                                         <td><%= semArray.name %> </td>
-                                            <td><%= semArray.year_name  %></td>
-                                            <td><a href="/close/sub/<%= semArray.name %>/<%= semArray.id %>"><button type="button" class="btn btn-outline-primary btn-sm">Next</button></a></td>                               
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <% } %>
+                   <div class="accordion-item">
+                      <h2 class="accordion-header" id="flush-headingOne">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                         data-bs-target="#flush-<%=index%>" aria-expanded="false"
+                         aria-controls="flush-collapseOne">
+                      # <%= semArray.name %>
+                      </button>
+                      <div id="flush-<%=index%>" class="accordion-collapse collapse"
+                         aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                         <div class="accordion-body">
+                            <table class="table table-sm table-hover">
+                               <thead >
+                                  <tr>
+                                     <th scope="col">Sem</th>
+                                     <th scope="col">Years</th>
+                                     <th scope="col">*Subjects</th>
+                                  </tr>
+                               </thead>
+                               <tbody>
+                                  <tr>
+                                     <td><%= semArray.name %> </td>
+                                     <td><%= semArray.year_name  %></td>
+                                     <td><a href="/close/sub/<%= semArray.name %>/<%= semArray.id %>"><button type="button" class="btn btn-outline-primary btn-sm">Next</button></a></td>
+                                  </tr>
+                               </tbody>
+                            </table>
+                         </div>
+                      </div>
+                   </div>
+                   <% } %>
                 </div>
                 <% } %>
             </div>
-    </body>
-</html>
-</div>
+        </div>
+    </div>
+<%- include('partials/script') %>
 </body>
-<html
+</html>

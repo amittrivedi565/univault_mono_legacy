@@ -3,19 +3,109 @@
     padding: 0;
     box-sizing: border-box;
 }
-.select-wrapper{
+body{
+    background-color: #fff;
+}
+.home-wrapper{
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+.navbar{
+    display: flex;
+    flex-direction:row;
     width: 100%;
-    height: 100vh;
-    background-color: red;
+    height: 8vh;
+    /* background-color: red; */
     justify-content: center;
     align-items: center;
 }
-.select-button{
+.navcontent{
+    display:flex;
+    flex-direction: row;
+    width: 75%;
+    height: 7vh;
+}
+.navlogo{
+    display: flex;
+    width: 30%;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    font-family: Work Sans, sans-serif;
+    color:#3E38F5;
+}
+.navlink {
     display: flex;
     flex-direction: row;
-    width: 50%;
-    height: 50%;
-    background-color:black;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 70%;
+    font-size: 1.2rem;
+    text-decoration: none;
+    font-family: Work Sans, sans-serif;
+}
+.navlink a {
+    text-decoration: none;
+    color: black;
+}
+.navlink a:hover {
+    text-decoration: underline;
+}
+
+.main-one{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 30rem;
+    /* background-color: #faf7f3; */
+    background-color: black;
+    align-items: center;
+}
+.main-one-heading {
+    width: 100%;
+    font-size: 1.5rem;
+    margin-top: 5rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* background-color: red; */
+    color: #fff;
+}
+
+.main-one-search{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+.main-one-search input[type='search'] {
+    height: 4rem;
+    width: 40rem;
+    border: none;
+    border-radius: 30px; 
+    font-family:  Work Sans, sans-serif;
+    font-weight: lighter;
+    text-indent: 25px;
+    font-size: 18px;
+    outline: none;
+}
+
+
+.selectUni{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 75rem;
+    background-color: #d5e9fe;
+
+}
+
+.selectuni-wrapper{
+    width: 75%;
+    height: 50rem;
+    background-color:black
 }
