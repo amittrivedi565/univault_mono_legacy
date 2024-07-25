@@ -3,21 +3,64 @@
     padding: 0;
     box-sizing: border-box;
 }
+body{
+    background-color: #fff;
+}
 .home-wrapper{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+.navbar{
+    display: flex;
+    flex-direction:row;
+    width: 100%;
+    height: 8vh;
+    /* background-color: red; */
+    justify-content: center;
+    align-items: center;
+}
+.navcontent{
+    display:flex;
+    flex-direction: row;
+    width: 75%;
+    height: 7vh;
+}
+.navlogo{
+    display: flex;
+    width: 30%;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    font-family: Work Sans, sans-serif;
+    color:#3E38F5;
+}
+.navlink {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 70%;
+    font-size: 1.2rem;
+    text-decoration: none;
+    font-family: Work Sans, sans-serif;
+}
+.navlink a {
+    text-decoration: none;
+    color: black;
+}
+.navlink a:hover {
+    text-decoration: underline;
+}
+
 .main-one{
     display: flex;
     flex-direction: column;
-    width: 80%;
-    height: 50vh;
+    width: 100%;
+    height: 30rem;
     /* background-color: #faf7f3; */
-    background-color: gainsboro;
+    background-color: black;
     align-items: center;
-    border-radius: 3rem;
-    margin-top: 2rem;
 }
 .main-one-heading {
     width: 100%;
@@ -27,6 +70,7 @@
     align-items: center;
     text-align: center;
     /* background-color: red; */
+    color: #fff;
 }
 
 .main-one-search{
@@ -37,13 +81,31 @@
     margin-top: 2rem;
 }
 .main-one-search input[type='search'] {
-    height: 5rem;
+    height: 4rem;
     width: 40rem;
     border: none;
     border-radius: 30px; 
     font-family:  Work Sans, sans-serif;
     font-weight: lighter;
     text-indent: 25px;
-    font-size: 20px;
+    font-size: 18px;
     outline: none;
+}
+
+
+.selectUni{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 75rem;
+    background-color: #d5e9fe;
+
+}
+
+.selectuni-wrapper{
+    width: 75%;
+    height: 50rem;
+    background-color:black
 }
