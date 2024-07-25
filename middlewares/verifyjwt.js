@@ -10,12 +10,14 @@ try{
         console.log(req.user);
     }
     else{
+        res.clearCookie('api-auth');
         res.redirect('/close/login');
     }
     next();
 }
 catch(error){
     console.log(error);
+    res.clearCookie('api-auth');
     res.redirect("/close/login")
     }
 };

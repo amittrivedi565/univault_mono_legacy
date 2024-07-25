@@ -95,13 +95,13 @@
 }
 
 .admin{
-    width: 100px;
+    width: 100%;
     height: 6vh;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: end;
-    margin-left: 125vh;
+    /* margin-left: 125vh; */
     font-size: 1.3vh;
     gap: 10px;
 }
