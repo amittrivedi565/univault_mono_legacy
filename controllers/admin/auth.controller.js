@@ -7,13 +7,15 @@ const db = require("../../models");
 exports.signInGet = {
     controller : async(req,res)=>{
         try {
+            if(req.cookies['api-auth']){
+                return res.redirect('/close/dashboard');
+            }
             res.render("../views/admin/auth.ejs")
         } catch (error) {
-            console.log(error.message)
+            res.send(error)
         }
     }
 }
-
 exports.signOut = {
     controller: async (req,res) => {
         try {
@@ -21,9 +23,12 @@ exports.signOut = {
             res.redirect('/close/login');
         } catch (error) {
             console.log(error.message)
+            res.redirect('/close/login');
         }
     }
 }
+
+
 
 exports.signInPost = {
     validator: celebrate({

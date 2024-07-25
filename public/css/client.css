@@ -3,19 +3,47 @@
     padding: 0;
     box-sizing: border-box;
 }
-.select-wrapper{
+.home-wrapper{
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 100vh;
-    background-color: red;
-    justify-content: center;
     align-items: center;
 }
-.select-button{
+.main-one{
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    height: 50vh;
+    /* background-color: #faf7f3; */
+    background-color: gainsboro;
+    align-items: center;
+    border-radius: 3rem;
+    margin-top: 2rem;
+}
+.main-one-heading {
+    width: 100%;
+    font-size: 1.5rem;
+    margin-top: 5rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* background-color: red; */
+}
+
+.main-one-search{
     display: flex;
     flex-direction: row;
-    width: 50%;
-    height: 50%;
-    background-color:black;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+}
+.main-one-search input[type='search'] {
+    height: 5rem;
+    width: 40rem;
+    border: none;
+    border-radius: 30px; 
+    font-family:  Work Sans, sans-serif;
+    font-weight: lighter;
+    text-indent: 25px;
+    font-size: 20px;
+    outline: none;
 }
