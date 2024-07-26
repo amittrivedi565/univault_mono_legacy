@@ -60,14 +60,14 @@ body{
     height: 30rem;
     display: flex;
     flex-direction: column;
-    /* background-color: black; */
+    background-color: black;
     align-items: center;
     /* background-color: #faf7f3; */
 }
 .main-one-heading {
     width: 100%;
     font-size: 1.5rem;
-    margin-top: 5rem;
+    margin-top: 7rem;
     justify-content: center;
     align-items: center;
     text-align: center;
@@ -88,60 +88,82 @@ body{
     border: none;
     border-radius: 30px; 
     font-family:  Work Sans, sans-serif;
-    font-weight:bolder;
+    font-weight:lighter;
     text-indent: 25px;
     font-size: 18px;
     outline: none;
 }
 
 
-.selectUni{
-    width: 100%;
-    height: 20rem;
+.select-options{
     display: flex;
     flex-direction: column;
-    margin-top: auto;
+    width: 100%;
+    min-height: 70rem;
     align-items: center;
     background-color: #faf7f3;
+    flex-wrap: wrap;
+    /* background-color: black; */
 }
-.selectuniheading{
+.select-heading{
     width: 80%;
     height: 5rem;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 2rem;
-    font-family: Montserrat, sans-serif;
-    margin-top: 2.5rem;
+    font-size: 4rem;
+    font-family: Work Sans, sans-serif;
     font-weight: 700;
-    color: #10100e;
+    color: black;
+    margin-top: 10rem;
 }
-.selectuni-wrapper{
-    display: flex;
-    flex-direction: row;
-    width: 90%;
-    height: 20rem;
-    margin-top: 2rem;
-    justify-content: space-evenly;
+.select-subheading{
+    font-size: 2rem;
+    font-weight: lighter;
+    font-family: Work Sans , sans-serif;
 }
 .select-box{
-    width: 15rem;
-    height: 5rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    width: 70%;
+    height: 5rem;
+    margin-top: 2rem;
     justify-content: center;
+    column-gap: 3rem;
+}
+.select-fields{
+    width: 30rem;
+    height: 6rem;
+    display: flex;
+    flex-direction: row;
+    /* justify-content: center; */
     align-items: center;
     background-color: white;
     border: 2px solid #dddbdb;
-    border-radius: 15px;
+    border-radius: 10px;
 
 }
-.select-box a {
+.select-fields a {
     color: black;
     text-decoration: underline;
-    font-weight:600;
-    font-size: 1.5rem;
+    /* font-weight:200; */
+    font-size: 1rem;
     cursor: pointer;
+    text-align: center;
+}
+.select-fields a:hover{
+    text-decoration: none;
+}
+
+.select-field-img{
+    width: 48px;
+    height: 48px;
+    /* background-color:gray; */
+    margin-left: 10px;
+}
+.select-field-head{
+    margin-left: 10px;
 }
