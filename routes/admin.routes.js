@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const auth  = require("../controllers/admin/auth.controller.js");
-const course = require("../controllers/admin/course.controller.js")
+const uni = require("../controllers/admin/uni.controller.js")
 const branch = require("../controllers/admin/branch.controller.js")
+const course = require("../controllers/admin/course.controller.js")
 const year = require("../controllers/admin/year.controller.js")
 const admin = require("../controllers/admin/admin.controller.js")
 const sem = require("../controllers/admin/sem.controller.js")
@@ -16,9 +17,14 @@ router.post("/login",auth.signInPost.validator,auth.signInPost.controller)
 router.post("/logout",auth.signInPost.validator,auth.signInPost.controller)
 router.get("/dashboard",authVerify,admin.adminGet.controller)
 
+/* University Routes */
+router.get("/uni",authVerify,uni.createUniGet.controller);
+router.post("/uni",authVerify,uni.createUniPost.validator,uni.createUniPost.controller);
+router.delete("/uni/:id",authVerify,uni.deleteUni.controller);
+
 /* Branch Routes */
-router.get("/branch",authVerify,branch.createBranchGet.controller);
-router.post("/branch",authVerify,branch.createBranchPost.validator,branch.createBranchPost.controller);
+router.get("/branch/:id",authVerify,branch.createBranchGet.controller);
+router.post("/branch/:id",authVerify,branch.createBranchPost.validator,branch.createBranchPost.controller);
 router.delete("/branch/:id",authVerify,branch.deleteBranch.controller);
 
 /* Course Routes */

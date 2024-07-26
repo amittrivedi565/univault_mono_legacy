@@ -52,15 +52,11 @@ db.notes = require("./notes.model")(sequelize, DataTypes);
 db.admins.hasMany(db.university, {
   foreignKey: "admin_id",
   as: "university",
-  onDelete: "CASCADE",
-  hooks: true
 });
 
 db.university.belongsTo(db.admins, {
   foreignKey: "admin_id",
   as: "admin",
-  onDelete: "CASCADE",
-  hooks :true
 });
 
 

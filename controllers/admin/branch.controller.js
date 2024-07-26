@@ -32,6 +32,7 @@ exports.createBranchPost = {
         name: req.body.name,
         desc: req.body.desc,
         tags: req.body.tags,
+        uni_id : req.params.id
       };
 
       const branchExists = await db.branches.findOne({

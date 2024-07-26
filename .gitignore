@@ -5,3 +5,5 @@ node_modules
 .env
 
 
+public/test_image.png
+public/.DS_Store

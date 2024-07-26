@@ -1,0 +1,109 @@
+<%- include('includes/head.ejs') %>
+    <div class="main">
+        <%- include('partials/sidebar') %>
+    <div class="main-right">
+        <%- include('partials/nav') %>
+        <div class="main-right-top">
+           <b><a href="#">University Page</a></b>
+           <div class="addModal">
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
+              <!-- Modal -->
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                 <div class="modal-dialog">
+                    <div class="modal-content">
+                       <div class="modal-header">
+                          <h1 class="modal-title fs-5" id="exampleModalLabel">Add University</h1>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                       </div>
+                       <div class="modal-body">
+                          <form method="post">
+
+                           <div class="form-group">
+                              <label for="recipient-name" class="col-form-label">Admin
+                              ID:</label>
+                              <input name="admin_id" type="text" class="form-control  disable" id="recipient-name" value="<%= adminData.id %>" >
+                           </div>
+
+                             <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">University
+                                Name:</label>
+                                <input name="name" type="text" class="form-control" id="recipient-name">
+                             </div>
+                             <div class="form-group">
+                                <label for="message-text" class="col-form-label">University
+                                Description:</label>
+                                <textarea name="desc" class="form-control" id="message-text"></textarea>
+                             </div>
+                             <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">University
+                                Tags:</label>
+                                <input name="tags" type="text" class="form-control" id="recipient-name">
+                             </div>
+                       </div>
+                       <div class="modal-footer">
+                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                       <button type="submit" class="btn btn-primary">Save changes</button>
+                       </div>
+                    </div>
+                    </form>
+                 </div>
+              </div>
+           </div>
+        </div>
+        <div class="main-right-bottom">
+            <% if (uniData.length>0) { %>
+            <% var index=0; %>
+            <% for( let uniArray of uniData ) { %>
+            <% index++ %>
+            <div class="accordion mb-5 " id="accordionFlushExample">
+               <div class="accordion-item">
+                  <h2 class="accordion-header" id="flush-headingOne">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                     data-bs-target="#flush-<%=index%>" aria-expanded="false"
+                     aria-controls="flush-collapseOne">
+                  # <%= uniArray.name %>
+                  </button>
+                  <div id="flush-<%=index%>" class="accordion-collapse collapse"
+                     aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                     <div class="accordion-body">
+                        <table class="table table-sm-5 table-hover">
+                           <thead >
+                              <tr>
+                                 <th scope="col">Name</th>
+                                 <th scope="col">Description</th>
+                                 <th scope="col">Tags</th>
+                                 <th scope="col">*Branches</th>
+                                 <th scope="col">*Actions</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td>
+                                    <%= uniArray.name %>
+                                 </td>
+                                 <td><a href="/close/uni/desc/<%= uniArray.id %>"><button type="button" class="btn btn-link">View</button></a></td>
+                                 <td><a href="/close/uni/tags/<%= uniArray.id %>"><button type="button" class="btn btn-link">View</button></a></td>
+                                 <td><a href="/close/branch/<%= uniArray.id %>"><button
+                                    type="button" class="btn btn-outline-primary btn-sm">Next</button></a></td>
+                                 <td>
+                                    <form
+                                       action="/close/uni/<%= uniArray.id %>?_method=DELETE"
+                                       method="post">
+                                       <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                    </form>
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+               <% } %>
+            </div>
+            <% } %>
+         </div>
+    </div>
+    <%- include('partials/script.ejs') %>
+</body>
+<html>
