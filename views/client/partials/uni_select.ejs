@@ -1,8 +1,14 @@
 <div class="selectUni">
-    <div class="selectuniheading"><b>Only the best for the best,
-        Find the best study documents to ace your way through education.</b></div>
+    <div class="selectuniheading">
+        Select Course For BTech RGPV
+    </div>
 
     <div class="selectuni-wrapper">
-
+        <% courseData.forEach(element => { %>
+        
+            <div class="select-box">
+                <a href="#"><%=element.name%></a>
+            </div>
+        <% }) %>
     </div>
 </div>

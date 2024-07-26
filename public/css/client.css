@@ -12,38 +12,40 @@ body{
     align-items: center;
 }
 .navbar{
-    display: flex;
-    flex-direction:row;
     width: 100%;
     height: 8vh;
-    /* background-color: red; */
+    display: flex;
+    flex-direction:row;
     justify-content: center;
     align-items: center;
+    /* background-color: red; */
 }
 .navcontent{
-    display:flex;
-    flex-direction: row;
     width: 75%;
     height: 7vh;
+    display:flex;
+    flex-direction: row;
 }
 .navlogo{
-    display: flex;
     width: 30%;
+    display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 1.8rem;
+    font-size: 2.0rem;
     font-family: Work Sans, sans-serif;
-    color:#3E38F5;
+    font-weight: lighter;
+    margin-top: 0;
+    color: #10100e;
 }
 .navlink {
+    width: 70%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    width: 70%;
-    font-size: 1.2rem;
+    font-size: 1.0rem;
     text-decoration: none;
-    font-family: Work Sans, sans-serif;
+    font-family: Montserrat, sans-serif;
 }
 .navlink a {
     text-decoration: none;
@@ -54,13 +56,13 @@ body{
 }
 
 .main-one{
-    display: flex;
-    flex-direction: column;
     width: 100%;
     height: 30rem;
-    /* background-color: #faf7f3; */
-    background-color: black;
+    display: flex;
+    flex-direction: column;
+    /* background-color: black; */
     align-items: center;
+    /* background-color: #faf7f3; */
 }
 .main-one-heading {
     width: 100%;
@@ -69,8 +71,8 @@ body{
     justify-content: center;
     align-items: center;
     text-align: center;
-    /* background-color: red; */
     color: #fff;
+    /* background-color: red; */
 }
 
 .main-one-search{
@@ -86,7 +88,7 @@ body{
     border: none;
     border-radius: 30px; 
     font-family:  Work Sans, sans-serif;
-    font-weight: lighter;
+    font-weight:bolder;
     text-indent: 25px;
     font-size: 18px;
     outline: none;
@@ -94,18 +96,52 @@ body{
 
 
 .selectUni{
+    width: 100%;
+    height: 20rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    align-items: center;
+    background-color: #faf7f3;
+}
+.selectuniheading{
+    width: 80%;
+    height: 5rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 75rem;
-    background-color: #d5e9fe;
+    text-align: center;
+    font-size: 2rem;
+    font-family: Montserrat, sans-serif;
+    margin-top: 2.5rem;
+    font-weight: 700;
+    color: #10100e;
+}
+.selectuni-wrapper{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    height: 20rem;
+    margin-top: 2rem;
+    justify-content: space-evenly;
+}
+.select-box{
+    width: 15rem;
+    height: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border: 2px solid #dddbdb;
+    border-radius: 15px;
 
 }
-
-.selectuni-wrapper{
-    width: 75%;
-    height: 50rem;
-    background-color:black
+.select-box a {
+    color: black;
+    text-decoration: underline;
+    font-weight:600;
+    font-size: 1.5rem;
+    cursor: pointer;
 }

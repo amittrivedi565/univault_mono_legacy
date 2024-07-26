@@ -8,7 +8,7 @@ exports.noteGet = {
       const noteData = await db.notes.findAll({
         where: {
           sub_id: req.params.id,
-        },
+        }, order : ['name']
       });
       res.render("../views/admin/note.ejs", { noteData });
     } catch (error) {
