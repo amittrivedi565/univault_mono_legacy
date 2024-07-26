@@ -1,8 +1,7 @@
 const { where } = require("sequelize");
 const db = require("../../models");
 const { celebrate, Joi, Segments } = require("celebrate");
-
-
+const { uploadPdf } = require('../../middlewares/upload')
 // Create University Get
 exports.createUniGet = {
     controller: async (req, res) => {
@@ -26,19 +25,22 @@ exports.createUniGet = {
         name: Joi.string().required(),
         tags: Joi.string().required(),
         desc: Joi.string().min(0).max(2500).required(),
+        pdf : Joi.optional(),
+        url : Joi.string().optional(),
         admin_id: Joi.string().optional(),
       }),
     }),
     controller: async (req, res) => {
       try {
-        
+        console.log(req.files)
         const data = {
           name: req.body.name,
           desc: req.body.desc,
+          url : req.file.location,
           tags: req.body.tags,
-          admin_id : req.admin_id
+          admin_id : req.admin_id,
         };
-        console.log(data)
+
         const uniExists = await db.university.findOne({
           where: {
             name: req.body.name,
@@ -48,7 +50,8 @@ exports.createUniGet = {
         if (uniExists) {
           res.send("branch already exists");
         } else {
-          await db.university.create(data);
+          const result  = await db.university.create(data);
+          console.log(result)
           res.redirect("back");
         }
       } catch (error) {
@@ -57,8 +60,6 @@ exports.createUniGet = {
     },
   };
   
-
-
   // Delete branch corresponding courses
 exports.deleteUni = {
   controller: async (req, res, next) => {
@@ -73,11 +74,13 @@ exports.deleteUni = {
       if (!isValid) {
         console.log("invalid id ");
       } else {
+
         const uniDelete = await db.university.destroy({
           where: {
             id: id,
           },
         });
+        console.log(uniDelete)
         res.redirect("back");
       }
     } catch (error) {
@@ -89,12 +92,12 @@ exports.deleteUni = {
 exports.getDesc = {
   controller: async (req, res) => {
     try {
-      const branchData = await db.branches.findOne({
+      const uniData = await db.university.findOne({
         where: {
           id: req.params.id,
         },
       });
-      res.send("Description : " + branchData.desc);
+      res.send("Description : " + uniData.desc);
     } catch (error) {
       console.log(error.message);
     }
@@ -104,12 +107,12 @@ exports.getDesc = {
 exports.getTag = {
   controller: async (req, res) => {
     try {
-      const branchData = await db.branches.findOne({
+      const uniData = await db.university.findOne({
         where: {
           id: req.params.id,
         },
       });
-      res.send("Tags : " + branchData.tags);
+      res.send("Tags : " + uniData.tags);
     } catch (error) {
       console.log(error.message);
     }

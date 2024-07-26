@@ -26,7 +26,6 @@ exports.notePost = {
       note_tags: Joi.string().required(),
       sub_id: Joi.string().required(),
       sub_name: Joi.string().required(),
-      note_url : Joi.string().required(),
       pdf : Joi.optional()
     }),
   }),

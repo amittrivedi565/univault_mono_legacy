@@ -20,7 +20,7 @@ router.get("/dashboard",authVerify,admin.adminGet.controller)
 
 /* University Routes */
 router.get("/uni",authVerify,uni.createUniGet.controller);
-router.post("/uni",authVerify,uni.createUniPost.validator,uni.createUniPost.controller);
+router.post("/uni",authVerify,uploadPdf.single("pdf"),uni.createUniPost.validator,uni.createUniPost.controller);
 router.delete("/uni/:id",authVerify,uni.deleteUni.controller);
 
 /* Branch Routes */
@@ -54,12 +54,14 @@ router.post("/note/link/:sub_name/:id",authVerify,notes.notePost.controller);
 router.delete("/note/:id",authVerify,notes.deleteNote.controller);
 
 /* Description Routes */
+router.get("/uni/desc/:id",authVerify,uni.getDesc.controller)
 router.get("/branch/desc/:id",authVerify,branch.getDesc.controller)
 router.get("/course/desc/:id",authVerify,course.getDesc.controller)
 router.get("/subject/desc/:id",authVerify,subs.getDesc.controller)
 router.get("/notes/desc/:id",authVerify,notes.getDesc.controller)
 
 /* Tags Routes */
+router.get("/uni/tags/:id",authVerify,uni.getTag.controller)
 router.get("/branch/tags/:id",authVerify,branch.getTag.controller)
 router.get("/course/tags/:id",authVerify,course.getTag.controller)
 router.get("/subject/tags/:id",authVerify,subs.getTag.controller)

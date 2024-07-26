@@ -62,6 +62,7 @@ body{
     flex-direction: column;
     background-color: black;
     align-items: center;
+    flex-wrap: wrap;
     /* background-color: #faf7f3; */
 }
 .main-one-heading {
@@ -101,9 +102,9 @@ body{
     width: 100%;
     min-height: 70rem;
     align-items: center;
-    background-color: #faf7f3;
+    /* background-color: #faf7f3; */
     flex-wrap: wrap;
-    /* background-color: black; */
+    background-color: #fff;
 }
 .select-heading{
     width: 80%;
