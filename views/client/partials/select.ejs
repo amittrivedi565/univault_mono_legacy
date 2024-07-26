@@ -9,11 +9,11 @@
     </div>
 
     <div class="select-box">
-        <% branchData.forEach(element => { %>
+        <% uniData.forEach(element => { %>
 
                 <div class="select-fields">
                     <div class="select-field-img"><img src="/public/test_image.png" alt=""></div>
-                    <div class="select-field-head"><a href="">Rajiv Gandhi Proudyogiki Vishwavidyalaya</a></div>
+                    <div class="select-field-head"><a href=""><%= element.name %></a></div>
                 </div>
            
         <% }) %>

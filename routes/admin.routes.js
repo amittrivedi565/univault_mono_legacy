@@ -11,6 +11,7 @@ const notes = require("../controllers/admin/note.controller.js");
 const {uploadPdf} = require("../middlewares/upload.js")
 const authVerify = require("../middlewares/verifyjwt.js")
 
+
 /* Admin Login Route */
 router.get("/login",auth.signInGet.controller)
 router.post("/login",auth.signInPost.validator,auth.signInPost.controller)

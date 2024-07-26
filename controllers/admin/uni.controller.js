@@ -26,16 +26,17 @@ exports.createUniGet = {
         name: Joi.string().required(),
         tags: Joi.string().required(),
         desc: Joi.string().min(0).max(2500).required(),
-        admin_id: Joi.string().required(),
+        admin_id: Joi.string().optional(),
       }),
     }),
     controller: async (req, res) => {
       try {
+        
         const data = {
           name: req.body.name,
           desc: req.body.desc,
           tags: req.body.tags,
-          admin_id : req.body.admin_id
+          admin_id : req.admin_id
         };
         console.log(data)
         const uniExists = await db.university.findOne({
