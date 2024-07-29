@@ -18,7 +18,8 @@
     justify-content: start;
     align-items: center;
     padding-left: 10vh;
-    color: #3E38F5;
+    /* color: #3E38F5; */
+    color: black;
     font-size: 3.5vh;
     border-bottom: 0.5px solid gainsboro;
 }
@@ -84,7 +85,8 @@ h2 span {
     padding-left: 10px;
 }
 .login-button{
-    background-color:#3E38F5 ; 
+    /* background-color:#3E38F5 ;  */
+    background-color: black;
     color: #fff;
     border-radius: 0.5vh;
     text-align:center;
