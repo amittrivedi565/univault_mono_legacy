@@ -1,7 +1,46 @@
 <div class="choice-wrapper">
     <div class="branch-cards-wrapper">
+    <% if (data.length>0) { %>
+    <% var index=0; %>
+    <% for( let Data of data ) { %>
+        <% index++ %>
         <div class="branch-card">
-            Branch Name
+            <!-- <div class="branch-card-top"></div> -->
+            <div class="branch-card-down">
+                <h3><a href="/course/<%= Data.id %>">#<%= Data.name %></a></h3>
+
+                <div class="branch-card-down-desc">
+                    <span><%= Data.desc %></span>
+
+                    <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#flush-<%= index %>">
+                        Read More
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="flush-<%= index %>" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">About</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <%= Data.desc %>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary"data-bs-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        
         </div>
+        <% } %>
+    <% } %>
     </div>
 </div>

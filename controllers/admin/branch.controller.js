@@ -6,9 +6,9 @@ const { celebrate, Joi, Segments } = require("celebrate");
 exports.createBranchGet = {
   controller: async (req, res) => {
     try {
-      const branchData = await db.branches.findAll({
-        order : ['name']
-      });
+      const branchData = await db.branches.findAll({where : {
+        uni_id : req.params.id
+      },order : ['name']});
       res.render("../views/admin/branch.ejs", { branchData });
     } catch (error) {
       console.log(error);

@@ -1,15 +1,16 @@
 const router = require("express").Router();
-const home  = require("../controllers/client/home")
-const branch = require("../controllers/client/branch")
+const home  = require("../controllers/client/home.controller")
+const branch = require("../controllers/client/branch.controller")
+const course = require("../controllers/client/course.controller")
 
 /* Home */
 router.get("/",home.homeGet.controller)
 
 /* Branches */
-router.get("/branches",branch.branchGet.controller);
+router.get("/branches/:id",branch.branchGet.controller);
 
 /* Courses */
-router.get("/courses",);
+router.get("/course/:id",course.courseGet.controller);
 
 /* Semesters */
 router.get("/semesters");
