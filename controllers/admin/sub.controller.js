@@ -24,7 +24,7 @@ exports.createSubjectPost = {
     [Segments.BODY]: Joi.object().keys({
       code: Joi.string().required(),
       name: Joi.string().required(),
-      desc: Joi.string().min(0).max(500).required(),
+      desc: Joi.string().min(0).max(2500).required(),
       tags: Joi.string().required(),
       sem_id: Joi.string().optional(),
       sem_name: Joi.string().optional(),

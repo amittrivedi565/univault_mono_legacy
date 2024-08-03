@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       desc: {
-        type: DataTypes.STRING,
+        type: "LONGTEXT",
         allowNull: false,
       },
       tags: {

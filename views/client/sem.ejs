@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('includes/head') %>
+<body>
+    <%- include('partials/nav') %>
+    <div class="choice-wrapper">
+        <div class="branch-cards-wrapper">
+        <% if (data.length>0) { %>
+        <% var index=0; %>
+        <% for( let Data of data ) { %>
+            <% index++ %>
+            <div class="branch-card">
+                <!-- <div class="branch-card-top"></div> -->
+                <div class="branch-card-down">
+                    <h3><a href="/subject/<%= Data.id %>">#<%= Data.name %></a></h3>
+                </div>
+            
+            </div>
+            <% } %>
+        <% } %>
+        </div>
+    </div>
+    <%- include('includes/footer') %>
+    <%- include('includes/script') %>
+</body>
+</html>
