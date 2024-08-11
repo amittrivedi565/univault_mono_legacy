@@ -87,7 +87,7 @@
                                  <td><a href="<%= noteArray.url %>"><button type="button" class="btn btn-sm btn-outline-success">Click</button></a></td>
                                  <td>
                                     <form
-                                       action="/close/note/<%= noteArray.id %>?_method=DELETE"
+                                       action="/close/note/<%= noteArray.id %>/<%= noteArray.pdf_name %>?_method=DELETE"
                                        method="post">
                                        <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
                                     </form>

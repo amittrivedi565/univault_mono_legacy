@@ -29,7 +29,7 @@ exports.createCourse = {
     [Segments.BODY]: Joi.object().keys({
       code: Joi.string().required(),
       name: Joi.string().required(),
-      desc: Joi.string().min(0).max(500).required(),
+      desc: Joi.string().min(0).max(2500).required(),
       tags: Joi.string().required(),
       id: Joi.string().optional(),
     }),

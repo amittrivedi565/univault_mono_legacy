@@ -21,7 +21,7 @@ router.get("/dashboard",authVerify,admin.adminGet.controller)
 /* University Routes */
 router.get("/uni",authVerify,uni.createUniGet.controller)
 router.post("/uni",authVerify,upload.single("pdf"),uni.createUniPost.validator,uni.createUniPost.controller)
-router.delete("/uni/:id/:url",authVerify,uni.deleteUni.controller)
+router.delete("/uni/:id/:file_name",authVerify,uni.deleteUni.controller)
 
 /* Branch Routes */
 router.get("/branch/:id",authVerify,branch.createBranchGet.controller)
@@ -51,7 +51,7 @@ router.delete("/sub/:id",authVerify,subs.deleteSubject.controller)
 router.get("/note/:sub_name/:id",authVerify,notes.noteGet.controller)
 router.post("/note/:sub_name/:id",authVerify,upload.single("pdf"),notes.notePost.controller)
 router.post("/note/link/:sub_name/:id",authVerify,notes.notePost.controller);
-router.delete("/note/:id",authVerify,notes.deleteNote.controller)
+router.delete("/note/:id/:file_name",authVerify,notes.deleteNote.controller)
 
 /* Description Routes */
 router.get("/uni/desc/:id",authVerify,uni.getDesc.controller)

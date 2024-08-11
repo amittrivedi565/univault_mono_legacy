@@ -8,7 +8,7 @@ try{
     {
         req.user = jwt.verify(token,authConfig.JWT_SECRET_KEY,(err,result)=>{
             req.admin_id = result.id
-            console.log(result)
+            // console.log(result)
         });
 
     }

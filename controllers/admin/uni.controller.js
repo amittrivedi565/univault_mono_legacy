@@ -32,7 +32,7 @@ exports.createUniPost = {
       tags: Joi.string().required(),
       desc: Joi.string().min(0).max(2500).required(),
       url: Joi.string().optional(),
-      img_name: Joi.string().optional(),
+      file_name: Joi.string().optional(),
       admin_id: Joi.string().optional(),
       pdf: Joi.optional(),
     }),
@@ -45,7 +45,7 @@ exports.createUniPost = {
         desc: req.body.desc,
         url: req.file.location,
         tags: req.body.tags,
-        img_name: req.img_name,
+        img_name: req.file_name,
         admin_id: req.admin_id,
       };
       const uniExists = await db.university.findOne({
@@ -79,7 +79,7 @@ exports.deleteUni = {
 
           const params = {
             Bucket: process.env.AWS_BUCKET_NAME,
-            Key: req.params.url,
+            Key: req.params.file_name,
           };
 
           s3.deleteObject(params, (error, data) => {

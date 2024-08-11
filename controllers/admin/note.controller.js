@@ -1,6 +1,15 @@
 const db = require("../../models");
 const { celebrate, Joi, Segments } = require("celebrate");
+const S3 = require("aws-sdk").S3;
 // const uploadPdf = require('../../middlewares/uploadS3')
+
+// S3 Configuration
+const s3 = new S3({
+  accessKeyId: process.env.AWS_ACCESS,
+  secretAccessKey: process.env.AWS_SECRET,
+  region: process.env.AWS_REGION,
+});
+
 
 exports.noteGet = {
   controller: async (req, res) => {
@@ -26,6 +35,7 @@ exports.notePost = {
       note_tags: Joi.string().required(),
       sub_id: Joi.string().required(),
       sub_name: Joi.string().required(),
+      pdf_name : Joi.optional(),
       pdf : Joi.optional()
     }),
   }),
@@ -37,6 +47,7 @@ exports.notePost = {
             desc: req.body.desc,
             tags: req.body.tags,
             url : req.file.location,
+            pdf_name : req.file_name,
             sub_id: req.params.id,
             sub_name: req.params.sub_name,
           };
@@ -65,7 +76,18 @@ exports.deleteNote = {
   controller: async (req, res) => {
     try {
       
-      const deleteRecord = await db.notes.destroy({
+      const params = {
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: req.params.file_name,
+      };
+
+      s3.deleteObject(params, (error, data) => {
+        if (error) {
+          res.status(500).send(error);
+        }
+      });
+
+      await db.notes.destroy({
         where: {
       
           id: req.params.id
