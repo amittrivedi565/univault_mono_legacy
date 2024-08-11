@@ -1,6 +1,6 @@
 const db = require("../../models");
 const { celebrate, Joi, Segments } = require("celebrate");
-const { uploadPdf } = require('../../middlewares/upload')
+// const uploadPdf = require('../../middlewares/uploadS3')
 
 exports.noteGet = {
   controller: async (req, res) => {

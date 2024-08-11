@@ -29,6 +29,10 @@ module.exports = (sequelize, DataTypes) => {
       type : DataTypes.STRING,
       allowNull:false
     },
+    img_name : {
+      type : DataTypes.STRING,
+      allowNull:false
+    },
     admin_id: {
       type: Sequelize.UUID,
       allowNull: false,

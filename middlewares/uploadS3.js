@@ -15,10 +15,11 @@ const storage = multerS3({
     bucket: process.env.AWS_BUCKET_NAME,
     key: function (req, file, cb) {
         console.log(file)
+        req.img_name = file.originalname
         cb(null,file.originalname)
     }
 });
 
 const upload = multer({storage: storage})
 
-exports.uploadPdf = upload; 
+module.exports = upload; 
