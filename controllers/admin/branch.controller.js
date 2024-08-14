@@ -21,6 +21,7 @@ exports.createBranchPost = {
   // validating incoming data
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
+      shortname: Joi.string().required(),
       name: Joi.string().required(),
       tags: Joi.string().required(),
       desc: Joi.string().min(0).max(2500).required(),
@@ -29,6 +30,7 @@ exports.createBranchPost = {
   controller: async (req, res) => {
     try {
       const data = {
+        shortname : req.body.shortname,
         name: req.body.name,
         desc: req.body.desc,
         tags: req.body.tags,

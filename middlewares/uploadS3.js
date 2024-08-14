@@ -14,9 +14,9 @@ const storage = multerS3({
     s3: s3Config,
     bucket: process.env.AWS_BUCKET_NAME,
     key: function (req, file, cb) {
-        console.log(file)
+        // console.log(file)
         req.file_name = file.originalname
-        cb(null,Date.now()+file.originalname)
+        cb(null,file.originalname)
     }
 });
 

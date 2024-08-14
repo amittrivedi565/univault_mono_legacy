@@ -45,7 +45,8 @@ exports.createCourse = {
     };
 
     const courseExists = await db.courses.findOne({
-      where: {
+      where: { 
+        branch_id: req.params.id,
         code: req.body.code,
         name: req.body.name,
       },

@@ -8,23 +8,22 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       primaryKey: true,
     },
+    shortname: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      // unique : true
     },
     desc: {
       type: "LONGTEXT",
       allowNull: false,
-      // unique : true
-
     },
     tags: {
       type: DataTypes.STRING,
       allowNull: false,
-
     },
-  // If don't want updatedAt
   },{
     timestamps : false
   });
