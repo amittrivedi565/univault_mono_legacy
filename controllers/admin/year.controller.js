@@ -73,15 +73,19 @@ exports.deleteYear = {
   controller: async (req, res) => {
     try {
       const deleteCheck = await db.years.findOne({id:req.params.id})
+
       if (!deleteCheck) {
         res.send("Wrong Year Id")
       }
+
       const deleteRecord = await db.years.destroy({
         where: {
           id: req.params.id
         },
       });
+
       res.redirect("back")
+      
     } 
     catch (error) {
       console.log(error);
