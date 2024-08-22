@@ -1,10 +1,7 @@
-# university content application
-
-
 ### Create .env
 
 ```
-# Env (development,production)
+# Env Development
 NODE_ENV='development'
 HOST='127.0.0.1'
 PORT=3000
