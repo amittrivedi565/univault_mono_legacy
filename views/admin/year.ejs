@@ -86,6 +86,8 @@
                                                                             <th scope="col">Course</th>
                                                                             <th scope="col">Year</th>
                                                                             <th scope="col">*Semesters</th>
+                                                                            <th scope="col">*Delete</th>
+
 
                                                                         </tr>
                                                                     </thead>
@@ -103,7 +105,12 @@
                                                                                         type="button"
                                                                                         class="btn btn-outline-primary btn-sm">Next</button></a>
                                                                             </td>
-
+                                                                            <td>
+                                                                            <form
+                                                                                action="/close/year/<%= yearArray.id %>?_method=DELETE"
+                                                                                method="post">
+                                                                                <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
+                                                                             </form>
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>

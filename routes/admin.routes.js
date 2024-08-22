@@ -67,6 +67,4 @@ router.get("/course/tags/:id",authVerify,course.getTag.controller)
 router.get("/subject/tags/:id",authVerify,subs.getTag.controller)
 router.get("/notes/tags/:id",authVerify,notes.getTag.controller)
 
-
-
 module.exports = router;
