@@ -28,8 +28,3 @@ AWS_SECRET_KEY  = "secret_key"
 AWS_BUCKET_NAME = "your_bucket_name"
 
 ```
-
-# TODO_LIST
-
-- custom errors & response
-- client ui/ux

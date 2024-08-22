@@ -26,6 +26,7 @@ exports.createSubjectPost = {
       name: Joi.string().required(),
       desc: Joi.string().min(0).max(2500).required(),
       tags: Joi.string().required(),
+      year_id: Joi.string().optional(),
       sem_id: Joi.string().optional(),
       sem_name: Joi.string().optional(),
     }),
@@ -40,6 +41,7 @@ exports.createSubjectPost = {
         name: req.body.name,
         desc: req.body.desc,
         tags: req.body.tags,
+        year_id : req.params.year_id,
         sem_id: req.params.id,
         sem_name: req.params.sem_name,
       };

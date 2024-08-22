@@ -3,17 +3,11 @@
     padding: 0;
     box-sizing: border-box;
 }
+
 body{
-    background-color: #fff;
-} 
-.branch-body{
     background-color: #1E1E1E;
-}
-.home-wrapper{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+} 
+
 .navbar{
     width: 100%;
     height: 8vh;
@@ -38,230 +32,9 @@ body{
     font-family: Work Sans, sans-serif;
     font-weight: lighter;
     margin-top: 0;
-    /* color: #10100e; */
-    color: white;
-}
-.navlink {
-    width: 70%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-    font-size: 1.0rem;
-    text-decoration: none;
-    font-family: Montserrat, sans-serif;
-}
-.navlink a {
-    text-decoration: none;
-    color: white;
-}
-.navlink a:hover {
-    text-decoration: underline;
 }
 
-.main-one{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 30rem;
-    background-color: black;
-    align-items: center;
-    flex-wrap: wrap;
-    /* background-color: #faf7f3; */
-}
-.main-one-heading {
-    width: 100%;
-    font-size: 2.0rem;
-    margin-top: 7rem;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    color: #fff;
-    /* background-color: red; */
-}
-
-.main-one-search{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin-top: 2rem;
-    color: black;
-}
-.main-one-search input[type='search'] {
-    height: 4rem;
-    width: 40rem;
-    border: none;
-    border-radius: 20px; 
-    font-family:  Work Sans, sans-serif;
-    font-weight:lighter;
-    text-indent: 25px;
-    font-size: 18px;
-    outline: none;
-    color: black;
-}
-
-
-.select-options{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    min-height: 40rem;
-    align-items: center;
-    /* background-color: #faf7f3; */
-    /* background-color: ghostwhite; */
-    /* background-color: red; */
-    flex-wrap: wrap;
-}
-.select-heading{
-    width: 80%;
-    height: 5rem;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    font-size: 6rem;
-    font-family: Work Sans, sans-serif;
-    font-weight: 700;
-    color: black;
-    margin-top: 10rem;
-}
-.select-subheading{
-    font-size: 2rem;
-    font-weight: lighter;
-    font-family: Work Sans , sans-serif;
-    margin-top: 7rem;
-}
-
-.select-box{
-    display: flex;
-    flex-direction: row;
-    width: 70%;
-    height: 5rem;
-    margin-top: 2rem;
-    justify-content: center;
-    column-gap: 3rem;
-}
-.select-fields{
-    width: 25rem;
-    height: 5rem;
-    display: flex;
-    flex-direction: row;
-    /* justify-content: center; */
-    align-items: center;
-    background-color: white;
-    /* border: 2px solid #dddbdb; */
-    border: 1px solid gainsboro;
-    border-radius: 10px;
-
-}
-.select-fields a {
-    color: black;
-    text-decoration: underline;
-    font-weight:bolder;
-    font-size:14px;
-    cursor: pointer;
-    text-align: center;
-}
-.select-fields a:hover{
-    text-decoration: none;
-}
-
-.select-field-img{
-    width: 48px;
-    height: 48px;
-    /* background-color:gray; */
-    margin-left: 10px;
-}
-.select-field-head{
-    margin-left: 10px;
-}
-
-.footer-wrapper{
-    width: 100%;
-    height: 5rem;
-    background-color:black;
-    color: white;
-    text-align: center;
-    align-content: center;
-}
-
-.choice-wrapper{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 100vh;
-    /* background-color: #F0F3F5; */
-}
-
-.branch-cards-wrapper{
-    display: flex;
-    flex-direction: row;
-    width: 80;
-    height:100%;
-    justify-content: space-between;
-    gap: 15px;
-    border-radius: 20px;
-    flex-wrap: wrap;
-    margin-top: 2rem;
-    /* align-items: center; */
-    /* background-color: white; */
-    /* background-color: red; */
-}
-
-.branch-card{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 20rem;
-    height: 18rem;
-    background-color: white;
-    font-family:  Work Sans, sans-serif;
-    border-radius: 10px;
-    font-size: 1.4rem;
-    font-weight: lighter;
-    /* box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset; */
-    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-}
-
-.branch-card a {
-    color: black;
-    text-decoration: underline;
-}
-.branch-card-top{
-    width: 100%;
-    height: 2rem;
-}
-.branch-card-down{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 90%;
-    height: 18rem;
-    flex-direction: column;
-    text-align: center;
-    /* background-color: red; */
-}
-.branch-card-down-desc{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 10px;
-}
-.branch-card-down-desc span{
-    overflow: hidden;
-   text-overflow: ellipsis;
-   display: -webkit-box;
-   -webkit-line-clamp: 5;
-           line-clamp: 5; 
-   -webkit-box-orient: vertical;
-    font-size: 15px;
-}
-
+/* Next Pages */
 .sub-wrapper{
     display: flex;
     flex-direction: column;
@@ -270,6 +43,7 @@ body{
     align-items: center;
     background-color: ghostwhite;
 }
+
 .sub-header{
  width: 90%;
  height: 7rem;
@@ -303,16 +77,17 @@ color: black;
     border-radius: 20px;
     font-size: 20px;
 }
+
 .sub-desc-head{
     margin-top: 20px;
 
 }
+
 .sub-desc-content{
     display: flex;
     flex-direction: column;
     width: 90%;
     height: 30vh;
-    /* background-color: red; */
     text-align: start;
     justify-content: center;
     align-items: center;
@@ -326,11 +101,10 @@ color: black;
     width: 100%;
     min-height :  30rem;;
     gap: 15px;
-    /* background-color:#F3F4F6; */
     background-color: #1E1E1E;
     margin-top: 2rem;
-    /* margin-top: 2.5rem; */
 }
+
 .option-container{
     display: flex;
     flex-direction: column;
@@ -340,11 +114,11 @@ color: black;
     border-radius: 12px ;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
 }
+
 .option-container-top{
     display: flex;
     flex-direction: column;
     height: 5rem;
-    /* border-bottom: 1px solid gainsboro; */
     border-radius: 12px;
     justify-content: center;
     background-color: #363636;
@@ -371,11 +145,11 @@ color: black;
     align-items: center;
     gap: 5px;
 }
+
 .option-container-bottom-left{
     display: flex;
     width: 100%;
     height: 5rem;
-    /* background-color: red; */
     margin: auto;
     justify-content: start;
     align-items: center;
@@ -389,77 +163,91 @@ color: black;
     flex-direction: column;
     width: 100%;
     min-height: 75rem;
-    /* background-color: red; */
     align-items: center;
 }
+
 .sem-wrapper{
     display: flex;
     flex-direction: column;
 }
+
 .sem-header{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 75%;
-    height: 6rem;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    width: 90%;
+    height: 5rem;
     border-radius: 10px;
-    background-color:rgb(54, 54, 54);
-    margin-top: 5rem;
+    margin-top: 3rem;
     color: white;
-    font-size: 3rem;
-    /* font-family:  Work Sans, sans-serif; */
+    font-size: 2rem;
     font-family: Montserrat, sans-serif;
     font-weight: 200;
+    /* font-family:  Work Sans, sans-serif; */
 }
+
 .sem-subjects{
     display: flex;
-    flex-direction: row;
-    width: 75%;
-    height:5rem;
-    background-color: black;
-    margin-top: 2rem;
+    flex-direction: column;
+    width: 90%;
+    min-height : 10rem;;
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    align-items: center;
 }
 
+.sem-subjects a {
+ text-decoration: none;
+ font-family: Montserrat, sans-serif;
+ font-weight: lighter;
+ color: #CCCCCC;
+ 
+}
 
+.sub-dox{
+    display: flex;
+    flex-direction: row;
+    width:70%;
+    height: 5rem;
+    border-radius: 15px;
+    align-items: center;
+    background-color:rgb(54, 54, 54);
+    margin-bottom: 1.5rem;
+}
 
+.sub-dox a  {
+    margin-left: 2rem;
+    text-decoration: none;
+}
+.sub-dox a:hover:nth-child(odd) {
+    text-decoration: underline;
+}
 
+/* Media Queries */
+@media screen  and (max-width : 1150px){
+    
+    .sem-subjects{
+        font-size: 1.3rem;
+    }
+}
 
+@media screen and (max-width : 850px) {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    .sem-header{
+        font-size: 2rem;
+    }
+    .sem-subjects{
+        font-size: 1.5rem;
+        padding: 10px;
+    }
+    .branch-cards-wrapper{
+        width: 100%;
+    }
+}
 
 @media screen and (max-width : 800px) {
+
     .option-container{
         width: 90%;
     }
@@ -470,10 +258,14 @@ color: black;
     .option-container-bottom-left{
         margin-left: 1rem;
         font-size: 12px;
+    }
+    .sem-subjects{
+        font-size: 1.5rem;
     }
 }
 
 @media screen and (max-width : 675px) {
+
     .option-container{
         width: 90%;
     }
@@ -485,6 +277,34 @@ color: black;
         margin-left: 1rem;
         font-size: 12px;
     }
+
+}
+
+@media screen and (max-width : 670px) {
+
+    .sem-header{
+        font-size: 1.5rem;
+    }
+    .sem-subjects{
+        font-size: 1.1rem;
+    }
+    .branch-card{
+        width: 25rem;
+        height:15rem;
+    }
+    .branch-cards-wrapper{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width : 575px) {
+
+  .sem-subjects{
+    padding: 10px;
+    font-size: 1.0rem;
+  }
 }
 
 @media screen and (max-width : 500px) {
@@ -500,6 +320,28 @@ color: black;
         margin-left: 1rem;
         font-size: 15px;
     }
+
+}
+
+@media screen and  (max-width : 480px) {
+    .sem-header{
+        font-size: 1.3rem;
+    }
+    .sem-subjects{
+        padding: 20px;
+        font-size: 1rem;
+    }
+    .navlogo{
+        font-size: 2.0rem;
+    }
+    .navlink a {
+        font-size: 2.0rem;
+    }
+    .branch-card{
+        width: 20rem;
+        height: 20rem;
+    }
+
 }
 
 @media screen and (max-width : 450px) {
@@ -514,228 +356,33 @@ color: black;
         margin-left: 1rem;
         font-size: 12px;
     }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-@media screen and (max-width : 1090px){
-    .select-heading{
-        width: 100%;
-        font-size: 5rem;
-    }
-
-    .select-subheading{
-        margin-top: 8.0rem;
-    }
-    .choice-wrapper{
-        padding: 25px;
-        height: 100vh;
-    }
-}
-@media screen and (max-width : 850px) {
-    .sem-header{
-        font-size: 2rem;
-    }
-    .select-heading{
-        margin-top: 5rem;
-        font-size: 3.5rem;
-    }
-    .select-box {
-        width: auto;
-        flex-direction: column;
-        justify-content: space-between;
-        gap: 1rem
-        ;
-    }
-    .select-fields{
-        height: 10rem;
-    }
-    .select-subheading{
-        font-size: 1.5rem;
-        margin-top: 5rem;
-    }
-    .choice-wrapper{
-        padding: 25px;
-        height: 100vh;
-    }
     .branch-cards-wrapper{
         width: 100%;
     }
-}
-@media screen and (max-width : 670px) {
-    /* .select-field-img{
-        display: none;
-    } */
-    .sem-header{
-        font-size: 1.5rem;
-    }
-     img{
-        width: 30px;
-        height: 30px;
-        margin-left: 0px;
-     }
-    .main-one{
-        height: 22rem;
-    }
-
-    .main-one-heading{
-        font-size: 1.5rem;
-    }
-    .main-one-search input[type='search']{
-        border-radius: 15px;
-        font-size: 15px;
-        width: 50vh;
-        height: 3rem;
-    }
-
-    .select-heading{
-        margin-top: 4rem;
-        font-size: 3.0rem;
-    }
-    .select-subheading{
-        margin-top:3rem;
-    }
-    .select-fields{
-        justify-self: center;
-        width: 30rem;
-        height: 3rem;
-        font-size: 5px
-    }
-    .select-field-img{
-        display: flex;
-
-        align-items: center;
-        justify-content: center;
-    }
-    .select-field-head a{
-        margin-left: 5px;
-        font-size: 10px;
-    }
-    .select-subheading{
-        margin-left: 0;
-        text-align: center;
-        font-size: 1.2rem;
-    }
-
-    .choice-wrapper{
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        width: 100%;
-    }
-    .branch-card{
-        width: 25rem;
-        height:15rem;
-    }
-    .branch-cards-wrapper{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-@media screen and  (max-width : 480px) {
-    .sem-header{
-        font-size: 1.3rem;
-    }
-    .main-one{
-
-        height: 10rem;
-    }
-    .main-one-search input[type='search'] {
-        border-radius: 15px;
-        font-size: 15px;
-        width: 20rem;
-    }
-    .navlogo{
-        font-size: 2.0rem;
-    }
-    .navlink a {
-        font-size: 2.0rem;
-    }
-    .main-one{
-        height: 25rem;
-    }
-    
-    .main-one-heading{
-        margin-top: 5rem;
-        width: 70%;
-    }
-    .main-one-heading span{
-        
-        font-size: 1.0rem;
-    }
-    .main-one-search input[type='search']{
-        border-radius: 15px;
-        height:3rem;
-    }
-    .select-heading{
-        font-size: 2.3rem;
-        margin-top: 2.5rem;
-    }
-    .select-subheading{
-        margin-top: 2rem;
-        font-size: 1.5rem;
-    }
-    .select-fields{
-        width: 25rem;
-        height: 15rem;
-        margin-left: 0;
-    }
-
-    .branch-card{
-        width: 20rem;
-        height: 20rem;
-    }
-
-}
-
-@media screen and (max-width : 450) {
-
-    .select-fields{
-        border-radius: 5px;
-        width: 10rem;
-        height: 50px;
-    }
-    .select-heading{
-        margin-top: 4rem;
-    }
-    .select-subheading{
-        font-size: 0.8rem;
-        margin-top: 2rem;
-    }
-    .branch-cards-wrapper{
-        width: 100%;
-    }
-    
     .branch-card{
         width: 10rem;
     }
+
 }
 
 @media screen and (max-width : 390px) {
     .sem-header{
         font-size: 1.1rem;
     }
+    .navlogo {
+        margin-left: 15px;
+    }
+    .navlogo a {
+        font-size: 1.8rem;
+    }
+}
+
+@media screen and (max-width : 350px) {
+    .sem-header{
+        font-size: 1.1rem;
+    }
     .select-fields{
-        width: 20rem;
+        width: 18rem;
     }
     .navlogo {
         margin-left: 15px;

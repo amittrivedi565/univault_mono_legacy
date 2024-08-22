@@ -2,25 +2,18 @@
 <html lang="en">
 <%- include('includes/head') %>
 <body class="branch-body">
-    <%- include('partials/nav') %>
+    <%- include('includes/nav') %>
     <div class="options-wrapper">
-
-        <% data1.forEach(element => { %>
-            <div class="option-container">
-    
-                <div class="option-container-top">
-    
-                    <a href="/year/<%= element.id %>">#&nbsp<%=element.name%></a>
-    
-                    <% data2.forEach(element => { %>
-                    <a href="/branch/<%= element.uni_id %>"><%=element.name%></a>
-                    <% }) %>
-    
+        <% branchQuery.forEach(branch => { %>
+            <% branch.course.forEach(course => { %>
+                <div class="option-container">
+                    <div class="option-container-top">
+                        <a href="/year/<%= branch.id %>/<%=course.id%>">#&nbsp;<%= course.name %></a>
+                        <a><%= branch.name %></a>
+                    </div>
                 </div>
-    
-            </div>
+            <% }) %>
         <% }) %>
-    
     </div>
     <%- include('includes/script') %>
 </body>

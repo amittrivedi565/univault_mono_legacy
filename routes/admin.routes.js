@@ -43,8 +43,8 @@ router.get("/sem/:year_name/:id",authVerify,sem.createSemGet.controller)
 router.post("/sem/:year_name/:id",authVerify,sem.createSemPost.controller)
 
 /* Subject Routes */
-router.get("/sub/:sem_name/:id",authVerify,subs.createSubjectGet.controller)
-router.post("/sub/:sem_name/:id",authVerify,subs.createSubjectPost.validator,subs.createSubjectPost.controller)
+router.get("/sub/:year_id/:sem_name/:id",authVerify,subs.createSubjectGet.controller)
+router.post("/sub/:year_id/:sem_name/:id",authVerify,subs.createSubjectPost.validator,subs.createSubjectPost.controller)
 router.delete("/sub/:id",authVerify,subs.deleteSubject.controller)
 
 /* Note Routes */

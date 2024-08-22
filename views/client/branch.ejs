@@ -2,18 +2,20 @@
 <html lang="en">
 <%- include('includes/head') %>
 <body class="branch-body">
-    <%- include('partials/nav') %>
+    <%- include('includes/nav') %>
+    <form action="" method="post">
+
     <div class="options-wrapper">
 
-        <% data1.forEach(element => { %>
+        <% branchQuery.forEach(element => { %>
             <div class="option-container">
     
                 <div class="option-container-top">
     
                     <a href="/course/<%= element.id %>">#&nbsp<%=element.name%></a>
     
-                    <% data2.forEach(element => { %>
-                    <a href="/"><%=element.name%></a>
+                    <% uniQuery.forEach(element => { %>
+                        <a><%=element.name%></a>
                     <% }) %>
     
                 </div>
