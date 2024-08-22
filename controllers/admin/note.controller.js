@@ -1,7 +1,7 @@
 const db = require("../../models");
 const { celebrate, Joi, Segments } = require("celebrate");
 const S3 = require("aws-sdk").S3;
-// const uploadPdf = require('../../middlewares/uploadS3')
+
 
 // S3 Configuration
 const s3 = new S3({
@@ -9,7 +9,6 @@ const s3 = new S3({
   secretAccessKey: process.env.AWS_SECRET,
   region: process.env.AWS_REGION,
 });
-
 
 exports.noteGet = {
   controller: async (req, res) => {
@@ -47,9 +46,9 @@ exports.notePost = {
             desc: req.body.desc,
             tags: req.body.tags,
             url : req.file.location,
-            pdf_name : req.file_name,
             sub_id: req.params.id,
             sub_name: req.params.sub_name,
+            pdf_name : req.file_name,
           };
     
           const noteExists = await db.notes.findOne({

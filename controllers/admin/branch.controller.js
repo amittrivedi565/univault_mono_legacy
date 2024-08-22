@@ -55,7 +55,7 @@ exports.createBranchPost = {
   },
 };
 
-// Delete branch corresponding courses
+// Delete Branch
 exports.deleteBranch = {
   controller: async (req, res, next) => {
     try {
@@ -82,6 +82,7 @@ exports.deleteBranch = {
   },
 };
 
+// Get Branch Description
 exports.getDesc = {
   controller: async (req, res) => {
     try {
@@ -97,6 +98,7 @@ exports.getDesc = {
   },
 };
 
+// Get Branch Tags
 exports.getTag = {
   controller: async (req, res) => {
     try {

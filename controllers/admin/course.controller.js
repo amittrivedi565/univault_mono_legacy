@@ -3,7 +3,7 @@ const db = require("../../models");
 const { celebrate, Joi, Segments } = require("celebrate");
 const { raw } = require("body-parser");
 
-// Get all courses by branch get request
+// Get Courses
 exports.CourseGet = {
   controller: async (req, res) => {
     try {
@@ -23,7 +23,7 @@ exports.CourseGet = {
   },
 };
 
-// Create course
+// Create Courses
 exports.createCourse = {
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
@@ -55,14 +55,13 @@ exports.createCourse = {
     if (courseExists) {
       res.send("Course Already Exists");
     } else {
-    const record = await db.courses.create(data);
+      const record = await db.courses.create(data);
       res.redirect("back");
-    
     }
   },
 };
 
-// Delete course by branch
+// Delete Course By Branch ID
 exports.deleteCourse = {
   controller: async (req, res) => {
     try {
@@ -78,7 +77,7 @@ exports.deleteCourse = {
   },
 };
 
-// Get description about course
+// Get Course Description
 exports.getDesc = {
   controller: async (req, res) => {
     try {
@@ -94,7 +93,7 @@ exports.getDesc = {
   },
 };
 
-// Get tags about course
+// Get Course Tags
 exports.getTag = {
   controller: async (req, res) => {
     try {
