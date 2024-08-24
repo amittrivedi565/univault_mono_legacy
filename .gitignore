@@ -4,3 +4,4 @@ node_modules
 # Ignore env file
 .env
 
+.DS_STORE
