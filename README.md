@@ -7,7 +7,7 @@ HOST='1xx.x.x.x'
 PORT='port_number'
 
 # DB
-DB_HOST='127.0.0.1'
+DB_HOST='1xx.0.0.1'
 DB_USER_NAME='db_user'
 DB_PORT='db_port'
 DB_PSWD='db_password'
