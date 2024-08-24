@@ -15,8 +15,8 @@ exports.createUniGet = {
   controller: async (req, res) => {
     try {
       const uniData = await db.university.findAll({ order: ["name"] });
-      const adminData = await db.admins.findOne();
-      res.render("../views/admin/uni.ejs", { uniData, adminData });
+      const adminData = await db.admins.findOne()
+      res.render("../views/admin/uni.ejs",{uniData,adminData});
     } catch (error) {
       console.log(error);
     }
@@ -25,20 +25,22 @@ exports.createUniGet = {
 
 // Create University Post
 exports.createUniPost = {
-  // validating incoming data
+
+  // Validating Incoming Data
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
+      admin_id: Joi.string().optional(),
       name: Joi.string().required(),
       tags: Joi.string().required(),
       desc: Joi.string().min(0).max(2500).required(),
       url: Joi.string().optional(),
       file_name: Joi.string().optional(),
-      admin_id: Joi.string().optional(),
       pdf: Joi.optional(),
     }),
   }),
 
   controller: async (req, res) => {
+
     try {
       const data = {
         name: req.body.name,
@@ -48,14 +50,13 @@ exports.createUniPost = {
         img_name: req.file_name,
         admin_id: req.admin_id,
       };
-      const uniExists = await db.university.findOne({
-        where: { name: req.body.name },
+      const uniCheck = await db.university.findOne({
+        where: { name: req.body.name }
       });
-      if (uniExists) {
+      if (uniCheck) {
         res.send("branch already exists");
       } else {
-        const result = await db.university.create(data);
-        console.log(result);
+        await db.university.create(data);
         res.redirect("back");
       }
     } catch (error) {
@@ -64,11 +65,10 @@ exports.createUniPost = {
   },
 };
 
-// Delete branch corresponding courses
+// Delete University
 exports.deleteUni = {
   controller: async (req, res, next) => {
     try {
-      
       const isValid = await db.university.findOne({
         where: { id: req.params.id },
       });
@@ -98,6 +98,7 @@ exports.deleteUni = {
   },
 };
 
+// Get University Description
 exports.getDesc = {
   controller: async (req, res) => {
     try {
@@ -111,6 +112,7 @@ exports.getDesc = {
   },
 };
 
+// Get University Tags
 exports.getTag = {
   controller: async (req, res) => {
     try {

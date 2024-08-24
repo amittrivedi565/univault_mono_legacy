@@ -1,9 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('includes/head') %>
-<body>
-    <%- include('includes/nav') %>
-    <div class="home-wrapper"></div>
+<body class="home-body">
+    <div class="navbar-container1">
+        <a href="/">Uni<b>Vault</b></a>
+        <a href="" class="sliding-middle-out">Why Us?</a>
+    </div>
+    
+    <div class="home-container">
+        <div class="home-main">
+            <b>Getting <strong>Quality</strong> Notes Is Now More <strong>Easy</strong></b>
+            <br>
+            <span>provides you with the latest online system and material that help your knowledge growing</span>
+        </div>
+    </div>
+    <div class="home-uni">
+        <h2 class="fancy">Content Available For Universities</h2>
+        <% uniData.forEach(element => { %>
+            <% if (uniData.length > 0 ) { %>
+                <div class="home-uni-box">
+                    <a href="/branch/<%= element.id %>" ><b><%= element.name %></b></a>
+                    <i>Btech & Mtech Content Available</i>
+                </div>
+            <% } else {%>
+                Sorry Content Not Available For Now 😞
+            <% } %>
+             
+        <% }) %>
+    </div>
+
 </body>
 </html>
 
