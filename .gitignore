@@ -4,4 +4,6 @@ node_modules
 # Ignore env file
 .env
 
-.DS_STORE
+# OS generated files #
+.DS_Store
+.DS_Store?
