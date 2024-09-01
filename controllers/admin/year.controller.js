@@ -4,6 +4,7 @@ const { celebrate, Joi, Segments } = require("celebrate");
 exports.createYearGet = {
   controller: async (req, res) => {
     try {
+
       const courseData = await db.courses.findAll({});
       const yearData = await db.years.findAll({
         where: {
@@ -17,10 +18,10 @@ exports.createYearGet = {
   },
 };
 
-// Create year 
+// Create Year 
 exports.createYearPost = {
 
-  // validating incoming data
+  // Validating Incoming Data
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
       name: Joi.string().required(),
@@ -32,19 +33,20 @@ exports.createYearPost = {
 
   controller: async (req, res) => {
     try {
+      // Request Body Data
       const yearData = {
         name: req.body.name,
         value : req.body.value,
         course_name: req.params.course_name,
         course_id: req.params.id,
       };
-
+      // Check If Course Already Exists ? 
       const courseCheck = await db.courses.findOne({
         where: {
           id: req.params.id
         },
       });
-
+      // Check If Year Already Exists ? 
       const yearCheck = await db.years.findOne({
         where: {
           name: req.body.name,
@@ -58,7 +60,7 @@ exports.createYearPost = {
       if (yearCheck) {
         res.send("Year Alread Exists")
       }
-
+      // Create Year Record
       await db.years.create(yearData);
       res.redirect("back");
 
@@ -68,24 +70,23 @@ exports.createYearPost = {
   },
 };
 
-// Delete year
+// Delete Year
 exports.deleteYear = {
   controller: async (req, res) => {
     try {
+      // Check Is Valid ID or Not?
       const deleteCheck = await db.years.findOne({id:req.params.id})
 
       if (!deleteCheck) {
         res.send("Wrong Year Id")
       }
-
+      // Delete Year Record
       const deleteRecord = await db.years.destroy({
         where: {
           id: req.params.id
         },
       });
-
       res.redirect("back")
-      
     } 
     catch (error) {
       console.log(error);

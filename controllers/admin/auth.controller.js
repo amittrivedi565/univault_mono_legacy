@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const db = require("../../models");
 
+/* Signin Get */
 exports.signInGet = {
     controller : async(req,res)=>{
         try {
@@ -17,20 +18,7 @@ exports.signInGet = {
     }
 }
 
-exports.signOut = {
-    controller: async (req,res) => {
-        try {
-            res.clearCookie('api-auth');
-            res.redirect('/close/login');
-        } catch (error) {
-            console.log(error.message)
-            res.redirect('/close/login');
-        }
-    }
-}
-
-
-
+/* Signin Post */
 exports.signInPost = {
     validator: celebrate({
         [Segments.BODY]: Joi.object().keys({
@@ -78,3 +66,16 @@ exports.signInPost = {
         }
     },
 }; 
+
+/* Signout  */
+exports.signOut = {
+    controller: async (req,res) => {
+        try {
+            res.clearCookie('api-auth');
+            res.redirect('/close/login');
+        } catch (error) {
+            console.log(error.message)
+            res.redirect('/close/login');
+        }
+    }
+}

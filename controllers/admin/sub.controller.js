@@ -6,20 +6,24 @@ const { celebrate, Joi, Segments } = require("celebrate");
 exports.createSubjectGet = {
   controller: async (req, res) => {
     try {
+      // Find Subject With Semester ID
       const subData = await db.subjects.findAll({
         where: {
           sem_id: req.params.id,
         }, order : ['name']
       });
+      // Displaying SemData 
       const semData = await db.sems.findAll({});
       res.render("../views/admin/sub.ejs", { subData, semData });
     } catch (error) {
       console.log(error);
     }
-  },
+  }
 };
+
 // create subject
 exports.createSubjectPost = {
+  // Validate Incoming Data
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
       code: Joi.string().required(),
@@ -34,8 +38,7 @@ exports.createSubjectPost = {
 
   controller: async (req, res) => {
     try { 
-
-        
+      // Request Body Data
         const data = {
         code: req.body.code,
         name: req.body.name,
@@ -45,7 +48,7 @@ exports.createSubjectPost = {
         sem_id: req.params.id,
         sem_name: req.params.sem_name,
       };
-
+      // Check If Subject Exists
       const subjectExists = await db.subjects.findOne({
         where: {
           code: req.body.code,
@@ -56,22 +59,22 @@ exports.createSubjectPost = {
       if (subjectExists) 
         {
         res.send("Subject Already Exists");
-      } 
-      else 
-      {
+      } else {
+        // Create Subject Record
         const record = await db.subjects.create(data);
         res.redirect("back");
       }
     } catch (error) {
       res.send(error.message);
     }
-  },
+  }
 }
 
+// Delete Subject
 exports.deleteSubject = {
   controller: async (req, res) => {
     try {
-      
+      // Delete Subject With ID
       const deleteRecord = await db.subjects.destroy({
         where: {
           id: req.params.id
@@ -81,13 +84,14 @@ exports.deleteSubject = {
     } catch (error) {
       console.log(error);
     }
-  },
+  }
 };
 
-
+// Get Subject Description
 exports.getDesc = {
   controller: async (req, res) => {
     try {
+      // Find Subject Description
       const subData = await db.subjects.findOne({
         where: {
           id: req.params.id,
@@ -95,12 +99,14 @@ exports.getDesc = {
       });
       res.send("Description : " + subData.desc);
     } catch (error) {}
-  },
+  }
 };
 
+// Get Subject Tags
 exports.getTag = {
   controller: async (req, res) => {
     try {
+      // Find Subject Tags
       const subData = await db.subjects.findOne({
         where: {
           id: req.params.id,
@@ -108,6 +114,6 @@ exports.getTag = {
       });
       res.send("Tags : " + subData.tags);
     } catch (error) {}
-  },
+  }
 };
 

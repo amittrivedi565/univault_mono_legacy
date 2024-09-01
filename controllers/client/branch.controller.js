@@ -1,7 +1,6 @@
 const db = require("../../models")
 exports.branchGet = {
-    controller: async (req, res) => {
-        
+    controller: async (req, res) => { 
         const uniQuery = await db.university.findAll({
                 where : {
                     name : req.params.name

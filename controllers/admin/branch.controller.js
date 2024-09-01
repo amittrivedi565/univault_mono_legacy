@@ -5,6 +5,7 @@ const { celebrate, Joi, Segments } = require("celebrate");
 exports.createBranchGet = {
   controller: async (req, res) => {
     try {
+      // query to find branch where university id matches
       const branchData = await db.branches.findAll({where : {
         uni_id : req.params.id
       },order : ['name']});
@@ -17,7 +18,7 @@ exports.createBranchGet = {
 
 // Create Branch Post
 exports.createBranchPost = {
-  // validating incoming data
+  // Validating Incoming Data
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
       shortname: Joi.string().required(),
@@ -28,6 +29,7 @@ exports.createBranchPost = {
   }),
   controller: async (req, res) => {
     try {
+      // Incoming Body Data
       const data = {
         shortname : req.body.shortname,
         name: req.body.name,
@@ -35,13 +37,13 @@ exports.createBranchPost = {
         tags: req.body.tags,
         uni_id : req.params.id,
       };
-
+      // Query For Branch to Find One With Name
       const branchExists = await db.branches.findOne({
         where: {
           name: req.body.name,
         },
       });
-
+      // Check If Branch Exists
       if (branchExists) {
         res.send("branch already exists");
       } else {
@@ -58,16 +60,17 @@ exports.createBranchPost = {
 exports.deleteBranch = {
   controller: async (req, res, next) => {
     try {
-      const id = req.params.id;
+
+      // Check If Incoming ID is Valid or Not 
       const isValid = await db.branches.findOne({
         where: {
-          id: id,
+          id: req.params.id
         },
       });
-
       if (!isValid) {
-        console.log("invalid id ");
+        console.log("Invalid ID");
       } else {
+        // Delete Branch With ID
         const branchDelete = await db.branches.destroy({
           where: {
             id: id,
@@ -85,6 +88,7 @@ exports.deleteBranch = {
 exports.getDesc = {
   controller: async (req, res) => {
     try {
+      // Branch Description With ID
       const branchData = await db.branches.findOne({
         where: {
           id: req.params.id,
@@ -101,6 +105,7 @@ exports.getDesc = {
 exports.getTag = {
   controller: async (req, res) => {
     try {
+      // Branch Tag With ID
       const branchData = await db.branches.findOne({
         where: {
           id: req.params.id,

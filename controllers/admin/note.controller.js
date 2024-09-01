@@ -13,6 +13,7 @@ const s3 = new S3({
 exports.noteGet = {
   controller: async (req, res) => {
     try {
+      // Find Notes With Subject ID 
       const noteData = await db.notes.findAll({
         where: {
           sub_id: req.params.id,
@@ -26,7 +27,7 @@ exports.noteGet = {
 };
 
 exports.notePost = {
-  
+  // Validate Incoming Data From Body
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
       note_name: Joi.string().required(),
@@ -38,9 +39,10 @@ exports.notePost = {
       pdf : Joi.optional()
     }),
   }),
+
   controller: async (req, res) => {
     try {
-         console.log(req.files)
+        // Request Body Data
         const data = {
             name: req.body.name,
             desc: req.body.desc,
@@ -50,18 +52,18 @@ exports.notePost = {
             sub_name: req.params.sub_name,
             pdf_name : req.file_name,
           };
-    
+          // Check If Note Exists 
           const noteExists = await db.notes.findOne({
             where: {
               name: req.body.name,
             },
           });
-    
+          // If Exits Stop 
           if (noteExists) {
              res.send("already exists!")
           } else {
-        
-            const record = await db.notes.create(data);
+            // Create Note Record
+            await db.notes.create(data);
             res.redirect("back");
           }
     } catch (error) {
@@ -70,22 +72,22 @@ exports.notePost = {
   },
 };
  
-// Delete course by branch
+// Delete Note By ID
 exports.deleteNote = {
   controller: async (req, res) => {
     try {
-      
+      // Logic For S3 Object Deletion By Using Filename
       const params = {
         Bucket: process.env.AWS_BUCKET_NAME,
         Key: req.params.file_name,
       };
-
+      // Delete Note PDF 
       s3.deleteObject(params, (error, data) => {
         if (error) {
           res.status(500).send(error);
         }
       });
-
+      // Delete Note Record In Sql
       await db.notes.destroy({
         where: {
       
@@ -99,9 +101,11 @@ exports.deleteNote = {
   },
 };
 
+// Get Note Description
 exports.getDesc = {
   controller: async (req, res) => {
     try {
+      // Find Note Description
       const noteData = await db.notes.findOne({
         where: {
             id: req.params.id,
@@ -113,10 +117,11 @@ exports.getDesc = {
     }
   },
 };
-
+// Get Note Tags
 exports.getTag = {
   controller: async (req, res) => {
     try {
+      // Find Note Tags
       const noteData = await db.notes.findOne({
         where: {
           id: req.params.id,

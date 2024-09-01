@@ -5,13 +5,12 @@ const { celebrate, Joi, Segments } = require("celebrate");
 exports.CourseGet = {
   controller: async (req, res) => {
     try {
-
+      // Query To Find Courses With Branch ID 
      const courseData = await db.courses.findAll({
       where : {
         branch_id : req.params.id
       } , order : ['name']
       })
-      
 
       res.render("../views/admin/course.ejs", { courseData});
     } catch (error) {
@@ -21,8 +20,9 @@ exports.CourseGet = {
   },
 };
 
-// Create Courses
+// Create Course
 exports.createCourse = {
+  // Validate Incoming Data
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
       code: Joi.string().required(),
@@ -34,6 +34,7 @@ exports.createCourse = {
   }),
 
   controller: async (req, res) => {
+    // Incoming Data From Body
     const data = {
       code: req.body.code,
       name: req.body.name,
@@ -42,6 +43,7 @@ exports.createCourse = {
       branch_id: req.params.id,
     };
 
+    // Check If Course Exists ?
     const courseExists = await db.courses.findOne({
       where: { 
         branch_id: req.params.id,
@@ -63,6 +65,7 @@ exports.createCourse = {
 exports.deleteCourse = {
   controller: async (req, res) => {
     try {
+      // Delete Course Query
       const deleteRecord = await db.courses.destroy({
         where: {
          id : req.params.id
@@ -79,6 +82,7 @@ exports.deleteCourse = {
 exports.getDesc = {
   controller: async (req, res) => {
     try {
+      // Course Description Query
       const courseData = await db.courses.findOne({
         where: {
           id: req.params.id,
@@ -95,6 +99,7 @@ exports.getDesc = {
 exports.getTag = {
   controller: async (req, res) => {
     try {
+      // Course Tag Query
       const courseData = await db.courses.findOne({
         where: {
           id: req.params.id,

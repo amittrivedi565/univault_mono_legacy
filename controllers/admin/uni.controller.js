@@ -9,6 +9,7 @@ const s3 = new S3({
   region: process.env.AWS_REGION,
 });
 
+
 // Create University Get
 exports.createUniGet = {
   controller: async (req, res) => {
@@ -39,8 +40,8 @@ exports.createUniPost = {
   }),
 
   controller: async (req, res) => {
-
     try {
+      // Request Body Data
       const data = {
         name: req.body.name,
         desc: req.body.desc,
@@ -49,12 +50,15 @@ exports.createUniPost = {
         img_name: req.file_name,
         admin_id: req.admin_id,
       };
+      // Check If University Already Exists?
       const uniCheck = await db.university.findOne({
         where: { name: req.body.name }
       });
+
       if (uniCheck) {
         res.send("branch already exists");
       } else {
+        // Create University Record
         await db.university.create(data);
         res.redirect("back");
       }
@@ -71,21 +75,23 @@ exports.deleteUni = {
       const isValid = await db.university.findOne({
         where: { id: req.params.id },
       });
-
-        if (!isValid) {
-          res.send("~invalid");
-        } else {
+      
+      // Check University ID is Valid or Not?
+      if (!isValid) {
+        res.send("~invalid");
+      } else {
 
           const params = {
             Bucket: process.env.AWS_BUCKET_NAME,
             Key: req.params.file_name,
           };
-
+          // Deleting S3 Object (University Logo)
           s3.deleteObject(params, (error, data) => {
             if (error) {
               res.status(500).send(error);
             }
           });
+          // Delete University Record
           await db.university.destroy({
             where: { id: req.params.id },
           });
