@@ -22,7 +22,6 @@ exports.yearGet = {
          }]
       })
       res.render('../views/client/year',{title : 'Year',uniQuery})
-      // res.send(uniQuery)
     }
    }
 

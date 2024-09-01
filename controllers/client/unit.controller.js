@@ -31,6 +31,5 @@ exports.unitGet = {
          }]
       })
       res.render('../views/client/subject',{title : 'Subject',uniQuery})
-      // res.send(uniQuery)
   }
 };
