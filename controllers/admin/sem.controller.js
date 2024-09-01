@@ -1,7 +1,5 @@
-const { where } = require("sequelize");
 const db = require("../../models");
 const { celebrate, Joi, Segments } = require("celebrate");
-
 
 exports.createSemGet = {
   controller: async (req, res) => {

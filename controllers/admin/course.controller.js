@@ -1,7 +1,5 @@
-const { where } = require("sequelize");
 const db = require("../../models");
 const { celebrate, Joi, Segments } = require("celebrate");
-const { raw } = require("body-parser");
 
 // Get Courses
 exports.CourseGet = {

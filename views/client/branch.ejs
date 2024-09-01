@@ -3,26 +3,17 @@
 <%- include('includes/head') %>
 <body class="branch-body">
     <%- include('includes/nav') %>
-    <form action="" method="post">
-
     <div class="options-wrapper">
-
-        <% branchQuery.forEach(element => { %>
+        <% uniQuery.forEach(uni => { %>
+           <% uni.branch.forEach(branch => { %>
             <div class="option-container">
-    
                 <div class="option-container-top">
-    
-                    <a href="/course/<%= element.id %>">#&nbsp<%=element.name%></a>
-    
-                    <% uniQuery.forEach(element => { %>
-                        <a><%=element.name%></a>
-                    <% }) %>
-    
+                    <a href="/<%=uni.name%>/<%= branch.shortname %>">#&nbsp<%=branch.name%></a>
+                    <a><%=uni.name%></a>
                 </div>
-    
             </div>
+           <% }) %>
         <% }) %>
-    
     </div>
     <%- include('includes/script') %>
 </body>

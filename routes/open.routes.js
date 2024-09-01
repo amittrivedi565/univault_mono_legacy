@@ -11,15 +11,15 @@ const unit = require("../controllers/client/unit.controller")
 router.get("/",home.homeGet.controller)
 
 /* Branches */
-router.get("/branch/:id",branch.branchGet.controller);
+router.get("/:name",branch.branchGet.controller);
 
 /* Courses */
-router.get("/course/:id",course.courseGet.controller);
+router.get("/:uni/:branch",course.courseGet.controller);
 
 /* Years */
-router.get("/year/:id/:course_id",year.yearGet.controller);
+router.get("/:uni/:branch/:course",year.yearGet.controller);
 
 /* Semesters */
-router.get("/sub/:id/:year_id",unit.unitGet.controller);
+router.get("/:uni/:branch/:course/:year",unit.unitGet.controller);
 
 module.exports = router;

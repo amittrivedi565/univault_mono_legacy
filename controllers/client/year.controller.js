@@ -1,23 +1,28 @@
-const { where } = require("sequelize");
 const db = require("../../models")
 exports.yearGet = {
     controller: async (req, res) => {
-
-      const branchQuery = await db.branches.findAll({
+      const uniQuery = await db.university.findAll({
          where : {
-            id : req.params.id
+            name : req.params.uni
          },
          include : [{
-            model : db.courses , as : 'course',
+            model : db.branches , as : "branch",
             where : {
-               id : req.params.course_id
+               shortname : req.params.branch
             },
             include : [{
-               model : db.years , as : 'years',
+               model : db.courses , as : "course",
+               where : {
+                  code : req.params.course,
+               },
+               include : [{
+                  model : db.years , as : "years"
+               }]
             }]
          }]
       })
-      res.render('../views/client/year',{title : 'Year',branchQuery})
+      res.render('../views/client/year',{title : 'Year',uniQuery})
+      // res.send(uniQuery)
     }
    }
 

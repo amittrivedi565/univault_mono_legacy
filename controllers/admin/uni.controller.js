@@ -1,4 +1,3 @@
-const { where } = require("sequelize");
 const db = require("../../models");
 const { celebrate, Joi, Segments } = require("celebrate");
 const S3 = require("aws-sdk").S3;

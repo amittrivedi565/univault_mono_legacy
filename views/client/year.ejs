@@ -4,15 +4,17 @@
 <body class="branch-body">
     <%- include('includes/nav') %>
     <div class="options-wrapper">
-        <% branchQuery.forEach(branch => { %>
-            <% branch.course.forEach(course => { %>
-                <% course.years.forEach(year => { %>
-                    <div class="option-container">
-                        <div class="option-container-top">
-                            <a href="/sub/<%= branch.id %>/<%= year.id %>">#&nbsp;<%=year.name%></a>
-                            <a><%= branch.shortname %>&nbsp;<%= course.name %></a>
+        <% uniQuery.forEach(uni => { %>
+            <% uni.branch.forEach(branch => { %>
+                <% branch.course.forEach(course => { %>
+                    <% course.years.forEach(year => { %>
+                        <div class="option-container">
+                            <div class="option-container-top">
+                                <a href="/<%= uni.name %>/<%= branch.shortname %>/<%= course.code %>/<%= year.name %>">#&nbsp;<%=year.name%></a>
+                                <a><%= branch.shortname %>&nbsp;<%= course.name %></a>
+                            </div>
                         </div>
-                    </div>
+                    <% }) %>
                 <% }) %>
             <% }) %>
         <% }) %>

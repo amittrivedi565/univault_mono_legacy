@@ -1,30 +1,36 @@
-const { where } = require("sequelize");
 const db = require("../../models");
-const { raw } = require("body-parser");
-const { DynamoDB } = require("aws-sdk");
 exports.unitGet = {
   controller: async (req, res) => {
-      const branchQuery  = await db.branches.findAll({
+      const uniQuery  = await db.university.findAll({
          where : {
-            id : req.params.id
+            name : req.params.uni
          },
-         order : ['name'],
          include : [{
-            model : db.courses , as : 'course',
+            model : db.branches , as : 'branch',
+            where : {
+               shortname : req.params.branch
+            },
             include : [{
-               model : db.years , as : 'years',
+               model : db.courses , as : 'course',
                where : {
-                  id : req.params.year_id
+                  code : req.params.course
                },
                include : [{
-                  model : db.sems , as : 'semester',
+                  model : db.years , as : 'years',
+                  where : {
+                     name : req.params.year
+                  },
                   include : [{
-                     model : db.subjects , as : 'subject'
+                     model : db.sems , as : 'semester',
+                     include : [{
+                        model : db.subjects , as : 'subject'
+                     }]
                   }]
                }]
             }]
          }]
       })
-      res.render('../views/client/subject',{title : 'Subject',branchQuery})
+      res.render('../views/client/subject',{title : 'Subject',uniQuery})
+      // res.send(uniQuery)
   }
 };

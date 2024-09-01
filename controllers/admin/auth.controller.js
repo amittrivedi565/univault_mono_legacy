@@ -49,7 +49,7 @@ exports.signInPost = {
             if (!existingUser) {
                 return res.status(404).json({ message: "User not found!" });
             }
-
+            
             const matchPassword = await bcrypt.compare(
                 password,
                 existingUser.password

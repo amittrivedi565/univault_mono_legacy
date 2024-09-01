@@ -1,20 +1,16 @@
-const { where } = require("sequelize");
 const db = require("../../models")
 exports.branchGet = {
     controller: async (req, res) => {
         
         const uniQuery = await db.university.findAll({
                 where : {
-                    id : req.params.id
-                }
+                    name : req.params.name
+                },
+                include : [{
+                    model : db.branches , as : "branch"
+                }]
             }
         );
-        const branchQuery = await db.branches.findAll({order : ['name'],
-           where : {
-               uni_id  : req.params.id
-           }
-        });
-
-        res.render("../views/client/branch.ejs",{title :"Branch" , branchQuery , uniQuery})
+        res.render("../views/client/branch.ejs",{title :"Branch" , uniQuery})
   }};
   
