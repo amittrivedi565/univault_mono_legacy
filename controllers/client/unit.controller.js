@@ -3,7 +3,7 @@ exports.unitGet = {
   controller: async (req, res) => {
       const uniQuery  = await db.university.findAll({
          where : {
-            name : req.params.uni
+            shortname : req.params.uni
          },
          include : [{
             model : db.branches , as : 'branch',
@@ -18,7 +18,7 @@ exports.unitGet = {
                include : [{
                   model : db.years , as : 'years',
                   where : {
-                     name : req.params.year
+                     value: req.params.year
                   },
                   include : [{
                      model : db.sems , as : 'semester',

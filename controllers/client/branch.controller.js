@@ -1,15 +1,22 @@
+const { Json } = require("sequelize/lib/utils");
 const db = require("../../models")
 exports.branchGet = {
     controller: async (req, res) => { 
         const uniQuery = await db.university.findAll({
+                attributes : {
+                    exclude : ['url','img_name','admin_id']
+                },
                 where : {
-                    name : req.params.name
+                    shortname : req.params.uni
                 },
                 include : [{
-                    model : db.branches , as : "branch"
+                    model : db.branches , as : "branch",
+                    attributes : {
+                        exclude : ['desc','tags','id','uni_id']
+                    }
                 }]
             }
         );
-        res.render("../views/client/branch.ejs",{title :"Branch" , uniQuery})
+        res.render("../views/client/branch.ejs",{title : "Hello",uniQuery})
   }};
   

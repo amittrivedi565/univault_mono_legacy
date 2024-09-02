@@ -11,7 +11,7 @@ const unit = require("../controllers/client/unit.controller")
 router.get("/",home.homeGet.controller)
 
 /* Branches */
-router.get("/:name",branch.branchGet.controller);
+router.get("/:uni",branch.branchGet.controller);
 
 /* Courses */
 router.get("/:uni/:branch",course.courseGet.controller);

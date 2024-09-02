@@ -16,10 +16,10 @@
     </div>
     <div class="home-uni">
         <h2 class="fancy">Content Available For Universities</h2>
-        <% uniData.forEach(element => { %>
-            <% if (uniData.length > 0 ) { %>
+        <% uniQuery.forEach(element => { %>
+            <% if (uniQuery.length > 0 ) { %>
                 <div class="home-uni-box">
-                    <a href="/<%= element.name %>" ><b><%= element.name %></b></a>
+                    <a href="/<%= element.shortname %>" ><b><%= element.name %></b></a>
                     <i>Btech & Mtech Content Available</i>
                 </div>
             <% } else {%>

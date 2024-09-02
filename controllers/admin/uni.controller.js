@@ -31,6 +31,7 @@ exports.createUniPost = {
     [Segments.BODY]: Joi.object().keys({
       admin_id: Joi.string().optional(),
       name: Joi.string().required(),
+      shortname : Joi.string().required(),
       tags: Joi.string().required(),
       desc: Joi.string().min(0).max(2500).required(),
       url: Joi.string().optional(),
@@ -45,6 +46,7 @@ exports.createUniPost = {
       const data = {
         name: req.body.name,
         desc: req.body.desc,
+        shortname : req.body.shortname,
         url: req.file.location,
         tags: req.body.tags,
         img_name: req.file_name,

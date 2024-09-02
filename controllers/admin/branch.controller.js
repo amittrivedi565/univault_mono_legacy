@@ -9,7 +9,7 @@ exports.createBranchGet = {
       const branchData = await db.branches.findAll({where : {
         uni_id : req.params.id
       },order : ['name']});
-      res.render("../views/admin/branch.ejs", { branchData });
+      res.render("../views/admin/branch.ejs", { branchData});
     } catch (error) {
       console.log(error);
     }

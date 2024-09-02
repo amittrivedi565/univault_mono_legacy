@@ -8,9 +8,20 @@
             <% uni.branch.forEach(branch => { %>
                 <% branch.course.forEach(course => { %>
                     <% course.years.forEach(year => { %>
+                        <%  
+                        var u = uni.shortname
+                        var b = branch.shortname 
+                        var c = course.code 
+                        var y = year.name
+                        var lowerU = u.toLowerCase();
+                        var lowerB = b.toLowerCase();
+                        var lowerC = c.toLowerCase();
+                        let removeSpaceY = y.replace(/\s/g, '','%')
+                        var lowerY = y.toLowerCase();
+                        %>
                         <div class="option-container">
                             <div class="option-container-top">
-                                <a href="/<%= uni.name %>/<%= branch.shortname %>/<%= course.code %>/<%= year.name %>">#&nbsp;<%=year.name%></a>
+                                <a href="/<%=lowerU%>/<%=lowerB%>/<%=lowerC%>/<%=year.value%>">#&nbsp;<%=year.name%></a>
                                 <a><%= branch.shortname %>&nbsp;<%= course.name %></a>
                             </div>
                         </div>

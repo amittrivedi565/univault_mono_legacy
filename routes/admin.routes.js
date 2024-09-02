@@ -15,7 +15,7 @@ const authVerify = require("../middlewares/verifyjwt.js")
 /* Admin Login Route */
 router.get("/login",auth.signInGet.controller)
 router.post("/login",auth.signInPost.validator,auth.signInPost.controller)
-router.post("/logout",auth.signInPost.validator,auth.signInPost.controller)
+router.post("/logout",auth.signOut.controller)
 router.get("/dashboard",authVerify,admin.adminGet.controller)
 
 /* University Routes */
