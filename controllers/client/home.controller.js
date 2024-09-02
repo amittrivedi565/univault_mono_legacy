@@ -1,4 +1,7 @@
 const db = require("../../models");
+/**
+ * @Rout: GET /
+**/
 exports.homeGet = {
   controller: async (req, res) => {
     try {

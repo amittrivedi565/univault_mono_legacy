@@ -20,7 +20,6 @@ exports.branchGet = {
                 }]
             }
         );
-
         res.render("../views/client/branch",{title :"TBA",uniQuery})
         } catch (error) {
             res.send(error)
