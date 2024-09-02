@@ -1,8 +1,11 @@
-const { Json } = require("sequelize/lib/utils");
 const db = require("../../models")
+/**
+ * @Rout: GET /uni
+**/
 exports.branchGet = {
     controller: async (req, res) => { 
-        const uniQuery = await db.university.findAll({
+        try {
+            const uniQuery = await db.university.findAll({
                 attributes : {
                     exclude : ['url','img_name','admin_id']
                 },
@@ -17,6 +20,9 @@ exports.branchGet = {
                 }]
             }
         );
-        res.render("../views/client/branch.ejs",{title : "Hello",uniQuery})
+        res.render("../views/client/branch.ejs",{title : "Branch",uniQuery})
+        } catch (error) {
+            console.log(error)
+        }
   }};
   

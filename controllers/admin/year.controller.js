@@ -8,7 +8,7 @@ exports.createYearGet = {
       const courseData = await db.courses.findAll({});
       const yearData = await db.years.findAll({
         where: {
-          course_id: req.params.id,
+          courseId: req.params.id,
         },order : ['name']
       });
       res.render("../views/admin/year.ejs", { yearData, courseData });
@@ -38,7 +38,7 @@ exports.createYearPost = {
         name: req.body.name,
         value : req.body.value,
         course_name: req.params.course_name,
-        course_id: req.params.id,
+        courseId: req.params.id,
       };
       // Check If Course Already Exists ? 
       const courseCheck = await db.courses.findOne({
@@ -50,7 +50,7 @@ exports.createYearPost = {
       const yearCheck = await db.years.findOne({
         where: {
           name: req.body.name,
-          course_id: req.params.id,
+          courseId: req.params.id,
         },
       });
 

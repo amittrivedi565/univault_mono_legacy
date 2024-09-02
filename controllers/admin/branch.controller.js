@@ -7,7 +7,7 @@ exports.createBranchGet = {
     try {
       // query to find branch where university id matches
       const branchData = await db.branches.findAll({where : {
-        uni_id : req.params.id
+        uniId : req.params.id
       },order : ['name']});
       res.render("../views/admin/branch.ejs", { branchData});
     } catch (error) {
@@ -35,7 +35,7 @@ exports.createBranchPost = {
         name: req.body.name,
         desc: req.body.desc,
         tags: req.body.tags,
-        uni_id : req.params.id,
+        uniId : req.params.id,
       };
       // Query For Branch to Find One With Name
       const branchExists = await db.branches.findOne({

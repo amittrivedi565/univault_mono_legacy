@@ -8,7 +8,7 @@ exports.CourseGet = {
       // Query To Find Courses With Branch ID 
      const courseData = await db.courses.findAll({
       where : {
-        branch_id : req.params.id
+        branchId : req.params.id
       } , order : ['name']
       })
 
@@ -40,13 +40,13 @@ exports.createCourse = {
       name: req.body.name,
       desc: req.body.desc,
       tags: req.body.tags,
-      branch_id: req.params.id,
+      branchId: req.params.id,
     };
 
     // Check If Course Exists ?
     const courseExists = await db.courses.findOne({
       where: { 
-        branch_id: req.params.id,
+        branchId: req.params.id,
         code: req.body.code,
         name: req.body.name,
       },

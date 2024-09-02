@@ -50,7 +50,7 @@ exports.createUniPost = {
         url: req.file.location,
         tags: req.body.tags,
         img_name: req.file_name,
-        admin_id: req.admin_id,
+        adminId: req.admin_id,
       };
       // Check If University Already Exists?
       const uniCheck = await db.university.findOne({

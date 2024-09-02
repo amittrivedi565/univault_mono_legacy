@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    branch_id : {
+    branchId : {
       type: Sequelize.UUID,
       allowNull : false
     }

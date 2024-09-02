@@ -1,4 +1,7 @@
 const db = require("../../models")
+/**
+ * @Rout: GET /uni/branch/course
+**/
 exports.yearGet = {
     controller: async (req, res) => {
       const uniQuery = await db.university.findAll({

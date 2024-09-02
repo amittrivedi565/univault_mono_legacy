@@ -50,14 +50,14 @@ db.notes = require("./notes.model")(sequelize, DataTypes);
 
 // 1 : M (Admin : Colleges)
 db.admins.hasMany(db.university, {
-  foreignKey: "admin_id",
+  foreignKey: "adminId",
   as: "unis",
   onDelete: "CASCADE",
   hooks: true
 });
 
 db.university.belongsTo(db.admins, {
-  foreignKey: "admin_id",
+  foreignKey: "adminId",
   as: "admin",
   onDelete: "CASCADE",
   hooks: true
@@ -66,14 +66,14 @@ db.university.belongsTo(db.admins, {
 
 // 1 : M (College : Branches)
 db.university.hasMany(db.branches, {
-  foreignKey: "uni_id",
+  foreignKey: "uniId",
   as: "branch",
   onDelete: "CASCADE",
   hooks: true
 });
 
 db.branches.belongsTo(db.university, {
-  foreignKey: "uni_id",
+  foreignKey: "uniId",
   as: "unis",
   onDelete: "CASCADE",
   hooks :true
@@ -84,13 +84,13 @@ db.branches.belongsTo(db.university, {
 
 // 1 : M (Branch : Courses)
 db.branches.hasMany(db.courses, {
-  foreignKey: "branch_id",
+  foreignKey: "branchId",
   as: "course",
   onDelete: "CASCADE",
   hooks: true
 });
 db.courses.belongsTo(db.branches, {
-  foreignKey: "branch_id",
+  foreignKey: "branchId",
   as: "branch",
   onDelete: "CASCADE",
   hooks :true
@@ -99,14 +99,14 @@ db.courses.belongsTo(db.branches, {
 
 // 1 : M (Course : Years)
 db.courses.hasMany(db.years, {
-  foreignKey: "course_id",
+  foreignKey: "courseId",
   as: "years",
   onDelete: "CASCADE",
   hooks :true
 });
 
 db.years.belongsTo(db.courses, {
-  foreignKey: "course_id",
+  foreignKey: "courseId",
   as: "course",
   onDelete: "CASCADE",
   hooks :true
@@ -115,14 +115,14 @@ db.years.belongsTo(db.courses, {
 
 // 1 : M (Year : Sems)
 db.years.hasMany(db.sems, {
-  foreignKey: "year_id",
+  foreignKey: "yearId",
   as: "semester",
   onDelete: "CASCADE",
   hooks :true
 });
 
 db.sems.belongsTo(db.years, {
-  foreignKey: "year_id",
+  foreignKey: "yearId",
   as: "years",
   onDelete: "CASCADE",
   hooks :true
@@ -131,14 +131,14 @@ db.sems.belongsTo(db.years, {
 
 // 1 : M (Sem : Subjects)
 db.sems.hasMany(db.subjects, {
-  foreignKey: "sem_id",
+  foreignKey: "semId",
   as: "subject",
   onDelete: "CASCADE",
   hooks :true
 });
 
 db.subjects.belongsTo(db.sems, {
-  foreignKey: "sem_id",
+  foreignKey: "semId",
   as: "semester",
   onDelete: "CASCADE",
   hooks :true
@@ -147,28 +147,28 @@ db.subjects.belongsTo(db.sems, {
 
 // 1 : M (Suject : Notes)
 db.subjects.hasMany(db.notes, {
-  foreignKey: "sub_id",
+  foreignKey: "subId",
   as: "notes",
   onDelete: "CASCADE",
   hooks :true
 });
 
 db.notes.belongsTo(db.subjects, {
-  foreignKey: "sub_id",
+  foreignKey: "subId",
   as: "subject",
   onDelete: "CASCADE",
   hooks :true
 });
 
 
-db.sequelize.sync({ force: false }).then(async () => {
-  // let data = ({
-  //   email: "abc@xyz.com",
-  //   name: "admin",
-  //   password: bcrypt.hashSync("123", salt),
-  // })
+db.sequelize.sync({ force: true }).then(async () => {
+  let data = ({
+    email: "abc",
+    name: "admin",
+    password: bcrypt.hashSync("123", salt),
+  })
 
-    // await db.admins.create(data)
+    await db.admins.create(data)
 
 
 });

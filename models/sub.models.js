@@ -25,11 +25,11 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      year_id: {
+      yearId: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      sem_id: {
+      semId: {
         type: Sequelize.UUID,
         allowNull: false,
       },

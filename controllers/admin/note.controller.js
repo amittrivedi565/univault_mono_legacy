@@ -16,7 +16,7 @@ exports.noteGet = {
       // Find Notes With Subject ID 
       const noteData = await db.notes.findAll({
         where: {
-          sub_id: req.params.id,
+          subId: req.params.id,
         }, order : ['name']
       });
       res.render("../views/admin/note.ejs", { noteData });
@@ -33,7 +33,7 @@ exports.notePost = {
       note_name: Joi.string().required(),
       note_desc: Joi.string().min(0).max(500).required(),
       note_tags: Joi.string().required(),
-      sub_id: Joi.string().required(),
+      subId: Joi.string().required(),
       sub_name: Joi.string().required(),
       pdf_name : Joi.optional(),
       pdf : Joi.optional()
@@ -48,7 +48,7 @@ exports.notePost = {
             desc: req.body.desc,
             tags: req.body.tags,
             url : req.file.location,
-            sub_id: req.params.id,
+            subId: req.params.id,
             sub_name: req.params.sub_name,
             pdf_name : req.file_name,
           };
@@ -90,7 +90,6 @@ exports.deleteNote = {
       // Delete Note Record In Sql
       await db.notes.destroy({
         where: {
-      
           id: req.params.id
         },
       });

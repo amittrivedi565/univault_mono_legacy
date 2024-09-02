@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
       type : DataTypes.STRING,
       allowNull:false
     },
-    admin_id: {
+    adminId: {
       type: Sequelize.UUID,
       allowNull: false,
     },

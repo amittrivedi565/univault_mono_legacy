@@ -9,7 +9,7 @@ exports.createSubjectGet = {
       // Find Subject With Semester ID
       const subData = await db.subjects.findAll({
         where: {
-          sem_id: req.params.id,
+          semId: req.params.id,
         }, order : ['name']
       });
       // Displaying SemData 
@@ -44,8 +44,8 @@ exports.createSubjectPost = {
         name: req.body.name,
         desc: req.body.desc,
         tags: req.body.tags,
-        year_id : req.params.year_id,
-        sem_id: req.params.id,
+        yearId : req.params.year_id,
+        semId: req.params.id,
         sem_name: req.params.sem_name,
       };
       // Check If Subject Exists

@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: true,
       },
-      sub_id: {
+      subId: {
         type: Sequelize.UUID,
         allowNull: false,
       },

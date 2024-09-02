@@ -8,7 +8,7 @@ exports.createSemGet = {
       // Find Sememster With Year ID
       const semData = await db.sems.findAll({
         where: {
-          year_id: req.params.id,
+          yearId: req.params.id,
         }, order  : ['name']
       });
 
@@ -23,7 +23,7 @@ exports.createSemPost = {
     [Segments.BODY]: Joi.object().keys({
       name: Joi.string().required(),
       year_name: Joi.string().required(),
-      year_id: Joi.string().required(),
+      yearId: Joi.string().required(),
     }),
   }),
   controller: async (req, res) => {
@@ -33,13 +33,13 @@ exports.createSemPost = {
       const semRecord = {
         name: req.body.name,
         year_name: req.params.year_name,
-        year_id: req.params.id,
+        yearId: req.params.id,
       };
 
       // Check If Semester Exists?
       const semCheck = await db.sems.findOne({ where : {
         name : req.body.name,
-        year_id : req.params.id
+        yearId : req.params.id
       } });
 
       if (semCheck) {
