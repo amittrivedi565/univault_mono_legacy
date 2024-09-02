@@ -11,6 +11,44 @@ Univault is an innovative platform designed specifically for university students
 - **S3 (Amazon Simple Storage Service)**: A scalable object storage service for storing and retrieving any amount of data.
 - **Sequelize**: A promise-based Node.js ORM (Object-Relational Mapping) for MySQL and other SQL databases.
 
+# Univault API Documentation
+
+## Admin Side
+
+This section describes the API endpoint used for retrieving and rendering branch data related to a specific university.
+
+### 1. Get Branches (GET)
+
+**Endpoint:** `/createBranchGet/:id`  
+**Method:** GET
+
+**Description:** Retrieves all branches associated with a specific university and renders them on a view page.
+
+**Path Parameters:**
+- `id` (string, required): The ID of the university for which branch data is to be retrieved.
+
+**Response:**
+- **Status 200**: Renders the `branch.ejs` view template with branch data for the specified university.
+
+**Error Handling:**
+- **Status 500**: If there is an error during data retrieval, it logs the error but does not send a response message. The rendering of the view may be affected.
+
+**Request Example:**
+
+```exports.createBranchGet = {
+  controller: async (req, res) => {
+    try {
+      // query to find branch where university id matches
+      const branchData = await db.branches.findAll({where : {
+        uniId : req.params.id
+      },order : ['name']});
+      res.render("../views/admin/branch.ejs", { branchData});
+    } catch (error) {
+      console.log(error);
+    }
+  },
+};
+
 ### Create .env
 ```
 # Env Development
