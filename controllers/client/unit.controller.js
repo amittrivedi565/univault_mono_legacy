@@ -36,7 +36,7 @@ exports.unitGet = {
          })
          res.render('../views/client/subject',{title : 'Subject',uniQuery})
       } catch (error) {
-         console.log(error)
+         res.send(error)
       }
   }
 };

@@ -7,12 +7,15 @@
         <% uniQuery.forEach(uni => { %>
            <% uni.branch.forEach(branch => { %>
             <!-- lowerCase Logic for Branch Shortname -->
-            <%  var b = branch.shortname 
+            <%  
+                var u = uni.shortname
+                var b = branch.shortname 
+                var lowerU = u.toLowerCase();
                 var lowerB = b.toLowerCase();
             %>
             <div class="option-container">
                 <div class="option-container-top">
-                    <a href="/<%=uni.shortname%>/<%=lowerB%>">#&nbsp<%=branch.name%></a>
+                    <a href="/<%=lowerU%>/<%=lowerB%>">#&nbsp<%=branch.name%></a>
                     <a><%=uni.name%></a>
                 </div>
             </div>

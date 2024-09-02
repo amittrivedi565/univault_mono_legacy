@@ -20,9 +20,10 @@ exports.branchGet = {
                 }]
             }
         );
-        res.render("../views/client/branch.ejs",{title : "Branch",uniQuery})
+
+        res.render("../views/client/branch",{title :"TBA",uniQuery})
         } catch (error) {
-            console.log(error)
+            res.send(error)
         }
   }};
   

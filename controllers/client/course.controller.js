@@ -19,9 +19,9 @@ exports.courseGet = {
                }]
             }]
          })
-         res.render('../views/client/course.ejs',{title : 'Course',uniQuery})
+         res.render('../views/client/course',{title : 'Course',uniQuery})
       } catch (error) {
-         console.log(error)
+         res.send(error)
       }
    }
 }

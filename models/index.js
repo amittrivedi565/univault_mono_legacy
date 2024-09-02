@@ -161,14 +161,14 @@ db.notes.belongsTo(db.subjects, {
 });
 
 
-db.sequelize.sync({ force: true }).then(async () => {
-  let data = ({
-    email: "abc",
-    name: "admin",
-    password: bcrypt.hashSync("123", salt),
-  })
+db.sequelize.sync({ force: false }).then(async () => {
+  // let data = ({
+  //   email: "abc",
+  //   name: "admin",
+  //   password: bcrypt.hashSync("123", salt),
+  // })
 
-    await db.admins.create(data)
+  //   await db.admins.create(data)
 
 
 });

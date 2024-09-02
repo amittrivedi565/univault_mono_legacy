@@ -17,9 +17,13 @@
     <div class="home-uni">
         <h2 class="fancy">Content Available For Universities</h2>
         <% uniQuery.forEach(element => { %>
+             <!-- lowerCase Logic for Branch Shortname -->
+                <%  var u = element.shortname 
+                    var lowerU = u.toLowerCase();
+                %>
             <% if (uniQuery.length > 0 ) { %>
                 <div class="home-uni-box">
-                    <a href="/<%= element.shortname %>" ><b><%= element.name %></b></a>
+                    <a href="/<%=lowerU%>"><b><%= element.name %></b></a>
                     <i>Btech & Mtech Content Available</i>
                 </div>
             <% } else {%>
