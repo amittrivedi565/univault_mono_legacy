@@ -15,10 +15,6 @@ module.exports = (sequelize, DataTypes) => {
       type: Sequelize.UUID,
       allowNull : false
     },
-    year_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    }
   },
   {
     timestamps : false

@@ -73,7 +73,6 @@
                       <table class="table align-middle table-sm table-hover">
                          <thead class="thead-dark">
                             <tr>
-                               <th scope="col">Semester</th>
                                <th scope="col">Code</th>
                                <th scope="col">Name</th>
                                <th scope="col">Description</th>
@@ -84,7 +83,6 @@
                          </thead>
                          <tbody>
                             <tr>
-                               <td><%= subArray.sem_name %></td>
                                <td>
                                   <%= subArray.code %>
                                </td>
@@ -92,7 +90,7 @@
                                   <%= subArray.name %>
                                <td><a href="/close/subject/desc/<%= subArray.id %>"><button type="button" class="btn btn-link">View</button></a></td>
                                <td><a href="/close/subject/tags/<%= subArray.id %>"><button type="button" class="btn btn-link">View</button></a></td>
-                               <td><a href="/close/note/<%= subArray.name %>/<%= subArray.id %>"><button type="button" class="btn btn-outline-primary btn-sm">Click</button></a></td>
+                               <td><a href="/close/note/<%= subArray.id %>"><button type="button" class="btn btn-outline-primary btn-sm">Click</button></a></td>
                                <td>
                                   <form
                                      action="/close/sub/<%= subArray.id %>?_method=DELETE"

@@ -5,11 +5,11 @@
     <%- include('includes/nav') %>
     <div class="sem-container">
         <% uniQuery.forEach(uni => { %>
-            <% uni.branch.forEach(branch=> { %>
-                <% branch.course.forEach(course => { %>
-                    <% course.years.forEach(year => { %>
+            <% uni.course.forEach(course=> { %>
+                <% course.branch.forEach(branch => { %>
+                    <% branch.years.forEach(year => { %>
                         <% year.semester.forEach(sem => { %>
-                            <div class="sem-header"><%=branch.shortname%>&nbsp;<%=course.code%>&nbsp;<%=year.name%>&nbsp;<%= sem.name %></div>
+                            <div class="sem-header"><%=course.shortname%>&nbsp;<%=branch.shortname%>&nbsp;<%=year.name%>&nbsp;<%= sem.name %></div>
                             <% sem.subject.forEach(subject=> { %>
                                 <div class="sem-subjects">
                                     <div class="sub-dox"><a href="">#<%=subject.code%>&nbsp;<%= subject.name %></a></div>

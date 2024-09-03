@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('includes/head.ejs',{title:"Branch"}) %>
+<%- include('includes/head.ejs') %>
 <body>
     <div class="main">
         <%- include('partials/sidebar') %>
@@ -73,8 +73,8 @@
                                  <th scope="col">Name</th>
                                  <th scope="col">Description</th>
                                  <th scope="col">Tags</th>
-                                 <th scope="col">*Courses</th>
-                                 <th scope="col">*Actions</th>
+                                 <th scope="col">Years</th>
+                                 <th scope="col">Actions</th>
                               </tr>
                            </thead>
                            <tbody>
@@ -84,7 +84,7 @@
                                  </td>
                                  <td><a href="/close/branch/desc/<%= branchArray.id %>"><button type="button" class="btn btn-link">View</button></a></td>
                                  <td><a href="/close/branch/tags/<%= branchArray.id %>"><button type="button" class="btn btn-link">View</button></a></td>
-                                 <td><a href="/close/course/<%= branchArray.id %>"><button
+                                 <td><a href="/close/year/<%= branchArray.id %>"><button
                                     type="button" class="btn btn-outline-primary btn-sm">Next</button></a></td>
                                  <td>
                                     <form

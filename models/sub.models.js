@@ -24,18 +24,6 @@ module.exports = (sequelize, DataTypes) => {
       tags: {
         type: DataTypes.STRING,
         allowNull: false,
-      },
-      yearId: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      semId: {
-        type: Sequelize.UUID,
-        allowNull: false,
-      },
-      sem_name : { 
-        type : DataTypes.STRING,
-        allowNull : false
       }
     },
     {

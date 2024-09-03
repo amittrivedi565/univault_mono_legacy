@@ -23,34 +23,34 @@ router.get("/uni",authVerify,uni.createUniGet.controller)
 router.post("/uni",authVerify,upload.single("pdf"),uni.createUniPost.validator,uni.createUniPost.controller)
 router.delete("/uni/:id/:file_name",authVerify,uni.deleteUni.controller)
 
-/* Branch Routes */
-router.get("/branch/:id",authVerify,branch.createBranchGet.controller)
-router.post("/branch/:id",authVerify,branch.createBranchPost.validator,branch.createBranchPost.controller)
-router.delete("/branch/:id",authVerify,branch.deleteBranch.controller)
-
 /* Course Routes */
 router.get("/course/:id",authVerify,course.CourseGet.controller)
 router.post("/course/:id",authVerify,course.createCourse.validator,course.createCourse.controller)
 router.delete("/course/:id",authVerify,course.deleteCourse.controller)
 
+/* Branch Routes */
+router.get("/branch/:id",authVerify,branch.createBranchGet.controller)
+router.post("/branch/:id",authVerify,branch.createBranchPost.validator,branch.createBranchPost.controller)
+router.delete("/branch/:id",authVerify,branch.deleteBranch.controller)
+
+
 /* Year Routes */
-router.get("/year/:course_name/:id",authVerify,year.createYearGet.controller)
-router.post("/year/:course_name/:id",authVerify,year.createYearPost.validator,year.createYearPost.controller)
+router.get("/year/:id",authVerify,year.createYearGet.controller)
+router.post("/year/:id",authVerify,year.createYearPost.validator,year.createYearPost.controller)
 router.delete("/year/:id",authVerify,year.deleteYear.controller)
 
 /* Semester Routes */
-router.get("/sem/:year_name/:id",authVerify,sem.createSemGet.controller)
-router.post("/sem/:year_name/:id",authVerify,sem.createSemPost.controller)
+router.get("/sem/:id",authVerify,sem.createSemGet.controller)
+router.post("/sem/:id",authVerify,sem.createSemPost.controller)
 
 /* Subject Routes */
-router.get("/sub/:year_id/:sem_name/:id",authVerify,subs.createSubjectGet.controller)
-router.post("/sub/:year_id/:sem_name/:id",authVerify,subs.createSubjectPost.validator,subs.createSubjectPost.controller)
+router.get("/sub/:id",authVerify,subs.createSubjectGet.controller)
+router.post("/sub/:id",authVerify,subs.createSubjectPost.validator,subs.createSubjectPost.controller)
 router.delete("/sub/:id",authVerify,subs.deleteSubject.controller)
 
 /* Note Routes */
-router.get("/note/:sub_name/:id",authVerify,notes.noteGet.controller)
-router.post("/note/:sub_name/:id",authVerify,upload.single("pdf"),notes.notePost.controller)
-router.post("/note/link/:sub_name/:id",authVerify,notes.notePost.controller);
+router.get("/note/:id",authVerify,notes.noteGet.controller)
+router.post("/note/:id",authVerify,upload.single("pdf"),notes.notePost.controller)
 router.delete("/note/:id/:file_name",authVerify,notes.deleteNote.controller)
 
 /* Description Routes */

@@ -3,26 +3,30 @@
 <%- include('includes/head') %>
 <body class="branch-body">
     <%- include('includes/nav') %>
-    <%- include('includes/breadcrumb', { items: breadcrumbs }) %>
     <div class="options-wrapper">
         <% uniQuery.forEach(uni => { %>
-           <% uni.branch.forEach(branch => { %>
-            <!-- lowerCase Logic for Branch Shortname -->
-            <%  
-                var u = uni.shortname
-                var b = branch.shortname 
-                var lowerU = u.toLowerCase();
-                var lowerB = b.toLowerCase();
-            %>
-            <div class="option-container">
-                <div class="option-container-top">
-                    <a href="/<%=lowerU%>/<%=lowerB%>">#&nbsp<%=branch.name%></a>
-                    <a><%=uni.name%></a>
-                </div>
-            </div>
-           <% }) %>
+            <% uni.course.forEach(course => { %>
+                <% course.branch.forEach(branch => { %>
+                    <!-- lowerCase Logic for Branch Shortname -->
+                    <%  
+                        var u = uni.shortname
+                        var c = course.shortname
+                        var b = branch.shortname 
+                        var lowerU = u.toLowerCase();
+                        var lowerC = c.toLowerCase();
+                        var lowerB = b.toLowerCase();
+                    %>
+                    <div class="option-container">
+                        <div class="option-container-top">
+                            <a href="/<%=lowerU%>/<%=lowerC%>/<%=lowerB%>">#&nbsp<%=branch.name%></a>
+                            <a><%=uni.name%></a>
+                        </div>
+                    </div>
+                   <% }) %>
+            <% }) %>
         <% }) %>
     </div>
     <%- include('includes/script') %>
 </body>
 </html>
+

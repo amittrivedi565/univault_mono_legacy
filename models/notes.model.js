@@ -17,13 +17,13 @@ module.exports = (sequelize, DataTypes) => {
         type: "LONGTEXT",
         allowNull: false,
       },
-      tags: {
+      url: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      url: {
+      tags: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: false,
       },
       pdf_name: {
         type: DataTypes.STRING,
@@ -32,11 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       subId: {
         type: Sequelize.UUID,
         allowNull: false,
-      },
-      sub_name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
+      }
     },
     {
       timestamps: false,

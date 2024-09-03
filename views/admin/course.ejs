@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('includes/head.ejs',{title:"Course"}) %>
+<%- include('includes/head.ejs') %>
 <body>
     <div class="main">
       <%- include('partials/sidebar') %>
@@ -25,8 +25,8 @@
                                <div class="modal-body">
                                   <div class="form-group">
                                      <label for="recipient-name" class="col-form-label">Course
-                                     Code:</label>
-                                     <input name="code" type="text" class="form-control" id="recipient-name">
+                                     Shortname:</label>
+                                     <input name="shortname" type="text" class="form-control" id="recipient-name">
                                   </div>
                                   <div class="form-group">
                                      <label for="recipient-name" class="col-form-label">Course
@@ -77,8 +77,8 @@
                                      <th scope="col">Name</th>
                                      <th scope="col">Description</th>
                                      <th scope="col">Tags</th>
-                                     <th scope="col">*Years</th>
-                                     <th scope="col">*Actions</th>
+                                     <th scope="col">Branch</th>
+                                     <th scope="col">Actions</th>
                                   </tr>
                                </thead>
                                <tbody>
@@ -88,7 +88,7 @@
                                      </td>
                                      <td><a href="/close/course/desc/<%= courseArray.id %>"><button type="button" class="btn btn-link">View</button></a></td>
                                      <td><a href="/close/course/tags/<%= courseArray.id %>"><button type=" button" class="btn btn-link">View</button></a></td>
-                                     <td><a href="/close/year/<%= courseArray.name %>/<%= courseArray.id %>"><button type="button" class="btn btn-sm btn-outline-primary">Next</button></a></td>
+                                     <td><a href="/close/branch/<%= courseArray.id %>"><button type="button" class="btn btn-sm btn-outline-primary">Next</button></a></td>
                                      <td>
                                         <form
                                            action="/close/course/<%= courseArray.id %>?_method=DELETE"

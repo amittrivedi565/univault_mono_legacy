@@ -22,7 +22,6 @@ exports.createSemPost = {
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
       name: Joi.string().required(),
-      year_name: Joi.string().required(),
       yearId: Joi.string().required(),
     }),
   }),
@@ -32,7 +31,6 @@ exports.createSemPost = {
       // Request Body Data
       const semRecord = {
         name: req.body.name,
-        year_name: req.params.year_name,
         yearId: req.params.id,
       };
 

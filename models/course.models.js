@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    code:{
+    shortname:{
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -24,10 +24,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    branchId : {
-      type: Sequelize.UUID,
-      allowNull : false
-    }
   },{
     timestamps : false
   });

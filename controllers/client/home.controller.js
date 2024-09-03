@@ -2,7 +2,7 @@ const db = require("../../models");
 /**
  * @Rout: GET /
 **/
-exports.homeGet = {
+exports.getHome = {
   controller: async (req, res) => {
     try {
       const uniQuery = await db.university.findAll({ order: ["name"] });

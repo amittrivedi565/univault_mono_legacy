@@ -4,14 +4,12 @@ const { celebrate, Joi, Segments } = require("celebrate");
 exports.createYearGet = {
   controller: async (req, res) => {
     try {
-
-      const courseData = await db.courses.findAll({});
       const yearData = await db.years.findAll({
         where: {
-          courseId: req.params.id,
+          branchId: req.params.id,
         },order : ['name']
       });
-      res.render("../views/admin/year.ejs", { yearData, courseData });
+      res.render("../views/admin/year.ejs", { yearData});
     } catch (error) {
       console.log(error);
     }
@@ -25,9 +23,7 @@ exports.createYearPost = {
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
       name: Joi.string().required(),
-      value: Joi.string().required(),
-      course_id: Joi.string().optional(),
-      course_name: Joi.string().optional(),
+      branchId: Joi.string().optional()
     }),
   }),
 
@@ -36,34 +32,15 @@ exports.createYearPost = {
       // Request Body Data
       const yearData = {
         name: req.body.name,
-        value : req.body.value,
-        course_name: req.params.course_name,
-        courseId: req.params.id,
+        branchId: req.params.id,
       };
-      // Check If Course Already Exists ? 
-      const courseCheck = await db.courses.findOne({
-        where: {
-          id: req.params.id
-        },
-      });
-      // Check If Year Already Exists ? 
-      const yearCheck = await db.years.findOne({
-        where: {
-          name: req.body.name,
-          courseId: req.params.id,
-        },
-      });
 
-      if (!courseCheck) {
-        res.send("No Course Exists")
-      }
-      if (yearCheck) {
-        res.send("Year Alread Exists")
-      }
-      // Create Year Record
-      await db.years.create(yearData);
+      const checkYear = await db.years.findOne({where:{
+        name : req.body.name
+      }})
+      
+      if(!checkYear) await db.years.create(yearData)
       res.redirect("back");
-
     } catch (error) {
       console.log(error);
     }

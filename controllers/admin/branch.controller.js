@@ -7,9 +7,9 @@ exports.createBranchGet = {
     try {
       // query to find branch where university id matches
       const branchData = await db.branches.findAll({where : {
-        uniId : req.params.id
+        courseId : req.params.id
       },order : ['name']});
-      res.render("../views/admin/branch.ejs", { branchData});
+      res.render("../views/admin/branch.ejs", {branchData});
     } catch (error) {
       console.log(error);
     }
@@ -35,7 +35,7 @@ exports.createBranchPost = {
         name: req.body.name,
         desc: req.body.desc,
         tags: req.body.tags,
-        uniId : req.params.id,
+        courseId : req.params.id,
       };
       // Query For Branch to Find One With Name
       const branchExists = await db.branches.findOne({
@@ -60,7 +60,6 @@ exports.createBranchPost = {
 exports.deleteBranch = {
   controller: async (req, res, next) => {
     try {
-
       // Check If Incoming ID is Valid or Not 
       const isValid = await db.branches.findOne({
         where: {

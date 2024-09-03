@@ -2,7 +2,7 @@ const db = require("../../models");
 /**
  * @Rout: GET /uni/branch/course/year
 **/
-exports.unitGet = {
+exports.getUnit = {
   controller: async (req, res) => {
       try {
          const uniQuery  = await db.university.findAll({
@@ -10,22 +10,23 @@ exports.unitGet = {
                shortname : req.params.uni
             },
             include : [{
-               model : db.branches , as : 'branch',
+               model : db.courses , as : 'course',
                where : {
-                  shortname : req.params.branch
+                  shortname : req.params.course
                },
                include : [{
-                  model : db.courses , as : 'course',
+                  model : db.branches , as : 'branch',
                   where : {
-                     code : req.params.course
+                     shortname : req.params.branch
                   },
                   include : [{
                      model : db.years , as : 'years',
                      where : {
-                        value: req.params.year
+                        name: req.params.year
                      },
                      include : [{
                         model : db.sems , as : 'semester',
+   
                         include : [{
                            model : db.subjects , as : 'subject'
                         }]
@@ -34,7 +35,8 @@ exports.unitGet = {
                }]
             }]
          })
-         res.render('../views/client/subject',{title : 'Subject',uniQuery})
+         res.render('../views/client/subject',{uniQuery})
+         // res.send(uniQuery)
       } catch (error) {
          res.send(error)
       }

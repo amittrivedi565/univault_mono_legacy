@@ -67,15 +67,13 @@
                                <thead >
                                   <tr>
                                      <th scope="col">Sem</th>
-                                     <th scope="col">Years</th>
                                      <th scope="col">*Subjects</th>
                                   </tr>
                                </thead>
                                <tbody>
                                   <tr>
                                      <td><%= semArray.name %> </td>
-                                     <td><%= semArray.year_name  %></td>
-                                     <td><a href="/close/sub/<%= semArray.yearId %>/<%= semArray.name %>/<%= semArray.id %>"><button type="button" class="btn btn-outline-primary btn-sm">Next</button></a></td>
+                                     <td><a href="/close/sub/<%= semArray.id %>"><button type="button" class="btn btn-outline-primary btn-sm">Next</button></a></td>
                                   </tr>
                                </tbody>
                             </table>

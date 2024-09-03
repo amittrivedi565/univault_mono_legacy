@@ -5,13 +5,13 @@
     <%- include('includes/nav') %>
     <div class="options-wrapper">
         <% uniQuery.forEach(uni => { %>
-            <% uni.branch.forEach(branch => { %>
-                <% branch.course.forEach(course => { %>
-                    <% course.years.forEach(year => { %>
+            <% uni.course.forEach(course => { %>
+                <% course.branch.forEach(branch => { %>
+                    <% branch.years.forEach(year => { %>
                         <%  
                         var u = uni.shortname
+                        var c = course.shortname
                         var b = branch.shortname 
-                        var c = course.code 
                         var y = year.name
                         var lowerU = u.toLowerCase();
                         var lowerB = b.toLowerCase();
@@ -21,7 +21,7 @@
                         %>
                         <div class="option-container">
                             <div class="option-container-top">
-                                <a href="/<%=lowerU%>/<%=lowerB%>/<%=lowerC%>/<%=year.value%>">#&nbsp;<%=year.name%></a>
+                                <a href="/<%=lowerU%>/<%=lowerC%>/<%=lowerB%>/<%=lowerY%>">#&nbsp;<%=year.name%></a>
                                 <a><%= branch.shortname %>&nbsp;<%= course.name %></a>
                             </div>
                         </div>

@@ -30,13 +30,12 @@ exports.notePost = {
   // Validate Incoming Data From Body
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
-      note_name: Joi.string().required(),
-      note_desc: Joi.string().min(0).max(500).required(),
-      note_tags: Joi.string().required(),
-      subId: Joi.string().required(),
-      sub_name: Joi.string().required(),
+      name: Joi.string().required(),
+      desc: Joi.string().min(0).max(500).required(),
+      tags: Joi.string().required(),
       pdf_name : Joi.optional(),
-      pdf : Joi.optional()
+      pdf : Joi.optional(),
+      subId: Joi.optional(),
     }),
   }),
 
@@ -48,9 +47,8 @@ exports.notePost = {
             desc: req.body.desc,
             tags: req.body.tags,
             url : req.file.location,
-            subId: req.params.id,
-            sub_name: req.params.sub_name,
             pdf_name : req.file_name,
+            subId: req.params.id,
           };
           // Check If Note Exists 
           const noteExists = await db.notes.findOne({

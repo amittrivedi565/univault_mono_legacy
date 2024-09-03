@@ -8,10 +8,9 @@ exports.CourseGet = {
       // Query To Find Courses With Branch ID 
      const courseData = await db.courses.findAll({
       where : {
-        branchId : req.params.id
+        uniId : req.params.id
       } , order : ['name']
       })
-
       res.render("../views/admin/course.ejs", { courseData});
     } catch (error) {
       console.log(error)
@@ -25,7 +24,7 @@ exports.createCourse = {
   // Validate Incoming Data
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
-      code: Joi.string().required(),
+      shortname: Joi.string().required(),
       name: Joi.string().required(),
       desc: Joi.string().min(0).max(2500).required(),
       tags: Joi.string().required(),
@@ -36,28 +35,16 @@ exports.createCourse = {
   controller: async (req, res) => {
     // Incoming Data From Body
     const data = {
-      code: req.body.code,
+      shortname: req.body.shortname,
       name: req.body.name,
       desc: req.body.desc,
       tags: req.body.tags,
-      branchId: req.params.id,
+      uniId: req.params.id,
     };
-
-    // Check If Course Exists ?
-    const courseExists = await db.courses.findOne({
-      where: { 
-        branchId: req.params.id,
-        code: req.body.code,
-        name: req.body.name,
-      },
-    });
-
-    if (courseExists) {
-      res.send("Course Already Exists");
-    } else {
-      const record = await db.courses.create(data);
-      res.redirect("back");
-    }
+    const checkUni = await db.university.findAll();
+    if(!checkUni) return res.send("Invalid University ID")
+    await db.courses.create(data)
+    res.redirect('back')
   },
 };
 

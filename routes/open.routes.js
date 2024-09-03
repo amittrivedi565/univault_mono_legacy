@@ -8,18 +8,18 @@ const unit = require("../controllers/client/unit.controller")
 // const note = require("../controllers/client/note.controller")
 
 /* Home */
-router.get("/",home.homeGet.controller)
-
-/* Branches */
-router.get("/:uni",branch.branchGet.controller);
+router.get("/",home.getHome.controller)
 
 /* Courses */
-router.get("/:uni/:branch",course.courseGet.controller);
+router.get("/:uni",course.getCourse.controller);
+
+/* Branches */
+router.get("/:uni/:course",branch.getBranch.controller);
 
 /* Years */
-router.get("/:uni/:branch/:course",year.yearGet.controller);
+router.get("/:uni/:course/:branch",year.getYear.controller);
 
 /* Semesters */
-router.get("/:uni/:branch/:course/:year",unit.unitGet.controller);
+router.get("/:uni/:course/:branch/:year",unit.getUnit.controller);
 
 module.exports = router;

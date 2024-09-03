@@ -30,9 +30,7 @@ exports.createSubjectPost = {
       name: Joi.string().required(),
       desc: Joi.string().min(0).max(2500).required(),
       tags: Joi.string().required(),
-      year_id: Joi.string().optional(),
-      sem_id: Joi.string().optional(),
-      sem_name: Joi.string().optional(),
+      semId: Joi.string().optional(),
     }),
   }),
 
@@ -44,9 +42,7 @@ exports.createSubjectPost = {
         name: req.body.name,
         desc: req.body.desc,
         tags: req.body.tags,
-        yearId : req.params.year_id,
-        semId: req.params.id,
-        sem_name: req.params.sem_name,
+        semId : req.params.id
       };
       // Check If Subject Exists
       const subjectExists = await db.subjects.findOne({

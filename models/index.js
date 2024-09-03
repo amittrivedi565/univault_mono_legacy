@@ -2,7 +2,6 @@ const dbConfig = require("../config/db.config");
 const { Sequelize, DataTypes } = require("sequelize");
 const uuidv4 = require("uuid").v4;
 const bcrypt = require("bcrypt");
-const { Hooks } = require("sequelize/lib/hooks");
 const salt = bcrypt.genSaltSync(10);
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
@@ -56,23 +55,22 @@ db.admins.hasMany(db.university, {
   hooks: true
 });
 
-db.university.belongsTo(db.admins, {
+db.university.belongsTo(db.admins,{
   foreignKey: "adminId",
   as: "admin",
   onDelete: "CASCADE",
   hooks: true
 });
 
-
-// 1 : M (College : Branches)
-db.university.hasMany(db.branches, {
+// 1 : M (University : Courses)
+db.university.hasMany(db.courses, {
   foreignKey: "uniId",
-  as: "branch",
+  as: "course",
   onDelete: "CASCADE",
   hooks: true
 });
 
-db.branches.belongsTo(db.university, {
+db.courses.belongsTo(db.university, {
   foreignKey: "uniId",
   as: "unis",
   onDelete: "CASCADE",
@@ -80,34 +78,30 @@ db.branches.belongsTo(db.university, {
 });
 
 
-
-
-// 1 : M (Branch : Courses)
-db.branches.hasMany(db.courses, {
-  foreignKey: "branchId",
-  as: "course",
+// 1 : M (Course : Branches)
+db.courses.hasMany(db.branches, {
+  foreignKey: "courseId",
+  as: "branch",
   onDelete: "CASCADE",
   hooks: true
 });
-db.courses.belongsTo(db.branches, {
-  foreignKey: "branchId",
-  as: "branch",
+db.branches.belongsTo(db.courses, {
+  foreignKey: "courseId",
+  as: "course",
   onDelete: "CASCADE",
   hooks :true
 });
 
-
-// 1 : M (Course : Years)
-db.courses.hasMany(db.years, {
-  foreignKey: "courseId",
+// 1 : M (Branch : Years)
+db.branches.hasMany(db.years, {
+  foreignKey: "branchId",
   as: "years",
   onDelete: "CASCADE",
   hooks :true
 });
-
-db.years.belongsTo(db.courses, {
-  foreignKey: "courseId",
-  as: "course",
+db.years.belongsTo(db.branches, {
+  foreignKey: "branchId",
+  as: "branch",
   onDelete: "CASCADE",
   hooks :true
 });
@@ -160,24 +154,13 @@ db.notes.belongsTo(db.subjects, {
   hooks :true
 });
 
-
 db.sequelize.sync({ force: false }).then(async () => {
-  let user = await db.admins.count({
-    where: {
-      email: "abc"
-    }
-  });
-
-  if(!user){
-    let data = ({
-      email: "abc",
-      name: "admin",
-      password: bcrypt.hashSync("123", salt),
-    })
-    await db.admins.create(data)
-  }
+  // let data = ({
+  //   email: "abc",
+  //   name: "admin",
+  //   password: bcrypt.hashSync("123", salt),
+  // })
+  // await db.admins.create(data)
 });
-
-
 
 module.exports = db;

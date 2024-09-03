@@ -10,20 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     name:{
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    value:{
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    courseId : {
-      type: Sequelize.UUID,
-      allowNull : false
-    },
-    course_name:{
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-  },{
+    }
+    },{
     timestamps : false
   });
   return Year;

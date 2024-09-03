@@ -72,16 +72,16 @@
                         <table class="table align-middle table-sm table-hover">
                            <thead class="thead-dark">
                               <tr>
-                                 <th scope="col">Subject</th>
-                                 <th scope="col">Description</th>
-                                 <th scope="col">Tags</th>
-                                 <th scope="col">Notes</th>
-                                 <th scope="col">Action</th>
+                                 <td>Name</td>
+                                 <td>Description</td>
+                                 <td>Tags</td>
+                                 <td>View Pdf</td>
+                                 <td>Action</td>
                               </tr>
                            </thead>
                            <tbody>
-                              <tr>
-                                 <td><%= noteArray.sub_name %></td>
+                              <tr> 
+                                 <td><%= noteArray.name %></td>
                                  <td><a href="/close/notes/desc/<%= noteArray.id %>"><button type="button" class="btn btn-link">View</button></a></td>
                                  <td><a href="/close/notes/tags/<%= noteArray.id %>"><button type="button" class="btn btn-link">View</button></a></td>
                                  <td><a href="<%= noteArray.url %>"><button type="button" class="btn btn-sm btn-outline-success">Click</button></a></td>
