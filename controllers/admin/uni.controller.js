@@ -9,7 +9,6 @@ const s3 = new S3({
   region: process.env.AWS_REGION,
 });
 
-
 // Create University Get
 exports.createUniGet = {
   controller: async (req, res) => {
