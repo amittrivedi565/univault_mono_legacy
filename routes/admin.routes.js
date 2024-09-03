@@ -23,7 +23,7 @@ router.get("/dashboard",authVerify,admin.adminGet.controller)
 /* University Routes */
 router.get("/uni",authVerify,uni.createUniGet.controller)
 router.post("/uni",authVerify,upload.single("pdf"),uni.createUniPost.validator,uni.createUniPost.controller)
-router.delete("/uni/:id/:file_name",authVerify,uni.deleteUni.controller)
+router.delete("/uni/:id/:imgName",authVerify,uni.deleteUni.controller)
 
 /* Course Routes */
 router.get("/course/:id",authVerify,course.getCourse.controller)

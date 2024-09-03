@@ -74,7 +74,7 @@ exports.deleteUni = {
     try {
           const params = {
             Bucket: process.env.AWS_BUCKET_NAME,
-            Key: req.params.file_name,
+            Key: req.params.imgName,
           };
           // Deleting S3 Object (University Logo)
           s3.deleteObject(params, (error, data) => {

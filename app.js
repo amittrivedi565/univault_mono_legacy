@@ -1,14 +1,13 @@
-const config = require("./config/config");
 const express = require("express");
-const app = express();
-const bodyparser = require("body-parser");
 const cors = require("cors");
-const path = require("path");
 const { errors } = require("celebrate");
 const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const methodOverride = require("method-override")
-const authVerify  = require("./middlewares/verifyjwt")
+const bodyparser = require("body-parser");
+const config = require("./config/config");
+const path = require("path");
+const app = express();
 
 const PORT = config.PORT || 3000;
 const HOST = config.HOST;
