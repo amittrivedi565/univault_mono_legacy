@@ -2,12 +2,12 @@ const router = require("express").Router();
 const auth  = require("../controllers/admin/auth.controller.js")
 const admin = require("../controllers/admin/admin.controller.js")
 const uni = require("../controllers/admin/uni.controller.js");
-const branch = require("../controllers/admin/branch.controller.js")
 const course = require("../controllers/admin/course.controller.js")
+const branch = require("../controllers/admin/branch.controller.js")
 const year = require("../controllers/admin/year.controller.js")
 const sem = require("../controllers/admin/sem.controller.js")
 const subs = require("../controllers/admin/sub.controller.js");
-const notes = require("../controllers/admin/note.controller.js");
+const unit = require("../controllers/admin/unit.controller.js");
 const upload = require("../middlewares/uploadS3.js")
 const authVerify = require("../middlewares/verifyjwt.js")
 
@@ -49,22 +49,22 @@ router.post("/sub/:id",authVerify,subs.createSubjectPost.validator,subs.createSu
 router.delete("/sub/:id",authVerify,subs.deleteSubject.controller)
 
 /* Note Routes */
-router.get("/note/:id",authVerify,notes.noteGet.controller)
-router.post("/note/:id",authVerify,upload.single("pdf"),notes.notePost.controller)
-router.delete("/note/:id/:file_name",authVerify,notes.deleteNote.controller)
+router.get("/note/:id",authVerify,unit.getUnit.controller)
+router.post("/note/:id",authVerify,upload.single("pdf"),unit.getUnit.controller)
+router.delete("/note/:id/:file_name",authVerify,unit.deleteNote.controller)
 
 /* Description Routes */
 router.get("/uni/desc/:id",authVerify,uni.getDesc.controller)
 router.get("/branch/desc/:id",authVerify,branch.getDesc.controller)
 router.get("/course/desc/:id",authVerify,course.getDesc.controller)
 router.get("/subject/desc/:id",authVerify,subs.getDesc.controller)
-router.get("/notes/desc/:id",authVerify,notes.getDesc.controller)
+router.get("/notes/desc/:id",authVerify,unit.getDesc.controller)
 
 /* Tags Routes */
 router.get("/uni/tags/:id",authVerify,uni.getTag.controller)
 router.get("/branch/tags/:id",authVerify,branch.getTag.controller)
 router.get("/course/tags/:id",authVerify,course.getTag.controller)
 router.get("/subject/tags/:id",authVerify,subs.getTag.controller)
-router.get("/notes/tags/:id",authVerify,notes.getTag.controller)
+router.get("/notes/tags/:id",authVerify,unit.getTag.controller)
 
 module.exports = router;

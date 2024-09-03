@@ -10,7 +10,7 @@ const s3 = new S3({
   region: process.env.AWS_REGION,
 });
 
-exports.noteGet = {
+exports.getUnit = {
   controller: async (req, res) => {
     try {
       // Find Notes With Subject ID 
@@ -19,14 +19,14 @@ exports.noteGet = {
           subId: req.params.id,
         }, order : ['name']
       });
-      res.render("../views/admin/note.ejs", { noteData });
+      res.render("../views/admin/unit.ejs", { noteData });
     } catch (error) {
       console.log(error);
     }
   },
 };
 
-exports.notePost = {
+exports.postUnit = {
   // Validate Incoming Data From Body
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
