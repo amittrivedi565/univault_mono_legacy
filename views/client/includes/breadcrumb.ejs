@@ -1,0 +1,28 @@
+<style>
+  .breadcrumb-custom {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .breadcrumb-custom .breadcrumb {
+    min-width: 90vw;
+  }
+</style>
+
+<div aria-label="breadcrumb" class="breadcrumb-custom">
+    <ol class="breadcrumb">
+      <% items.forEach(item => { %>
+        <% if(item.isLink){ %>
+          <li class="breadcrumb-item">
+            <a href="<%= item.link %>"><%= item.label %></a>
+          </li>
+        <% }else{ %>
+          <li class="breadcrumb-item active">
+            <%= item.label %>
+          </li>
+        <% } %>
+      <% }) %>
+    </ol>
+</div>

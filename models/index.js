@@ -162,15 +162,20 @@ db.notes.belongsTo(db.subjects, {
 
 
 db.sequelize.sync({ force: false }).then(async () => {
-  // let data = ({
-  //   email: "abc",
-  //   name: "admin",
-  //   password: bcrypt.hashSync("123", salt),
-  // })
+  let user = await db.admins.count({
+    where: {
+      email: "abc"
+    }
+  });
 
-  //   await db.admins.create(data)
-
-
+  if(!user){
+    let data = ({
+      email: "abc",
+      name: "admin",
+      password: bcrypt.hashSync("123", salt),
+    })
+    await db.admins.create(data)
+  }
 });
 
 
