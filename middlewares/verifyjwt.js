@@ -7,8 +7,8 @@ try{
     if(token)
     {
         req.user = jwt.verify(token,authConfig.JWT_SECRET_KEY,(err,result)=>{
-            req.admin_id = result.id
-            // console.log(result)
+            req.adminId = result.id
+            req.adminName = result.name
         });
 
     }

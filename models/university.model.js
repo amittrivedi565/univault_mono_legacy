@@ -40,6 +40,10 @@ module.exports = (sequelize, DataTypes) => {
       type: Sequelize.UUID,
       allowNull: false,
     },
+    adminName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
   // If don't want updatedAt
   },{
     timestamps : false

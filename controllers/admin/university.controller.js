@@ -1,3 +1,4 @@
+const { where } = require("sequelize");
 const db = require("../../models");
 const { celebrate, Joi, Segments } = require("celebrate");
 const S3 = require("aws-sdk").S3;
@@ -13,8 +14,8 @@ const s3 = new S3({
 exports.getUniversity = {
   controller: async (req, res) => {
     try {
-      const uniData = await db.university.findAll({ order: ["name"] });
-      const adminData = await db.admins.findOne()
+      const uniData = await db.university.findAll({})
+      const adminData = await db.admins.findAll({})
       res.render("../views/admin/university",{uniData,adminData});
     } catch (error) {
       console.log(error);
@@ -36,7 +37,8 @@ exports.postUniversity = {
       imgUrl: Joi.string().optional(),
       imgName: Joi.string().optional(),
       pdf: Joi.optional(),
-      admin_id: Joi.string().optional(),
+      adminId: Joi.string().optional(),
+      adminName: Joi.string().optional(),
     }),
   }),
 
@@ -50,16 +52,22 @@ exports.postUniversity = {
         tags: req.body.tags,
         imgUrl: req.file.location,
         imgName: req.file_name,
-        adminId: req.admin_id,
+        adminId: req.adminId,
+        adminName: req.adminName,
       };
       // Check If University Already Exists?
       const uniCheck = await db.university.findOne({
         where: { name: req.body.name }
       });
-
+      const adminCheck = await db.admins.findOne({
+        where : {
+          id : req.adminId
+        }
+      })
+      console.log(adminCheck)
       if(uniCheck) return res.send("University / College Already Exists");
       // Create University Record
-      await db.university.create(data);
+      if(adminCheck) await db.university.create(data);
       res.redirect("back");
     } catch (error) {
       console.log(error);
