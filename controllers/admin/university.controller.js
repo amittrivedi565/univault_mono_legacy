@@ -26,7 +26,7 @@ exports.getUniversity = {
 
 // Create University Post
 exports.postUniversity = {
-
+  
   // Validating Incoming Data
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
@@ -51,7 +51,7 @@ exports.postUniversity = {
         desc: req.body.desc,
         tags: req.body.tags,
         imgUrl: req.file.location,
-        imgName: req.file_name,
+        imgName: req.fileName,
         adminId: req.adminId,
         adminName: req.adminName,
       };
@@ -59,15 +59,18 @@ exports.postUniversity = {
       const uniCheck = await db.university.findOne({
         where: { name: req.body.name }
       });
+      // Check If AdminId is Valid or Not
       const adminCheck = await db.admins.findOne({
         where : {
           id : req.adminId
         }
       })
-      console.log(adminCheck)
       if(uniCheck) return res.send("University / College Already Exists");
+
+      if(!adminCheck) return res.send("AdminID is invalid") ;
+      
       // Create University Record
-      if(adminCheck) await db.university.create(data);
+      await db.university.create(data);
       res.redirect("back");
     } catch (error) {
       console.log(error);
@@ -84,7 +87,7 @@ exports.deleteUniversity = {
             Bucket: process.env.AWS_BUCKET_NAME,
             Key: req.params.imgName,
           };
-          // Deleting S3 Object (University Logo)
+          // Deleting S3 Object (University Image)
           s3.deleteObject(params, (error, data) => {
             if (error) {
               res.status(500).send(error);
