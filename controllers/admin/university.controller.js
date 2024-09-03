@@ -10,7 +10,7 @@ const s3 = new S3({
 });
 
 // Create University Get
-exports.createUniGet = {
+exports.getUniversity = {
   controller: async (req, res) => {
     try {
       const uniData = await db.university.findAll({ order: ["name"] });
@@ -24,7 +24,7 @@ exports.createUniGet = {
 };
 
 // Create University Post
-exports.createUniPost = {
+exports.postUniversity = {
 
   // Validating Incoming Data
   validator: celebrate({
@@ -69,7 +69,7 @@ exports.createUniPost = {
 };
 
 // Delete University
-exports.deleteUni = {
+exports.deleteUniversity = {
   controller: async (req, res, next) => {
     try {
           const params = {

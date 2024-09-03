@@ -2,7 +2,7 @@ const db = require("../../models");
 const { celebrate, Joi, Segments } = require("celebrate");
 
 // Create Branch Get
-exports.createBranchGet = {
+exports.getBranch = {
   controller: async (req, res) => {
     try {
       // query to find branch where university id matches
@@ -21,7 +21,7 @@ exports.createBranchGet = {
 };
 
 // Create Branch Post
-exports.createBranchPost = {
+exports.postBranch = {
   // Validating Incoming Data
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({

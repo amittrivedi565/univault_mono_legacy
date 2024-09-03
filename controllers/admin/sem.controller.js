@@ -1,7 +1,7 @@
 const db = require("../../models");
 const { celebrate, Joi, Segments } = require("celebrate");
 
-exports.createSemGet = {
+exports.getSem = {
   controller: async (req, res) => {
     try {
       // Find Sememster With Year ID
@@ -18,7 +18,7 @@ exports.createSemGet = {
   },
 };
 
-exports.createSemPost = {
+exports.postSem = {
   // Validate Incoming Data
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({

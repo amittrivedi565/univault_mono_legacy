@@ -21,9 +21,9 @@ router.post("/logout",auth.signOut.controller)
 router.get("/dashboard",authVerify,admin.adminGet.controller)
 
 /* University Routes */
-router.get("/uni",authVerify,uni.createUniGet.controller)
-router.post("/uni",authVerify,upload.single("pdf"),uni.createUniPost.validator,uni.createUniPost.controller)
-router.delete("/uni/:id/:imgName",authVerify,uni.deleteUni.controller)
+router.get("/uni",authVerify,uni.getUniversity.controller)
+router.post("/uni",authVerify,upload.single("pdf"),uni.postUniversity.validator,uni.postUniversity.controller)
+router.delete("/uni/:id/:imgName",authVerify,uni.deleteUniversity.controller)
 
 /* Course Routes */
 router.get("/course/:id",authVerify,course.getCourse.controller)
@@ -31,8 +31,8 @@ router.post("/course/:id",authVerify,course.postCourse.validator,course.postCour
 router.delete("/course/:id",authVerify,course.deleteCourse.controller)
 
 /* Branch Routes */
-router.get("/branch/:id",authVerify,branch.createBranchGet.controller)
-router.post("/branch/:id",authVerify,branch.createBranchPost.validator,branch.createBranchPost.controller)
+router.get("/branch/:id",authVerify,branch.getBranch.controller)
+router.post("/branch/:id",authVerify,branch.postBranch.validator,branch.postBranch.controller)
 router.delete("/branch/:id",authVerify,branch.deleteBranch.controller)
 
 /* Year Routes */
@@ -41,8 +41,8 @@ router.post("/year/:id",authVerify,year.postYear.validator,year.postYear.control
 router.delete("/year/:id",authVerify,year.deleteYear.controller)
 
 /* Semester Routes */
-router.get("/sem/:id",authVerify,sem.createSemGet.controller)
-router.post("/sem/:id",authVerify,sem.createSemPost.controller)
+router.get("/sem/:id",authVerify,sem.getSem.controller)
+router.post("/sem/:id",authVerify,sem.postSem.controller)
 
 /* Subject Routes */
 router.get("/sub/:id",authVerify,subs.getSubject.controller)
