@@ -36,7 +36,6 @@ exports.getUnit = {
             }]
          })
          res.render('../views/client/subject',{uniQuery})
-         // res.send(uniQuery)
       } catch (error) {
          res.send(error)
       }

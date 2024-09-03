@@ -19,9 +19,14 @@
     align-items: center;
     padding-left: 10vh;
     /* color: #3E38F5; */
-    color: black;
+    color:rgb(62, 56, 245);;
     font-size: 3.5vh;
+    text-decoration: none;
     border-bottom: 0.5px solid gainsboro;
+}
+.nav-login a {
+    color:rgb(62, 56, 245);;
+    text-decoration: none;
 }
 
 /* Input Wrapper */
@@ -45,6 +50,7 @@
  flex-direction: column;
  width: 100%;
  height: 10vh;
+ color:rgb(62, 56, 245);;
  
 }
 img{
@@ -86,7 +92,7 @@ h2 span {
 }
 .login-button{
     /* background-color:#3E38F5 ;  */
-    background-color: black;
+    background-color:rgb(62, 56, 245);;
     color: #fff;
     border-radius: 0.5vh;
     text-align:center;

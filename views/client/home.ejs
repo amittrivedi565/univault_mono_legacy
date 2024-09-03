@@ -4,7 +4,7 @@
 <body class="home-body">
     <div class="navbar-container1">
         <a href="/">Uni<b>Vault</b></a>
-        <a href="" class="sliding-middle-out">Why Us?</a>
+        <a href="/close/login" class="sliding-middle-out">Login</a>
     </div>
     
     <div class="home-container">
@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="home-uni">
-        <h2 class="fancy">Content Available For Universities</h2>
+        <!-- <h2 class="fancy">Content Available For Universities</h2> -->
         <% uniQuery.forEach(uni => { %>
              <!-- lowerCase Logic for Branch Shortname -->
                 <%  var u = uni.shortname 
@@ -24,7 +24,7 @@
             <% if (uniQuery.length > 0 ) { %>
                 <div class="home-uni-box">
                     <a href="/<%=lowerU%>"><b><%= uni.name %></b></a>
-                    <i>Btech & Mtech Content Available</i>
+                    <i>Description</i>
                 </div>
             <% } else {%>
                 Sorry Content Not Available For Now 😞
