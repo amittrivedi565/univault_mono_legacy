@@ -6,7 +6,7 @@ exports.getHome = {
   controller: async (req, res) => {
     try {
       const uniQuery = await db.university.findAll({ order: ["name"] });
-      res.render("../views/client/home",{title :"TBA",uniQuery})
+      res.render("../views/client/home",{uniQuery})
     } catch (error) {
       res.send(error)
     }

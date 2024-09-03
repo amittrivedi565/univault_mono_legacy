@@ -1,48 +1,31 @@
+const { allow } = require("joi");
 const Sequelize = require("sequelize");
-const { validate } = require("uuid");
-
 module.exports = (sequelize, DataTypes) => {
-  const University = sequelize.define("unis", {
+  const Course = sequelize.define("Course", {
     id: {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV4,
       allowNull: false,
       primaryKey: true,
     },
-    shortname : {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique : true
-    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique : true
+    },
+    shortname:{
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     desc: {
-      type: "LONGTEXT",
+      type:"LONGTEXT",
       allowNull: false,
     },
     tags: {
       type: DataTypes.STRING,
       allowNull: false,
-
     },
-    url : {
-      type : DataTypes.STRING,
-      allowNull:false
-    },
-    img_name : {
-      type : DataTypes.STRING,
-      allowNull:false
-    },
-    adminId: {
-      type: Sequelize.UUID,
-      allowNull: false,
-    },
-  // If don't want updatedAt
   },{
     timestamps : false
   });
-  return University;
+  return Course;
 };

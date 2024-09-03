@@ -12,7 +12,7 @@ exports.getCourse = {
         include: [
           {
             model: db.courses,
-            as: "course",
+            as: "Course",
             attributes: {
               exclude: ["desc", "tags", "id", "uniId"],
             },
@@ -20,6 +20,7 @@ exports.getCourse = {
         ],
       });
       res.render("../views/client/course", {uniQuery});
+      // res.send(uniQuery)
     } catch (error) {
       res.send(error);
     }

@@ -6,12 +6,16 @@ exports.createBranchGet = {
   controller: async (req, res) => {
     try {
       // query to find branch where university id matches
-      const branchData = await db.branches.findAll({where : {
-        courseId : req.params.id
-      },order : ['name']});
-      res.render("../views/admin/branch.ejs", {branchData});
+      const branchData = await db.branches.findAll({
+        where: {
+          courseId: req.params.id,
+        },
+        order: ["name"],
+      });
+      res.render("../views/admin/branch.ejs", { branchData });
     } catch (error) {
       console.log(error);
+      res.status(201).send("Internal Error");
     }
   },
 };
@@ -21,8 +25,8 @@ exports.createBranchPost = {
   // Validating Incoming Data
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
-      shortname: Joi.string().required(),
       name: Joi.string().required(),
+      shortname: Joi.string().required(),
       tags: Joi.string().required(),
       desc: Joi.string().min(0).max(2500).required(),
     }),
@@ -31,27 +35,26 @@ exports.createBranchPost = {
     try {
       // Incoming Body Data
       const data = {
-        shortname : req.body.shortname,
         name: req.body.name,
+        shortname: req.body.shortname,
         desc: req.body.desc,
         tags: req.body.tags,
-        courseId : req.params.id,
+        courseId: req.params.id,
       };
       // Query For Branch to Find One With Name
       const branchExists = await db.branches.findOne({
         where: {
           name: req.body.name,
+          shortname : req.body.name
         },
       });
       // Check If Branch Exists
-      if (branchExists) {
-        res.send("branch already exists");
-      } else {
-        await db.branches.create(data);
-        res.redirect("back");
-      }
+      if (branchExists) return res.send("Branch Already Exists");
+      await db.branches.create(data);
+      res.redirect("back");
     } catch (error) {
       console.log(error.message);
+      res.status(201).send("Internal Error");
     }
   },
 };
@@ -60,25 +63,25 @@ exports.createBranchPost = {
 exports.deleteBranch = {
   controller: async (req, res, next) => {
     try {
-      // Check If Incoming ID is Valid or Not 
-      const isValid = await db.branches.findOne({
+      // Check If Incoming ID is Valid or Not
+      const checkID = await db.branches.findOne({
         where: {
-          id: req.params.id
+          id: req.params.id,
         },
       });
-      if (!isValid) {
-        console.log("Invalid ID");
-      } else {
+
+      if(!checkID) return res.send("Invalid ID")
+
         // Delete Branch With ID
         const branchDelete = await db.branches.destroy({
           where: {
-            id: id,
+            id: req.params.id,
           },
         });
         res.redirect("back");
-      }
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
+      res.status(201).send("Internal Error");
     }
   },
 };
@@ -95,7 +98,8 @@ exports.getDesc = {
       });
       res.send("Description : " + branchData.desc);
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
+      res.status(201).send("Internal Error");
     }
   },
 };
@@ -112,7 +116,8 @@ exports.getTag = {
       });
       res.send("Tags : " + branchData.tags);
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
+      res.status(201).send("Internal Error");
     }
   },
 };

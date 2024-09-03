@@ -1,8 +1,6 @@
 const Sequelize = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  const Note = sequelize.define(
-    "notes",
-    {
+  const Unit = sequelize.define("Unit",{
       id: {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
@@ -25,18 +23,18 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      pdf_name: {
+      pdfName: {
         type: DataTypes.STRING,
         allowNull: true,
       },
       subId: {
         type: Sequelize.UUID,
         allowNull: false,
-      }
+      },
     },
     {
       timestamps: false,
     }
   );
-  return Note;
+  return Unit;
 };

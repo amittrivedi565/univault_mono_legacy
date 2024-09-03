@@ -4,16 +4,17 @@ const { celebrate, Joi, Segments } = require("celebrate");
 exports.createSemGet = {
   controller: async (req, res) => {
     try {
-
       // Find Sememster With Year ID
       const semData = await db.sems.findAll({
         where: {
           yearId: req.params.id,
         }, order  : ['name']
       });
-
       res.render("../views/admin/sem.ejs", { semData });
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+      res.status(201).send("Internal Error");
+    }
   },
 };
 
@@ -29,7 +30,7 @@ exports.createSemPost = {
     try {
 
       // Request Body Data
-      const semRecord = {
+      const data = {
         name: req.body.name,
         yearId: req.params.id,
       };
@@ -39,14 +40,11 @@ exports.createSemPost = {
         name : req.body.name,
         yearId : req.params.id
       } });
-
-      if (semCheck) {
-        res.send("Already Exists");
-      } else {
-        // Create Semester Record
-        await db.sems.create(semRecord);
-        res.redirect("back");
-      }
+      
+      if(semCheck) return  res.status(201).send("Semester Already Exists");
+      // Create Semester Record
+      await db.sems.create(data);
+      res.redirect("back");
     } catch (error) {
       console.log(error);
     }

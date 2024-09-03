@@ -10,25 +10,25 @@ exports.getUnit = {
                shortname : req.params.uni
             },
             include : [{
-               model : db.courses , as : 'course',
+               model : db.courses , as : 'Course',
                where : {
                   shortname : req.params.course
                },
                include : [{
-                  model : db.branches , as : 'branch',
+                  model : db.branches , as : 'Branch',
                   where : {
                      shortname : req.params.branch
                   },
                   include : [{
-                     model : db.years , as : 'years',
+                     model : db.years , as : 'Year',
                      where : {
                         name: req.params.year
                      },
                      include : [{
-                        model : db.sems , as : 'semester',
+                        model : db.sems , as : 'Semester',
    
                         include : [{
-                           model : db.subjects , as : 'subject'
+                           model : db.subjects , as : 'Subject'
                         }]
                      }]
                   }]

@@ -4,15 +4,15 @@
 <body class="branch-body">
     <%- include('includes/nav') %>
     <div class="sem-container">
-        <% uniQuery.forEach(uni => { %>
-            <% uni.course.forEach(course=> { %>
-                <% course.branch.forEach(branch => { %>
-                    <% branch.years.forEach(year => { %>
-                        <% year.semester.forEach(sem => { %>
-                            <div class="sem-header"><%=course.shortname%>&nbsp;<%=branch.shortname%>&nbsp;<%=year.name%>&nbsp;<%= sem.name %></div>
-                            <% sem.subject.forEach(subject=> { %>
+        <% uniQuery.forEach(Uni => { %>
+            <% Uni.Course.forEach(Course=> { %>
+                <% Course.Branch.forEach(Branch => { %>
+                    <% Branch.Year.forEach(Year => { %>
+                        <% Year.Semester.forEach(Sem => { %>
+                            <div class="sem-header"><%=Course.shortname%>&nbsp;<%=Branch.shortname%>&nbsp;<%=Year.name%>&nbsp;<%= Sem.name %></div>
+                            <% Sem.Subject.forEach(Subject=> { %>
                                 <div class="sem-subjects">
-                                    <div class="sub-dox"><a href="">#<%=subject.code%>&nbsp;<%= subject.name %></a></div>
+                                    <div class="sub-dox"><a href="">#<%=Subject.code%>&nbsp;<%= Subject.name %></a></div>
                                 </div>
                             <% }) %>
                         <% }) %>

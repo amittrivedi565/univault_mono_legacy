@@ -30,34 +30,34 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.admins = require("./admin.models")(sequelize, DataTypes);
+db.admins = require("./admin.model")(sequelize, DataTypes);
 
-db.university = require("./uni.model")(sequelize, DataTypes);
+db.university = require("./university.model")(sequelize, DataTypes);
 
-db.branches = require("./branch.models")(sequelize, DataTypes);
+db.branches = require("./branch.model")(sequelize, DataTypes);
 
-db.courses = require("./course.models")(sequelize, DataTypes);
+db.courses = require("./course.model")(sequelize, DataTypes);
 
 db.years = require("./year.model")(sequelize, DataTypes);
 
-db.sems = require("./sem.models")(sequelize, DataTypes);
+db.sems = require("./semester.model")(sequelize, DataTypes);
 
-db.subjects = require("./sub.models")(sequelize, DataTypes);
+db.subjects = require("./subject.model")(sequelize, DataTypes);
 
-db.notes = require("./notes.model")(sequelize, DataTypes);
+db.unit = require("./unit.model")(sequelize, DataTypes);
 
 
-// 1 : M (Admin : Colleges)
+// 1 : M (Admin : Universities)
 db.admins.hasMany(db.university, {
   foreignKey: "adminId",
-  as: "unis",
+  as: "University",
   onDelete: "CASCADE",
   hooks: true
 });
 
 db.university.belongsTo(db.admins,{
   foreignKey: "adminId",
-  as: "admin",
+  as: "Admin",
   onDelete: "CASCADE",
   hooks: true
 });
@@ -65,14 +65,14 @@ db.university.belongsTo(db.admins,{
 // 1 : M (University : Courses)
 db.university.hasMany(db.courses, {
   foreignKey: "uniId",
-  as: "course",
+  as: "Course",
   onDelete: "CASCADE",
   hooks: true
 });
 
 db.courses.belongsTo(db.university, {
   foreignKey: "uniId",
-  as: "unis",
+  as: "University",
   onDelete: "CASCADE",
   hooks :true
 });
@@ -81,13 +81,13 @@ db.courses.belongsTo(db.university, {
 // 1 : M (Course : Branches)
 db.courses.hasMany(db.branches, {
   foreignKey: "courseId",
-  as: "branch",
+  as: "Branch",
   onDelete: "CASCADE",
   hooks: true
 });
 db.branches.belongsTo(db.courses, {
   foreignKey: "courseId",
-  as: "course",
+  as: "Course",
   onDelete: "CASCADE",
   hooks :true
 });
@@ -95,61 +95,61 @@ db.branches.belongsTo(db.courses, {
 // 1 : M (Branch : Years)
 db.branches.hasMany(db.years, {
   foreignKey: "branchId",
-  as: "years",
+  as: "Year",
   onDelete: "CASCADE",
   hooks :true
 });
 db.years.belongsTo(db.branches, {
   foreignKey: "branchId",
-  as: "branch",
+  as: "Branch",
   onDelete: "CASCADE",
   hooks :true
 });
 
 
-// 1 : M (Year : Sems)
+// 1 : M (Year : Semesters)
 db.years.hasMany(db.sems, {
   foreignKey: "yearId",
-  as: "semester",
+  as: "Semester",
   onDelete: "CASCADE",
   hooks :true
 });
 
 db.sems.belongsTo(db.years, {
   foreignKey: "yearId",
-  as: "years",
+  as: "Year",
   onDelete: "CASCADE",
   hooks :true
 });
 
 
-// 1 : M (Sem : Subjects)
+// 1 : M (Semester : Subjects)
 db.sems.hasMany(db.subjects, {
   foreignKey: "semId",
-  as: "subject",
+  as: "Subject",
   onDelete: "CASCADE",
   hooks :true
 });
 
 db.subjects.belongsTo(db.sems, {
   foreignKey: "semId",
-  as: "semester",
+  as: "Semester",
   onDelete: "CASCADE",
   hooks :true
 });
 
 
-// 1 : M (Suject : Notes)
-db.subjects.hasMany(db.notes, {
+// 1 : M (Subject : Units)
+db.subjects.hasMany(db.unit, {
   foreignKey: "subId",
-  as: "notes",
+  as: "Unit",
   onDelete: "CASCADE",
   hooks :true
 });
 
-db.notes.belongsTo(db.subjects, {
+db.unit.belongsTo(db.subjects, {
   foreignKey: "subId",
-  as: "subject",
+  as: "Subject",
   onDelete: "CASCADE",
   hooks :true
 });

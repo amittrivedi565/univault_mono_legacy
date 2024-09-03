@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  const Semester = sequelize.define("semester", {
+  const Semester = sequelize.define("Semester", {
     id: {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV4,

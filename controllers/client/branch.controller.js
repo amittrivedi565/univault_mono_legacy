@@ -11,12 +11,12 @@ exports.getBranch = {
                shortname : req.params.uni
             },
             include : [{
-               model : db.courses , as : "course",
+               model : db.courses , as : "Course",
                where : {
                   shortname : req.params.course    
                },
                include : [{
-                  model : db.branches , as : "branch"
+                  model : db.branches , as : "Branch"
                }]
             }]
          })

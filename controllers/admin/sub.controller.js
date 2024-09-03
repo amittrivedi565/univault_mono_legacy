@@ -3,7 +3,7 @@ const db = require("../../models");
 const { celebrate, Joi, Segments } = require("celebrate");
 
 // create subject
-exports.createSubjectGet = {
+exports.getSubject = {
   controller: async (req, res) => {
     try {
       // Find Subject With Semester ID
@@ -17,12 +17,13 @@ exports.createSubjectGet = {
       res.render("../views/admin/sub.ejs", { subData, semData });
     } catch (error) {
       console.log(error);
+      res.status(201).send("Internal Error");
     }
   }
 };
 
 // create subject
-exports.createSubjectPost = {
+exports.postSubject = {
   // Validate Incoming Data
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
@@ -52,16 +53,12 @@ exports.createSubjectPost = {
         },
       });
 
-      if (subjectExists) 
-        {
-        res.send("Subject Already Exists");
-      } else {
-        // Create Subject Record
-        const record = await db.subjects.create(data);
+      if (subjectExists) return  res.status(201).send("Internal Error");
+        await db.subjects.create(data);
         res.redirect("back");
-      }
     } catch (error) {
-      res.send(error.message);
+      res.send(error);
+      res.status(201).send("Internal Error");
     }
   }
 }
@@ -79,6 +76,7 @@ exports.deleteSubject = {
       res.redirect("back");
     } catch (error) {
       console.log(error);
+      res.status(201).send("Internal Error");
     }
   }
 };
@@ -94,7 +92,10 @@ exports.getDesc = {
         },
       });
       res.send("Description : " + subData.desc);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+      res.status(201).send("Internal Error");
+    }
   }
 };
 
@@ -109,7 +110,10 @@ exports.getTag = {
         },
       });
       res.send("Tags : " + subData.tags);
-    } catch (error) {}
+    } catch (error) {
+      console.log(error)
+      res.status(201).send("Internal Error");
+    }
   }
 };
 

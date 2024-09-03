@@ -4,22 +4,22 @@
 <body class="branch-body">
     <%- include('includes/nav') %>
     <div class="options-wrapper">
-        <% uniQuery.forEach(uni => { %>
-            <% uni.course.forEach(course => { %>
-                <% course.branch.forEach(branch => { %>
+        <% uniQuery.forEach(Uni => { %>
+            <% Uni.Course.forEach(Course => { %>
+                <% Course.Branch.forEach(Branch => { %>
                     <!-- lowerCase Logic for Branch Shortname -->
                     <%  
-                        var u = uni.shortname
-                        var c = course.shortname
-                        var b = branch.shortname 
+                        var u = Uni.shortname
+                        var c = Course.shortname
+                        var b = Branch.shortname 
                         var lowerU = u.toLowerCase();
                         var lowerC = c.toLowerCase();
                         var lowerB = b.toLowerCase();
                     %>
                     <div class="option-container">
                         <div class="option-container-top">
-                            <a href="/<%=lowerU%>/<%=lowerC%>/<%=lowerB%>">#&nbsp<%=branch.name%></a>
-                            <a><%=uni.name%></a>
+                            <a href="/<%=lowerU%>/<%=lowerC%>/<%=lowerB%>">#&nbsp<%=Branch.name%></a>
+                            <a><%=Uni.name%></a>
                         </div>
                     </div>
                    <% }) %>

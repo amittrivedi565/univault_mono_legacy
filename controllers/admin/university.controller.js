@@ -15,9 +15,10 @@ exports.createUniGet = {
     try {
       const uniData = await db.university.findAll({ order: ["name"] });
       const adminData = await db.admins.findOne()
-      res.render("../views/admin/uni.ejs",{uniData,adminData});
+      res.render("../views/admin/university",{uniData,adminData});
     } catch (error) {
       console.log(error);
+      res.status(201).send("Internal Error");
     }
   },
 };
@@ -28,14 +29,14 @@ exports.createUniPost = {
   // Validating Incoming Data
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
-      admin_id: Joi.string().optional(),
       name: Joi.string().required(),
       shortname : Joi.string().required(),
       tags: Joi.string().required(),
       desc: Joi.string().min(0).max(2500).required(),
-      url: Joi.string().optional(),
-      file_name: Joi.string().optional(),
+      imgUrl: Joi.string().optional(),
+      imgName: Joi.string().optional(),
       pdf: Joi.optional(),
+      admin_id: Joi.string().optional(),
     }),
   }),
 
@@ -44,11 +45,11 @@ exports.createUniPost = {
       // Request Body Data
       const data = {
         name: req.body.name,
-        desc: req.body.desc,
         shortname : req.body.shortname,
-        url: req.file.location,
+        desc: req.body.desc,
         tags: req.body.tags,
-        img_name: req.file_name,
+        imgUrl: req.file.location,
+        imgName: req.file_name,
         adminId: req.admin_id,
       };
       // Check If University Already Exists?
@@ -56,15 +57,13 @@ exports.createUniPost = {
         where: { name: req.body.name }
       });
 
-      if (uniCheck) {
-        res.send("branch already exists");
-      } else {
-        // Create University Record
-        await db.university.create(data);
-        res.redirect("back");
-      }
+      if(uniCheck) return res.send("University / College Already Exists");
+      // Create University Record
+      await db.university.create(data);
+      res.redirect("back");
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
+      res.status(201).send("Internal Error");
     }
   },
 };
@@ -73,15 +72,6 @@ exports.createUniPost = {
 exports.deleteUni = {
   controller: async (req, res, next) => {
     try {
-      const isValid = await db.university.findOne({
-        where: { id: req.params.id },
-      });
-      
-      // Check University ID is Valid or Not?
-      if (!isValid) {
-        res.send("~invalid");
-      } else {
-
           const params = {
             Bucket: process.env.AWS_BUCKET_NAME,
             Key: req.params.file_name,
@@ -97,9 +87,9 @@ exports.deleteUni = {
             where: { id: req.params.id },
           });
           res.redirect("back");
-        }
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
+      res.status(201).send("Internal Error");
     }
   },
 };
@@ -113,7 +103,8 @@ exports.getDesc = {
       });
       res.send("Description : " + uniData.desc);
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
+      res.status(201).send("Internal Error");
     }
   },
 };
@@ -127,7 +118,8 @@ exports.getTag = {
       });
       res.send("Tags : " + uniData.tags);
     } catch (error) {
-      console.log(error.message);
+      console.log(error);
+      res.status(201).send("Internal Error");
     }
   },
 };

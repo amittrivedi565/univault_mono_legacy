@@ -1,31 +1,26 @@
-const Sequelize = require("sequelize");
-const { validate } = require("uuid");
+const { Sequelize, DataTypes } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
-  const Branch = sequelize.define("branch", {
+  const Admin = sequelize.define("Admin", {
     id: {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV4,
       allowNull: false,
       primaryKey: true,
     },
-    shortname: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    desc: {
-      type: "LONGTEXT",
+    email: {
+      type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
-    tags: {
+    password: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-  },{
-    timestamps : false
   });
-  return Branch;
+  return Admin;
 };

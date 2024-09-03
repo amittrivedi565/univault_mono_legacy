@@ -1,7 +1,7 @@
 const db = require("../../models");
 const { celebrate, Joi, Segments } = require("celebrate");
 
-exports.createYearGet = {
+exports.getYear = {
   controller: async (req, res) => {
     try {
       const yearData = await db.years.findAll({
@@ -12,12 +12,13 @@ exports.createYearGet = {
       res.render("../views/admin/year.ejs", { yearData});
     } catch (error) {
       console.log(error);
+      res.status(201).send("Internal Error");
     }
   },
 };
 
 // Create Year 
-exports.createYearPost = {
+exports.postYear = {
 
   // Validating Incoming Data
   validator: celebrate({
@@ -43,6 +44,7 @@ exports.createYearPost = {
       res.redirect("back");
     } catch (error) {
       console.log(error);
+      res.status(201).send("Internal Error");
     }
   },
 };
@@ -67,6 +69,7 @@ exports.deleteYear = {
     } 
     catch (error) {
       console.log(error);
+      res.status(201).send("Internal Error");
     }
   },
 };

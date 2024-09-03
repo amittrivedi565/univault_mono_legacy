@@ -1,6 +1,6 @@
 const Sequelize = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  const Year = sequelize.define("years", {
+  const Year = sequelize.define("Year", {
     id: {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV4,

@@ -14,7 +14,7 @@ exports.getUnit = {
   controller: async (req, res) => {
     try {
       // Find Notes With Subject ID 
-      const noteData = await db.notes.findAll({
+      const noteData = await db.unit.findAll({
         where: {
           subId: req.params.id,
         }, order : ['name']
@@ -22,6 +22,7 @@ exports.getUnit = {
       res.render("../views/admin/unit.ejs", { noteData });
     } catch (error) {
       console.log(error);
+      res.status(201).send("Internal Error");
     }
   },
 };
@@ -47,23 +48,20 @@ exports.postUnit = {
             desc: req.body.desc,
             tags: req.body.tags,
             url : req.file.location,
-            pdf_name : req.file_name,
+            pdfName : req.file_name,
             subId: req.params.id,
           };
           // Check If Note Exists 
-          const noteExists = await db.notes.findOne({
+          const unitExists = await db.unit.findOne({
             where: {
-              name: req.body.name,
+              name: req.body.name
             },
           });
           // If Exits Stop 
-          if (noteExists) {
-             res.send("already exists!")
-          } else {
-            // Create Note Record
-            await db.notes.create(data);
-            res.redirect("back");
-          }
+          if (unitExists) return res.status(201).send("Unit Already Exists");
+          // Create Note Record
+          await db.unit.create(data);
+          res.redirect("back");
     } catch (error) {
         res.send(error.message)
     }
@@ -86,7 +84,7 @@ exports.deleteNote = {
         }
       });
       // Delete Note Record In Sql
-      await db.notes.destroy({
+      await db.unit.destroy({
         where: {
           id: req.params.id
         },
@@ -94,6 +92,7 @@ exports.deleteNote = {
       res.redirect("back");
     } catch (error) {
       console.log(error);
+      res.status(201).send("Internal Error");
     }
   },
 };
@@ -103,14 +102,15 @@ exports.getDesc = {
   controller: async (req, res) => {
     try {
       // Find Note Description
-      const noteData = await db.notes.findOne({
+      const noteData = await db.unit.findOne({
         where: {
             id: req.params.id,
         },
       });
       res.json("Description : " + noteData.desc);
     } catch (error) {
-      res.send(error.message)
+      console.log(error)
+      res.status(201).send("Internal Error");
     }
   },
 };
@@ -119,14 +119,15 @@ exports.getTag = {
   controller: async (req, res) => {
     try {
       // Find Note Tags
-      const noteData = await db.notes.findOne({
+      const noteData = await db.unit.findOne({
         where: {
           id: req.params.id,
         },
       });
       res.json("Tags : " + noteData.tags);
     } catch (error) {
-      res.send(error.message)
+      console.log(error)
+      res.status(201).send("Internal Error");
     }
   },
 };
