@@ -33,7 +33,7 @@ exports.postYear = {
       // Request Body Data
       const yearData = {
         name: req.body.name,
-        branchId: req.params.id,
+        branchId: req.params.id
       };
 
       const checkYear = await db.years.findOne({where:{

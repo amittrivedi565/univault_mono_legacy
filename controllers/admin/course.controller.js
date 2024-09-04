@@ -8,7 +8,7 @@ exports.getCourse = {
       // Query To Find Courses With Branch ID
       const courseData = await db.courses.findAll({
         where: {
-          uniId: req.params.id,
+          uniId: req.params.id
         },
         order: ["name"],
       });
@@ -41,7 +41,7 @@ exports.postCourse = {
         name: req.body.name,
         desc: req.body.desc,
         tags: req.body.tags,
-        uniId: req.params.id,
+        uniId: req.params.id
       };
       const checkCourse = await db.courses.findOne({
         where: {
@@ -66,46 +66,10 @@ exports.deleteCourse = {
       // Delete Course Query
       const deleteRecord = await db.courses.destroy({
         where: {
-          id: req.params.id,
+          id: req.params.id
         },
       });
       res.redirect("back");
-    } catch (error) {
-      console.log(error)
-      res.status(201).send("Internal Error");
-    }
-  },
-};
-
-// Get Course Description
-exports.getDesc = {
-  controller: async (req, res) => {
-    try {
-      // Course Description Query
-      const courseData = await db.courses.findOne({
-        where: {
-          id: req.params.id,
-        },
-      });
-      res.send("Description : " + courseData.desc);
-    } catch (error) {
-      console.log(error)
-      res.status(201).send("Internal Error");
-    }
-  },
-};
-
-// Get Course Tags
-exports.getTag = {
-  controller: async (req, res) => {
-    try {
-      // Course Tag Query
-      const courseData = await db.courses.findOne({
-        where: {
-          id: req.params.id,
-        },
-      });
-      res.send("Tags : " + courseData.tags);
     } catch (error) {
       console.log(error)
       res.status(201).send("Internal Error");

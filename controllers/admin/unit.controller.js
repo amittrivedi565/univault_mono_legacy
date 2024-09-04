@@ -49,7 +49,7 @@ exports.postUnit = {
             tags: req.body.tags,
             url : req.file.location,
             pdfName : req.fileName,
-            subId: req.params.id,
+            subId: req.params.id
           };
           // Check If Note Exists 
           const unitExists = await db.unit.findOne({
@@ -76,7 +76,7 @@ exports.deleteNote = {
       // Logic For S3 Object Deletion By Using Filename
       const params = {
         Bucket: process.env.AWS_BUCKET_NAME,
-        Key: req.params.fileName,
+        Key: req.params.fileName
       };
       // Delete Note PDF 
       s3.deleteObject(params, (error, data) => {
@@ -93,41 +93,6 @@ exports.deleteNote = {
       res.redirect("back");
     } catch (error) {
       console.log(error);
-      res.status(201).send("Internal Error");
-    }
-  },
-};
-
-// Get Note Description
-exports.getDesc = {
-  controller: async (req, res) => {
-    try {
-      // Find Note Description
-      const noteData = await db.unit.findOne({
-        where: {
-            id: req.params.id,
-        },
-      });
-      res.json("Description : " + noteData.desc);
-    } catch (error) {
-      console.log(error)
-      res.status(201).send("Internal Error");
-    }
-  },
-};
-// Get Note Tags
-exports.getTag = {
-  controller: async (req, res) => {
-    try {
-      // Find Note Tags
-      const noteData = await db.unit.findOne({
-        where: {
-          id: req.params.id,
-        },
-      });
-      res.json("Tags : " + noteData.tags);
-    } catch (error) {
-      console.log(error)
       res.status(201).send("Internal Error");
     }
   },

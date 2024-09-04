@@ -39,7 +39,7 @@ exports.postUniversity = {
       imgName: Joi.string().optional(),
       pdf: Joi.optional(),
       adminId: Joi.string().optional(),
-      adminName: Joi.string().optional(),
+      adminName: Joi.string().optional()
     }),
   }),
 
@@ -54,7 +54,7 @@ exports.postUniversity = {
         imgUrl: req.file.location,
         imgName: req.fileName,
         adminId: req.adminId,
-        adminName: req.adminName,
+        adminName: req.adminName
       };
       // Check If University Already Exists?
       var uniCheck = await db.university.findOne({
@@ -83,7 +83,7 @@ exports.deleteUniversity = {
     try {
           const params = {
             Bucket: process.env.AWS_BUCKET_NAME,
-            Key: req.params.imgName,
+            Key: req.params.imgName
           };
           // Deleting S3 Object (University Image)
           s3.deleteObject(params, (error, data) => {
@@ -96,36 +96,6 @@ exports.deleteUniversity = {
             where: { id: req.params.id },
           });
           res.redirect("back");
-    } catch (error) {
-      console.log(error);
-      res.status(201).send("Internal Error");
-    }
-  },
-};
-
-// Get University Description
-exports.getDesc = {
-  controller: async (req, res) => {
-    try {
-      const uniData = await db.university.findOne({
-        where: { id: req.params.id },
-      });
-      res.send("Description : " + uniData.desc);
-    } catch (error) {
-      console.log(error);
-      res.status(201).send("Internal Error");
-    }
-  },
-};
-
-// Get University Tags
-exports.getTag = {
-  controller: async (req, res) => {
-    try {
-      const uniData = await db.university.findOne({
-        where: { id: req.params.id },
-      });
-      res.send("Tags : " + uniData.tags);
     } catch (error) {
       console.log(error);
       res.status(201).send("Internal Error");

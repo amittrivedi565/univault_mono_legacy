@@ -32,7 +32,7 @@ exports.postSem = {
       // Request Body Data
       const data = {
         name: req.body.name,
-        yearId: req.params.id,
+        yearId: req.params.id
       };
 
       // Check If Semester Exists?
@@ -41,7 +41,7 @@ exports.postSem = {
         yearId : req.params.id
       } });
       
-      if(semCheck) return  res.status(201).send("Semester Already Exists");
+      if(semCheck) return res.status(201).send("Semester Already Exists");
       // Create Semester Record
       await db.sems.create(data);
       res.redirect("back");

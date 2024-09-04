@@ -49,7 +49,7 @@ exports.postSubject = {
       const subjectExists = await db.subjects.findOne({
         where: {
           code: req.body.code,
-          name: req.body.name,
+          name: req.body.name
         },
       });
 
@@ -80,40 +80,3 @@ exports.deleteSubject = {
     }
   }
 };
-
-// Get Subject Description
-exports.getDesc = {
-  controller: async (req, res) => {
-    try {
-      // Find Subject Description
-      const subData = await db.subjects.findOne({
-        where: {
-          id: req.params.id,
-        },
-      });
-      res.send("Description : " + subData.desc);
-    } catch (error) {
-      console.log(error)
-      res.status(201).send("Internal Error");
-    }
-  }
-};
-
-// Get Subject Tags
-exports.getTag = {
-  controller: async (req, res) => {
-    try {
-      // Find Subject Tags
-      const subData = await db.subjects.findOne({
-        where: {
-          id: req.params.id,
-        },
-      });
-      res.send("Tags : " + subData.tags);
-    } catch (error) {
-      console.log(error)
-      res.status(201).send("Internal Error");
-    }
-  }
-};
-
