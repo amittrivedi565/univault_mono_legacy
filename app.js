@@ -7,10 +7,13 @@ const methodOverride = require("method-override")
 const bodyparser = require("body-parser");
 const config = require("./config/config");
 const path = require("path");
+const flash = require('connect-flash')
 const app = express();
 
 const PORT = config.PORT || 3000;
 const HOST = config.HOST;
+
+app.use(flash())
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(

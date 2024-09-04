@@ -37,7 +37,8 @@ exports.getUnit = {
          })
          res.render('../views/client/subject',{uniQuery})
       } catch (error) {
-         res.send(error)
+         console.log(error);
+         res.status(201).send("Internal Error");
       }
   }
 };

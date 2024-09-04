@@ -23,7 +23,8 @@ exports.getBranch = {
 
          res.render("../views/client/branch", {uniQuery});
       } catch (error) {
-         res.send(error)
+         console.log(error);
+         res.status(201).send("Internal Error");
       }
    }
 }

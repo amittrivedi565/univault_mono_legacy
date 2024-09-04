@@ -2,6 +2,7 @@ const { where } = require("sequelize");
 const db = require("../../models");
 const { celebrate, Joi, Segments } = require("celebrate");
 const S3 = require("aws-sdk").S3;
+const flash = require('connect-flash')
 
 // S3 Configuration
 const s3 = new S3({
@@ -16,7 +17,7 @@ exports.getUniversity = {
     try {
       const uniData = await db.university.findAll({})
       const adminData = await db.admins.findAll({})
-      res.render("../views/admin/university",{uniData,adminData});
+      res.render("../views/admin/university",{uniData,adminData , message : req.flash("Error")});
     } catch (error) {
       console.log(error);
       res.status(201).send("Internal Error");
@@ -56,7 +57,7 @@ exports.postUniversity = {
         adminName: req.adminName,
       };
       // Check If University Already Exists?
-      const uniCheck = await db.university.findOne({
+      var uniCheck = await db.university.findOne({
         where: { name: req.body.name }
       });
       // Check If AdminId is Valid or Not
@@ -65,16 +66,13 @@ exports.postUniversity = {
           id : req.adminId
         }
       })
-      if(uniCheck) return res.send("University / College Already Exists");
-
       if(!adminCheck) return res.send("AdminID is invalid") ;
-      
       // Create University Record
       await db.university.create(data);
       res.redirect("back");
     } catch (error) {
-      console.log(error);
-      res.status(201).send("Internal Error");
+      if(uniCheck) req.flash("Error",error.message)
+      res.redirect("back")
     }
   },
 };

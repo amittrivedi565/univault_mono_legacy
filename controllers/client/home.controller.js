@@ -8,7 +8,8 @@ exports.getHome = {
       const uniQuery = await db.university.findAll({ order: ["name"] });
       res.render("../views/client/home",{uniQuery})
     } catch (error) {
-      res.send(error)
+      console.log(error);
+      res.status(201).send("Internal Error");
     }
   },
 };

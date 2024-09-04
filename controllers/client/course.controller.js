@@ -20,9 +20,9 @@ exports.getCourse = {
         ],
       });
       res.render("../views/client/course", {uniQuery});
-      // res.send(uniQuery)
     } catch (error) {
-      res.send(error);
+      console.log(error);
+      res.status(201).send("Internal Error");
     }
   },
 };

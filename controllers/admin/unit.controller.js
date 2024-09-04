@@ -63,7 +63,8 @@ exports.postUnit = {
           await db.unit.create(data);
           res.redirect("back");
     } catch (error) {
-        res.send(error.message)
+      console.log(error);
+      res.status(201).send("Internal Error");
     }
   },
 };

@@ -13,7 +13,8 @@ exports.signInGet = {
             }
             res.render("../views/admin/auth.ejs")
         } catch (error) {
-            res.send(error)
+            console.log(error);
+            res.status(201).send("Internal Error");
         }
     }
 }

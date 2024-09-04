@@ -4,9 +4,15 @@
    <div class="main">
         <%- include('partials/sidebar') %>
     <div class="main-right">
-        <%- include('partials/nav') %>
-        <div class="main-right-top">
+       <%- include('partials/nav') %>
+       <% if (message.length > 0) { %>
+           <div class=" w-100 alert alert-danger">
+              <%= message %>
+           </div>
+        <% } %>
+       <div class="main-right-top">
            <b><a href="#">Listed Universities</a></b>
+           
            <div class="addModal">
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
@@ -22,32 +28,32 @@
                           <form method="post" enctype="multipart/form-data">
 
                               <div class="form-group">
-                                 <label for="recipient-name" class="col-form-label">University
+                                 <label for="shortname" class="col-form-label">University
                                  Shortname:</label>
-                                 <input name="shortname" type="text" class="form-control" id="recipient-name">
+                                 <input name="shortname" type="text" class="form-control" id="shortname">
                               </div>
 
                              <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">University
+                                <label for="name" class="col-form-label">University
                                 Name:</label>
-                                <input name="name" type="text" class="form-control" id="recipient-name">
+                                <input name="name" type="text" class="form-control" id="name">
                              </div>
 
                              <div class="form-group">
-                                <label for="message-text" class="col-form-label">University
+                                <label for="desc" class="col-form-label">University
                                 Description:</label>
-                                <textarea name="desc" class="form-control" id="message-text"></textarea>
+                                <textarea name="desc" class="form-control" id="desc"></textarea>
                              </div>
 
                              <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">University
+                                <label for="tags" class="col-form-label">University
                                 Tags:</label>
-                                <input name="tags" type="text" class="form-control" id="recipient-name">
+                                <input name="tags" type="text" class="form-control" id="tags">
                              </div>
 
                              <div class="form-group">
-                              <label for="recipient-name" class="col-form-label">Upload College Photo 48px x 48px</label>
-                              <input name="pdf" type="file" class="form-control" id="recipient-name">
+                              <label for="imgFile" class="col-form-label">Upload College Photo 48px x 48px</label>
+                              <input name="pdf" type="file" class="form-control" id="imgFile">
                            </div>
 
                        </div>

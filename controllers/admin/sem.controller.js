@@ -47,6 +47,7 @@ exports.postSem = {
       res.redirect("back");
     } catch (error) {
       console.log(error);
+      res.status(201).send("Internal Error");
     }
   },
 };
