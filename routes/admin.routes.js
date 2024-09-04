@@ -21,9 +21,9 @@ router.post("/logout",auth.signOut.controller)
 router.get("/dashboard",authVerify,admin.adminGet.controller)
 
 /* University Routes */
-router.get("/uni",authVerify,uni.getUniversity.controller)
-router.post("/uni",authVerify,upload.single("pdf"),uni.postUniversity.validator,uni.postUniversity.controller)
-router.delete("/uni/:id/:imgName",authVerify,uni.deleteUniversity.controller)
+router.get("/university",authVerify,uni.getUniversity.controller)
+router.post("/university",authVerify,upload.single("pdf"),uni.postUniversity.validator,uni.postUniversity.controller)
+router.delete("/university/:id/:imgName",authVerify,uni.deleteUniversity.controller)
 
 /* Course Routes */
 router.get("/course/:id",authVerify,course.getCourse.controller)
@@ -41,31 +41,17 @@ router.post("/year/:id",authVerify,year.postYear.validator,year.postYear.control
 router.delete("/year/:id",authVerify,year.deleteYear.controller)
 
 /* Semester Routes */
-router.get("/sem/:id",authVerify,sem.getSem.controller)
-router.post("/sem/:id",authVerify,sem.postSem.controller)
+router.get("/semester/:id",authVerify,sem.getSem.controller)
+router.post("/semester/:id",authVerify,sem.postSem.controller)
 
 /* Subject Routes */
-router.get("/sub/:id",authVerify,subs.getSubject.controller)
-router.post("/sub/:id",authVerify,subs.postSubject.validator,subs.postSubject.controller)
-router.delete("/sub/:id",authVerify,subs.deleteSubject.controller)
+router.get("/subject/:id",authVerify,subs.getSubject.controller)
+router.post("/subject/:id",authVerify,subs.postSubject.validator,subs.postSubject.controller)
+router.delete("/subject/:id",authVerify,subs.deleteSubject.controller)
 
 /* Unit Routes */
-router.get("/note/:id",authVerify,unit.getUnit.controller)
-router.post("/note/:id",authVerify,upload.single("pdf"),unit.postUnit.controller)
-router.delete("/note/:id/:fileName",authVerify,unit.deleteNote.controller)
-
-/* Description Routes */
-router.get("/uni/desc/:id",authVerify,uni.getDesc.controller)
-router.get("/branch/desc/:id",authVerify,branch.getDesc.controller)
-router.get("/course/desc/:id",authVerify,course.getDesc.controller)
-router.get("/subject/desc/:id",authVerify,subs.getDesc.controller)
-router.get("/notes/desc/:id",authVerify,unit.getDesc.controller)
-
-/* Tags Routes */
-router.get("/uni/tags/:id",authVerify,uni.getTag.controller)
-router.get("/branch/tags/:id",authVerify,branch.getTag.controller)
-router.get("/course/tags/:id",authVerify,course.getTag.controller)
-router.get("/subject/tags/:id",authVerify,subs.getTag.controller)
-router.get("/notes/tags/:id",authVerify,unit.getTag.controller)
+router.get("/unit/:id",authVerify,unit.getUnit.controller)
+router.post("/unit/:id",authVerify,upload.single("pdf"),unit.postUnit.controller)
+router.delete("/unit/:id/:fileName",authVerify,unit.deleteNote.controller)
 
 module.exports = router;

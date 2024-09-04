@@ -48,7 +48,7 @@ exports.postUnit = {
             desc: req.body.desc,
             tags: req.body.tags,
             url : req.file.location,
-            pdfName : req.file_name,
+            pdfName : req.fileName,
             subId: req.params.id,
           };
           // Check If Note Exists 

@@ -86,8 +86,46 @@
                                      <td>
                                         <%= courseArray.name %>
                                      </td>
-                                     <td><a href="/close/course/desc/<%= courseArray.id %>"><button type="button" class="btn btn-link">View</button></a></td>
-                                     <td><a href="/close/course/tags/<%= courseArray.id %>"><button type=" button" class="btn btn-link">View</button></a></td>
+                                     <td><button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#desc">
+                                       View
+                                     </button>
+                                     <div class="modal fade" id="desc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                       <div class="modal-dialog">
+                                         <div class="modal-content">
+                                           <div class="modal-header">
+                                             <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                           </div>
+                                           <div class="modal-body">
+                                             <%= courseArray.desc %>
+                                           </div>
+                                           <div class="modal-footer">
+                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                             <button type="button" class="btn btn-primary">Save changes</button>
+                                           </div>
+                                         </div>
+                                       </div>
+                                     </div></td>
+                                     <td><button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#tags">
+                                       View
+                                     </button>
+                                     <div class="modal fade" id="tags" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                       <div class="modal-dialog">
+                                         <div class="modal-content">
+                                           <div class="modal-header">
+                                             <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                           </div>
+                                           <div class="modal-body">
+                                             <%= courseArray.tags %>
+                                           </div>
+                                           <div class="modal-footer">
+                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                             <button type="button" class="btn btn-primary">Save changes</button>
+                                           </div>
+                                         </div>
+                                       </div>
+                                     </div></td>
                                      <td><a href="/close/branch/<%= courseArray.id %>"><button type="button" class="btn btn-sm btn-outline-primary">Next</button></a></td>
                                      <td>
                                         <form
