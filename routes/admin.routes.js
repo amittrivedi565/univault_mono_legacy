@@ -52,7 +52,7 @@ router.delete("/sub/:id",authVerify,subs.deleteSubject.controller)
 /* Unit Routes */
 router.get("/note/:id",authVerify,unit.getUnit.controller)
 router.post("/note/:id",authVerify,upload.single("pdf"),unit.postUnit.controller)
-router.delete("/note/:id/:file_name",authVerify,unit.deleteNote.controller)
+router.delete("/note/:id/:fileName",authVerify,unit.deleteNote.controller)
 
 /* Description Routes */
 router.get("/uni/desc/:id",authVerify,uni.getDesc.controller)

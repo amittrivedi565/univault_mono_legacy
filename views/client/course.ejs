@@ -4,6 +4,11 @@
 <body class="branch-body">
     <%- include('includes/nav') %>
     <div class="options-wrapper">
+        <% if (message.length > 0) { %>
+            <div class=" w-100 alert alert-danger">
+               <%= message %>
+            </div>
+         <% } %>
         <% uniQuery.forEach(Uni => { %>
                 <% Uni.Course.forEach(Course => { %>
                     <!-- LowerCase Logic for Branch , Course Shortname -->

@@ -76,7 +76,7 @@ exports.deleteNote = {
       // Logic For S3 Object Deletion By Using Filename
       const params = {
         Bucket: process.env.AWS_BUCKET_NAME,
-        Key: req.params.file_name,
+        Key: req.params.fileName,
       };
       // Delete Note PDF 
       s3.deleteObject(params, (error, data) => {

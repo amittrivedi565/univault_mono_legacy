@@ -1,6 +1,6 @@
 const db = require("../../models")
 /**
- * @Rout: GET /uni/branch/course
+ * @Rout: GET /:uni/:course/:branch
 **/
 exports.getYear = {
    controller : async(req,res)=>{

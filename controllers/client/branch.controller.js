@@ -1,7 +1,6 @@
-
 const db = require("../../models")
 /**
- * @Rout: GET /uni/branch
+ * @Rout: GET /:uni/:course
 **/
 exports.getBranch = {
    controller : async(req,res)=>{
@@ -20,7 +19,6 @@ exports.getBranch = {
                }]
             }]
          })
-
          res.render("../views/client/branch", {uniQuery});
       } catch (error) {
          console.log(error);
