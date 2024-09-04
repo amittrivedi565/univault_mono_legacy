@@ -34,11 +34,9 @@ exports.signInPost = {
             const existingUser = await db.admins.findOne({
                 where: { email: email },
             });
-
             if (!existingUser) {
                 return res.status(404).json({ message: "User not found!" });
             }
-            
             const matchPassword = await bcrypt.compare(
                 password,
                 existingUser.password
@@ -48,7 +46,6 @@ exports.signInPost = {
                     .status(404)
                     .json({ message: "Invalid credentionals" });
             }
-
             const token = jwt.sign(
                 { name: existingUser.name, email: existingUser.email, id: existingUser.id },
                 authConfig.JWT_SECRET_KEY,
