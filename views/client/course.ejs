@@ -1,31 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('includes/head') %>
-<body class="branch-body">
+<%- include('includes/head', { cssfilename: 'coursepage' }) %>
+<body>
     <%- include('includes/nav') %>
-    <%- include('includes/breadcrumb', { items: breadcrumbs }) %>
-    <div class="options-wrapper">
-        <% if (message.length > 0) { %>
-            <div class=" w-100 alert alert-danger">
-               <%= message %>
-            </div>
-         <% } %>
-        <% uniQuery.forEach(Uni => { %>
-                <% Uni.Course.forEach(Course => { %>
-                    <!-- LowerCase Logic for Branch , Course Shortname -->
-                    <%  
-                        var c = Course.shortname
-                        var lowerC = c.toLowerCase();
-                    %>
-                    <div class="option-container">
-                        <div class="option-container-top">
-                            <a href="/<%=Uni.shortname%>/<%=lowerC%>/">#&nbsp;<%= Course.name %></a>
-                            <a><%= Course.shortname %></a>
-                        </div>
-                    </div>
-                <% }) %>
-        <% }) %>
+    <div class="p-3">
+        <%- include('includes/breadcrumb', { items: breadcrumbs }) %>
     </div>
+    <section class="container courses-section">
+        <div>
+            <% uniQuery.forEach(Uni => { %>
+                    <% Uni.Course.forEach(Course => { %>
+                        <!-- LowerCase Logic for Branch , Course Shortname -->
+                        <%  
+                            var c = Course.shortname
+                            var lowerC = c.toLowerCase();
+                        %>
+                        <div class="container rounded course p-3 mb-3">
+                            <a href="/<%=Uni.shortname%>/<%=lowerC%>/">#&nbsp;<%= Course.name %></a>
+                            &nbsp;<span class="badge text-bg-primary"><%= Course.shortname %></span>
+                        </div>
+                    <% }) %>
+            <% }) %>
+        </div>
+    </section>
     <%- include('includes/script') %>
 </body>
 </html>

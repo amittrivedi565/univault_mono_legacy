@@ -1,35 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('includes/head') %>
+<%- include('includes/head', { cssfilename: 'yearpage'}) %>
 <body class="branch-body">
     <%- include('includes/nav') %>
-    <%- include('includes/breadcrumb', { items: breadcrumbs }) %>
-    <div class="options-wrapper">
-        <% uniQuery.forEach(Uni => { %>
-            <% Uni.Course.forEach(Course => { %>
-                <% Course.Branch.forEach(Branch => { %>
-                    <% Branch.Year.forEach(Year => { %>
-                        <%  
-                        var u = Uni.shortname
-                        var c = Course.shortname
-                        var b = Branch.shortname 
-                        var y = Year.name
-                        var lowerU = u.toLowerCase();
-                        var lowerB = b.toLowerCase();
-                        var lowerC = c.toLowerCase();
-                        let removeSpaceY = y.replace(/\s/g, '','%')
-                        var lowerY = y.toLowerCase();
-                        %>
-                        <div class="option-container">
-                            <div class="option-container-top">
+    <div class="p-3">
+        <%- include('includes/breadcrumb', { items: breadcrumbs }) %>
+    </div>
+    <section class="container years-section">
+        <div>
+            <% uniQuery.forEach(Uni => { %>
+                <% Uni.Course.forEach(Course => { %>
+                    <% Course.Branch.forEach(Branch => { %>
+                        <% Branch.Year.forEach(Year => { %>
+                            <%  
+                            var u = Uni.shortname
+                            var c = Course.shortname
+                            var b = Branch.shortname 
+                            var y = Year.name
+                            var lowerU = u.toLowerCase();
+                            var lowerB = b.toLowerCase();
+                            var lowerC = c.toLowerCase();
+                            let removeSpaceY = y.replace(/\s/g, '','%')
+                            var lowerY = y.toLowerCase();
+                            %>
+                            <div class="container rounded year p-3 mb-3">
                                 <a href="/<%=lowerU%>/<%=lowerC%>/<%=lowerB%>/<%=lowerY%>">#&nbsp;<%=Year.name%></a>
-                                <a><%= Branch.shortname %>&nbsp;<%= Course.name %></a>
+                                &nbsp;<span class="badge text-bg-primary"><%= Course.name %></span>
                             </div>
-                        </div>
+                        <% }) %>
                     <% }) %>
                 <% }) %>
             <% }) %>
-        <% }) %>
+        </div>
+    </section>
     <%- include('includes/script') %>
 </body>
 </html>

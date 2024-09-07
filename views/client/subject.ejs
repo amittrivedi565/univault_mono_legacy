@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('includes/head') %>
-<body class="branch-body">
+<%- include('includes/head', { cssfilename: 'subjectpage'}) %>
+<body>
     <%- include('includes/nav') %>
-    <%- include('includes/breadcrumb', { items: breadcrumbs }) %>
-    <div class="sem-container">
+    <div class="p-3">
+        <%- include('includes/breadcrumb', { items: breadcrumbs }) %>
+    </div>
+    <section class="container subjects-section">
         <% uniQuery.forEach(Uni => { %>
             <% Uni.Course.forEach(Course=> { %>
                 <% Course.Branch.forEach(Branch => { %>
                     <% Branch.Year.forEach(Year => { %>
                         <% Year.Semester.forEach(Sem => { %>
-                            <div class="sem-header"><%=Course.shortname%>&nbsp;<%=Branch.shortname%>&nbsp;<%=Year.name%>&nbsp;<%= Sem.name %></div>
+                            <div class="h6 fw-light"><%= Sem.name %>:</div>
                             <% Sem.Subject.forEach(Subject=> { %>
-                                <div class="sem-subjects">
-                                    <div class="sub-dox"><a href="">#<%=Subject.code%>&nbsp;<%= Subject.name %></a></div>
+                                <div class="container rounded subject p-3 mb-3 mx-2">
+                                    <a href="">#<%=Subject.code%>&nbsp;<%= Subject.name %></a>
                                 </div>
                             <% }) %>
                         <% }) %>
@@ -21,7 +23,7 @@
                 <% }) %>
             <% }) %>
         <% }) %>
-    </div>
+    </section>
     <%- include('includes/script') %>
 </body>
 </html>

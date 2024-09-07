@@ -1,38 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('includes/head') %>
+<%- include('includes/head', { cssfilename: 'homepage' }) %>
 <body class="home-body">
-    <div class="navbar-container1">
-        <a href="/">Uni<b>Vault</b></a>
-        <a href="/close/login" class="sliding-middle-out">Login</a>
-    </div>
-    
-    <div class="home-container">
-        <div class="home-main">
-            <b>Getting <strong>Quality</strong> Notes Is Now More <strong>Easy</strong></b>
-            <br>
-            <span>provides you with the latest online system and material that help your knowledge growing</span>
+    <%- include('includes/nav') %>
+    <!-- Header -->
+    <section class="home-header container d-flex flex-column justify-content-center">
+        <div class="h1 text-center fw-light">
+            <b>Getting <strong class="main-text-color">Quality</strong> Notes Is Now More <strong class="main-text-color">Easy</strong></b>
         </div>
-    </div>
-    <div class="home-uni">
-        <!-- <h2 class="fancy">Content Available For Universities</h2> -->
+        <div class="h1 text-center fw-light">
+            <span class="h4">provides you with the latest online system and material that help your knowledge growing</span>
+        </div>
+    </section>
+    
+    <!-- University Section  -->
+    <section class="home-university-section container">
         <% uniQuery.forEach(Uni => { %>
-             <!-- lowerCase Logic for Branch Shortname -->
-                <%  var u = Uni.shortname 
-                    var lowerU = u.toLowerCase();
-                %>
+            <%  var u = Uni.shortname 
+                var lowerU = u.toLowerCase();
+            %>
             <% if (uniQuery.length > 0 ) { %>
-                <div class="home-uni-box">
-                    <a href="/<%=lowerU%>"><b><%= Uni.name %></b></a>
+                <div class="uni-container mx-2 mb-3 p-3 fs-5 rounded">
+                    <a class="text-decoration-none" href="/<%=lowerU%>"><b><%= Uni.name %></b></a>
+                    <br>
                     <i>Description</i>
                 </div>
             <% } else {%>
                 Sorry Content Not Available For Now 😞
             <% } %>
-             
         <% }) %>
-    </div>
-
+    </section>
 </body>
 </html>
 
