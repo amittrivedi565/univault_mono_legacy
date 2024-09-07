@@ -45,11 +45,13 @@ exports.postSubject = {
         tags: req.body.tags,
         semId : req.params.id
       };
+      
       // Check If Subject Exists
       const subjectExists = await db.subjects.findOne({
         where: {
           code: req.body.code,
-          name: req.body.name
+          name: req.body.name,
+          semId: req.params.id
         },
       });
 

@@ -3,6 +3,7 @@
 <%- include('includes/head') %>
 <body class="branch-body">
     <%- include('includes/nav') %>
+    <%- include('includes/breadcrumb', { items: breadcrumbs }) %>
     <div class="options-wrapper">
         <% if (message.length > 0) { %>
             <div class=" w-100 alert alert-danger">

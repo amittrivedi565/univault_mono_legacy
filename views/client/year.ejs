@@ -3,6 +3,7 @@
 <%- include('includes/head') %>
 <body class="branch-body">
     <%- include('includes/nav') %>
+    <%- include('includes/breadcrumb', { items: breadcrumbs }) %>
     <div class="options-wrapper">
         <% uniQuery.forEach(Uni => { %>
             <% Uni.Course.forEach(Course => { %>
