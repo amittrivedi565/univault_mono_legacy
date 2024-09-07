@@ -25,11 +25,10 @@ exports.postCourse = {
   // Validate Incoming Data
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
-      shortname: Joi.string().required(),
       name: Joi.string().required(),
+      shortname: Joi.string().required(),
       desc: Joi.string().min(0).max(2500).required(),
-      tags: Joi.string().required(),
-      id: Joi.string().optional(),
+      tags: Joi.string().required()
     }),
   }),
 
@@ -37,8 +36,8 @@ exports.postCourse = {
     try {
       // Incoming Data From Body
       const data = {
-        shortname: req.body.shortname,
         name: req.body.name,
+        shortname: req.body.shortname,
         desc: req.body.desc,
         tags: req.body.tags,
         uniId: req.params.id

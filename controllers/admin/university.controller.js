@@ -35,9 +35,6 @@ exports.postUniversity = {
       shortname : Joi.string().required(),
       tags: Joi.string().required(),
       desc: Joi.string().min(0).max(2500).required(),
-      imgUrl: Joi.string().optional(),
-      imgName: Joi.string().optional(),
-      pdf: Joi.optional(),
       adminId: Joi.string().optional(),
       adminName: Joi.string().optional()
     }),

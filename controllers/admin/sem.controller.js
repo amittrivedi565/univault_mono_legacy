@@ -22,8 +22,7 @@ exports.postSem = {
   // Validate Incoming Data
   validator: celebrate({
     [Segments.BODY]: Joi.object().keys({
-      name: Joi.string().required(),
-      yearId: Joi.string().required(),
+      name: Joi.string().required()
     }),
   }),
   controller: async (req, res) => {

@@ -30,8 +30,7 @@ exports.postSubject = {
       code: Joi.string().required(),
       name: Joi.string().required(),
       desc: Joi.string().min(0).max(2500).required(),
-      tags: Joi.string().required(),
-      semId: Joi.string().optional(),
+      tags: Joi.string().required()
     }),
   }),
 

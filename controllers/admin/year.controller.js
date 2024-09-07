@@ -23,8 +23,7 @@ exports.postYear = {
     // Validating Incoming Data
     validator: celebrate({
         [Segments.BODY]: Joi.object().keys({
-            name: Joi.string().required(),
-            branchId: Joi.string().optional(),
+            name: Joi.string().required()
         }),
     }),
 

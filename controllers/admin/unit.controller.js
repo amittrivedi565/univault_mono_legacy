@@ -33,10 +33,7 @@ exports.postUnit = {
     [Segments.BODY]: Joi.object().keys({
       name: Joi.string().required(),
       desc: Joi.string().min(0).max(500).required(),
-      tags: Joi.string().required(),
-      pdf_name : Joi.optional(),
-      pdf : Joi.optional(),
-      subId: Joi.optional(),
+      tags: Joi.string().required()
     }),
   }),
 
