@@ -15,9 +15,15 @@ const s3 = new S3({
 exports.getUniversity = {
   controller: async (req, res) => {
     try {
-      const uniData = await db.university.findAll({})
-      const adminData = await db.admins.findAll({})
-      res.render("../views/admin/university",{uniData,adminData , message : req.flash("Error")});
+      const Query = await db.admins.findAll({
+        where : {
+          id : req.adminId
+        },
+        include : [{
+          model : db.university , as : 'University'
+        }]
+      })
+      res.render("../views/admin/university",{Query , message : req.flash("Error")});
     } catch (error) {
       console.log(error);
       res.status(201).send("Internal Error");
