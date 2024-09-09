@@ -4,8 +4,9 @@
 
    <body>
       <%- include('partials/nav') %>
-         <%- include('partials/breadcrumb') %>
-            <!-- Modal -->
+      <%- include('partials/breadcrumb') %>
+
+            <!-- Add University Modal -->
             <form method="post" enctype="multipart/form-data">
                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                   aria-hidden="true">
@@ -56,35 +57,39 @@
             </form>
 
             <!-- Information About Universities -->
-               <% var index=0; %>
-                  <% for( let uni of uniData ) { %>
-                     <% index++ %>
-                        <div class="container">
-                           <div class="accordion accordion-flush " id="accordionFlushExample">
-                              <div class="accordion-item">
-                                 <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                       data-bs-target="#flush-<%=index%>" aria-expanded="false"
-                                       aria-controls="flush-collapseOne">
-                                       <%=uni.name%>
-                                    </button>
-                                 </h2>
-                                 <div id="flush-<%=index%>" class="accordion-collapse collapse"
-                                    data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body">
-                                       <ul>
-                                          <li><code>University Name</code>&nbsp;:&nbsp;<%= uni.name %></li>
-                                          <li><code>University Shortname</code>&nbsp;:&nbsp;<%= uni.shortname %></li>
-                                          <li><code>University Description</code>&nbsp;:&nbsp;<%= uni.desc %></li>
-                                          <li><code>University Tags</code>&nbsp;:&nbsp;<%= uni.tags %></li>
-                                       </ul>
-                                    </div>
+            <% var index=0; %>
+               <% for( let uni of uniData ) { %>
+                  <% index++ %>
+                     <div class="container">
+                        <div class="accordion accordion-flush " id="accordionFlushExample" style="margin-bottom: .5rem;">
+                           <div class="accordion-item">
+                              <h2 class="accordion-header">
+                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-<%=index%>" aria-expanded="false"
+                                    aria-controls="flush-collapseOne">
+                                    <%=uni.name%>
+                                 </button>
+                              </h2>
+                              <div id="flush-<%=index%>" class="accordion-collapse collapse"
+                                 data-bs-parent="#accordionFlushExample">
+                                 <div class="accordion-body">
+                                    <ul>
+                                       <li><code>University Name</code>&nbsp;:&nbsp;<%= uni.name %>
+                                       </li>
+                                       <li><code>University Shortname</code>&nbsp;:&nbsp;<%= uni.shortname %>
+                                       </li>
+                                       <li><code>University Description</code>&nbsp;:&nbsp;<%= uni.desc %>
+                                       </li>
+                                       <li><code>University Tags</code>&nbsp;:&nbsp;<%= uni.tags %>
+                                       </li>
+                                    </ul>
                                  </div>
                               </div>
                            </div>
                         </div>
-                        <% } %>
-          <%- include('partials/script.ejs') %>
+                     </div>
+               <% } %>
+      <%- include('partials/script.ejs') %>
    </body>
 
 </html>
