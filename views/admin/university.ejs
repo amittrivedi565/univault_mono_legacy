@@ -1,166 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <%- include('includes/head.ejs',{title:"University"}) %>
-   <div class="main">
-        <%- include('partials/sidebar') %>
-    <div class="main-right">
-       <%- include('partials/nav') %>
-       <% if (message.length > 0) { %>
-           <div class=" w-100 alert alert-danger">
-              <%= message %>
-           </div>
-        <% } %>
-       <div class="main-right-top">
-           <b><a href="#">Listed Universities</a></b>
-           
-           <div class="addModal">
-              <!-- Button trigger modal -->
-              <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
-              <!-- Modal -->
-              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                 <div class="modal-dialog">
-                    <div class="modal-content">
-                       <div class="modal-header">
-                          <h1 class="modal-title fs-5" id="exampleModalLabel">Add University</h1>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                       </div>
-                       <div class="modal-body">
-                          <form method="post" enctype="multipart/form-data">
 
-                              <div class="form-group">
-                                 <label for="shortname" class="col-form-label">University
-                                 Shortname:</label>
-                                 <input name="shortname" type="text" class="form-control" id="shortname">
-                              </div>
+   <body>
+      <style>
+         body {
+            background-color: ghostwhite;
+         }
+      </style>
+      <%- include('partials/nav') %>
+         <%- include('partials/breadcrumb') %>
 
-                             <div class="form-group">
-                                <label for="name" class="col-form-label">University
-                                Name:</label>
-                                <input name="name" type="text" class="form-control" id="name">
-                             </div>
 
-                             <div class="form-group">
-                                <label for="desc" class="col-form-label">University
-                                Description:</label>
-                                <textarea name="desc" class="form-control" id="desc"></textarea>
-                             </div>
+            <!-- Modal -->
+            <form method="post" enctype="multipart/form-data">
+               <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                     <div class="modal-content">
+                        <div class="modal-header">
+                           <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
 
-                             <div class="form-group">
-                                <label for="tags" class="col-form-label">University
-                                Tags:</label>
-                                <input name="tags" type="text" class="form-control" id="tags">
-                             </div>
-
-                             <div class="form-group">
-                              <label for="imgFile" class="col-form-label">Upload College Photo 48px x 48px</label>
-                              <input name="pdf" type="file" class="form-control" id="imgFile">
+                           <div class="form-group">
+                              <label for="shortname" class="col-form-label">University
+                                 Shortname :</label>
+                              <input name="shortname" type="text" class="form-control" id="shortname">
                            </div>
 
-                       </div>
-                       <div class="modal-footer">
-                       <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                       <button type="submit" class="btn btn-primary">Save changes</button>
-                       </div>
-                    </div>
-                    </form>
-                 </div>
-              </div>
-           </div>
-        </div>
-        <div class="main-right-bottom">
-            <% if (uniData.length>0) { %>
-            <% var index=0; %>
-            <% for( let uniArray of uniData ) { %>
-            <% index++ %>
-            <div class="accordion mb-5 " id="accordionFlushExample">
-               <div class="accordion-item">
-                  <h2 class="accordion-header" id="flush-headingOne">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                     data-bs-target="#flush-<%=index%>" aria-expanded="false"
-                     aria-controls="flush-collapseOne">
-                  # <%= uniArray.name %>
-                  </button>
-                  <div id="flush-<%=index%>" class="accordion-collapse collapse"
-                     aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                     <div class="accordion-body">
-                        <table class="table table-hover">
-                           <thead >
-                              <tr>
-                                 <th scope="col">Name</th>
-                                 <th scope="col">Description</th>
-                                 <th scope="col">Tags</th>
-                                 <th scope="col">Courses</th>
-                                 <th scope="col">Actions</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                              <tr class="fs-6">
-                                 <td>
-                                    <%= uniArray.name %>
-                                 </td>
-                                 <td><button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#desc">
-                                    View
-                                  </button>
-                                  <div class="modal fade" id="desc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h1 class="modal-title fs-5" id="exampleModalLabel">Description</h1>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                          <%= uniArray.desc %>
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                          <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div></td>
+                           <div class="form-group">
+                              <label for="name" class="col-form-label">University
+                                 Name :</label>
+                              <input name="name" type="text" class="form-control" id="name">
+                           </div>
 
-                                  <td>
-                                    <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#tags">
-                                    View
-                                    </button>
-                                  <div class="modal fade" id="tags" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h1 class="modal-title fs-5" id="exampleModalLabel">Tags</h1>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                          <%= uniArray.tags %>
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                          <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div></td>
-                                 <td><a href="/close/course/<%= uniArray.id %>"><button
-                                    type="button" class="btn btn-outline-primary btn-sm">Next</button></a></td>
-                                 <td>
-                                    <form
-                                       action="/close/university/<%= uniArray.id %>/<%= uniArray.imgName %>?_method=DELETE"
-                                       method="post">
-                                       <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
-                                    </form>
-                                 </td>
-                              </tr>
-                           </tbody>
-                        </table>
+                           <div class="form-group">
+                              <label for="desc" class="col-form-label">University
+                                 Description :</label>
+                              <textarea name="desc" class="form-control" id="desc"></textarea>
+                           </div>
+
+                           <div class="form-group">
+                              <label for="tags" class="col-form-label">University
+                                 Tags :</label>
+                              <input name="tags" type="text" class="form-control" id="tags">
+                           </div>
+
+                           <div class="form-group">
+                              <label for="imgFile" class="col-form-label">Upload University Logo</label>
+                              <input name="pdf" type="file" class="form-control" id="imgFile">
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                           <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
                      </div>
                   </div>
                </div>
-               <% } %>
-            </div>
-            <% } %>
-         </div>
-      </div>
-   </div>
-   <%- include('partials/script.ejs') %>
-</body>
+            </form>
+
+            <!-- Information About Universities -->
+               <% var index=0; %>
+                  <% for( let uni of uniData ) { %>
+                     <% index++ %>
+                        <div class="container">
+                           <div class="accordion accordion-flush " id="accordionFlushExample">
+                              <div class="accordion-item">
+                                 <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                       data-bs-target="#flush-<%=index%>" aria-expanded="false"
+                                       aria-controls="flush-collapseOne">
+                                       <%=uni.name%>
+                                    </button>
+                                 </h2>
+                                 <div id="flush-<%=index%>" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                       <%= uni.desc %>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <% } %>
+
+          <%- include('partials/script.ejs') %>
+   </body>
+
 </html>

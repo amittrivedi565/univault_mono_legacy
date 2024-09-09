@@ -40,3 +40,36 @@ AWS_SECRET_KEY  = "secret_key"
 AWS_BUCKET_NAME = "your_bucket_name"
 
 ```
+
+
+
+<form method="post" enctype="multipart/form-data">
+
+                           <div class="form-group">
+                              <label for="shortname" class="col-form-label">University
+                                 Shortname :</label>
+                              <input name="shortname" type="text" class="form-control" id="shortname">
+                           </div>
+
+                           <div class="form-group">
+                              <label for="name" class="col-form-label">University
+                                 Name :</label>
+                              <input name="name" type="text" class="form-control" id="name">
+                           </div>
+
+                           <div class="form-group">
+                              <label for="desc" class="col-form-label">University
+                                 Description :</label>
+                              <textarea name="desc" class="form-control" id="desc"></textarea>
+                           </div>
+
+                           <div class="form-group">
+                              <label for="tags" class="col-form-label">University
+                                 Tags :</label>
+                              <input name="tags" type="text" class="form-control" id="tags">
+                           </div>
+
+                           <div class="form-group">
+                              <label for="imgFile" class="col-form-label">Upload University Logo</label>
+                              <input name="pdf" type="file" class="form-control" id="imgFile">
+                           </div>
