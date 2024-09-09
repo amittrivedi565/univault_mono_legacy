@@ -46,6 +46,9 @@ exports.getBranch = {
             res.render("../views/client/branch", {
                 uniQuery,
                 breadcrumbs: breadcrumb_items,
+                title: String(
+                    req.params.uni + " " + req.params.course
+                ).toUpperCase(),
             });
         } catch (error) {
             console.log(error);

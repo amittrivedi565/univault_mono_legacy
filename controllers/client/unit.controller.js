@@ -81,6 +81,13 @@ exports.getUnit = {
             res.render("../views/client/subject", {
                 uniQuery,
                 breadcrumbs: breadcrumb_items,
+                title: String(
+                    req.params.uni +
+                        " " +
+                        req.params.course +
+                        " " +
+                        req.params.year
+                ).toUpperCase(),
             });
         } catch (error) {
             console.log(error);

@@ -36,30 +36,37 @@ exports.getYear = {
             });
             // Create Breadcrumb Items
             let breadcrumb_items = [
-               {
-                   label: "Home",
-                   link: "/",
-                   isLink: true,
-               },
-               {
-                   label: req.params.uni,
-                   link: `/${req.params.uni}`,
-                   isLink: true,
-               },
-               {
-                   label: req.params.course,
-                   link: `/${req.params.uni}/${req.params.course}`,
-                   isLink: true,
-               },
-               {
-                   label: req.params.branch,
-                   link: `/${req.params.uni}/${req.params.course}/${req.params.branch}`,
-                   isLink: false,
-               },
-           ];
+                {
+                    label: "Home",
+                    link: "/",
+                    isLink: true,
+                },
+                {
+                    label: req.params.uni,
+                    link: `/${req.params.uni}`,
+                    isLink: true,
+                },
+                {
+                    label: req.params.course,
+                    link: `/${req.params.uni}/${req.params.course}`,
+                    isLink: true,
+                },
+                {
+                    label: req.params.branch,
+                    link: `/${req.params.uni}/${req.params.course}/${req.params.branch}`,
+                    isLink: false,
+                },
+            ];
             res.render("../views/client/year", {
                 uniQuery,
                 breadcrumbs: breadcrumb_items,
+                title: String(
+                    req.params.uni +
+                        " " +
+                        req.params.course +
+                        " " +
+                        req.params.branch
+                ).toUpperCase(),
             });
         } catch (error) {
             console.log(error);

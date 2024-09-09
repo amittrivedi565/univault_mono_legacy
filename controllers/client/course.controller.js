@@ -43,11 +43,12 @@ exports.getCourse = {
                     isLink: false,
                 },
             ];
-            
+
             res.render("../views/client/course", {
                 uniQuery,
                 message: req.flash("error"),
                 breadcrumbs: breadcrumb_items,
+                title: String(req.params.uni).toUpperCase(),
             });
         } catch (error) {
             console.log(error);
