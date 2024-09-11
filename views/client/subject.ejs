@@ -6,7 +6,7 @@
     <div class="p-3">
         <%- include('includes/breadcrumb', { items: breadcrumbs }) %>
     </div>
-    <section class="container subjects-section accordion accordion-flush" id="accordionFlushCommon">
+    <section class="container subjects-section">
         <!-- Semesters -->
         <% var index=0; %>
         <% uniQuery.forEach(Uni => { %>
@@ -14,21 +14,37 @@
                 <% Course.Branch.forEach(Branch => { %>
                     <% Branch.Year.forEach(Year => { %>
                         <% Year.Semester.forEach(Sem => { %>
-                            <% index++; %>
-                            <div class="bg-light mb-2 rounded accordion-item">
-                                <div class="h6 fw-semibold opacity-75 accordion-header"> 
-                                    <button class="accordion-button collapsed"  type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= index %>" aria-expanded="false">
-                                        <%= Sem.name %>:
-                                    </button>
+                            <div class="shadow-sm bg-light mb-2 rounded">
+                                <div class="bg-white h6 px-3 py-2 mb-2 fw-semibold opacity-75"> 
+                                    <%= Sem.name %>:
                                 </div>
-                                <div id="flush-collapse<%= index %>" class="accordion-collapse collapse" data-bs-parent="#accordionFlushCommon">
+                                <div>
                                     <% if(Sem.Subject.length == 0){ %>
-                                    <div class="text-center opacity-75 px-3 py-2">No data yet</div>
+                                    <div class="text-center opacity-75 py-1">No data yet</div>
                                     <% } %>
                                     <% Sem.Subject.forEach(Subject=> { %>
-                                    <div class="container rounded py-2 px-3">
-                                        <a href="">#<%=Subject.code%>&nbsp;<%= Subject.name %></a>
-                                    </div>
+                                        <% index++; %>
+                                        <div class="container rounded px-2 pb-2">
+                                            <div class="accordion" id="accordionSubject">
+                                                <div class="accordion-item">
+                                                    <h2 class="accordion-header">
+                                                        <button class="accordion-button p-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= index %>" aria-expanded="true" aria-controls="collapse<%= index %>">
+                                                            <%=Subject.code%>&nbsp;<%= Subject.name %>
+                                                        </button>
+                                                    </h2>
+                                                    <div id="collapse<%= index %>" class="accordion-collapse collapse" data-bs-parent="#accordionSubject">
+                                                        <div class="accordion-body p-2">
+                                                            <% if(Subject.Unit.length == 0){ %>
+                                                                <div class="text-center opacity-75 p-0">No data yet</div>
+                                                            <% } %>
+                                                            <% Subject.Unit.forEach(unit => { %>
+                                                                <button class="badge border-0 m-1 text-bg-primary"> <%= unit.name %> </button>
+                                                            <% }) %>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     <% }) %>
                                 </div>
                             </div>
@@ -37,26 +53,6 @@
                 <% }) %>
             <% }) %>
         <% }) %>
-        <!-- Previous-Year -->
-        <div class="bg-light mb-2 rounded accordion-item">
-            <div class="h6 fw-semibold opacity-75 accordion-header"> 
-                <button class="accordion-button collapsed"  type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse<%= index+1 %>" aria-expanded="false">
-                    Previous Year:
-                </button>
-            </div>
-            <div id="flush-collapse<%= index+1 %>" class="accordion-collapse collapse" data-bs-parent="#accordionFlushCommon">
-                <!-- <div class="text-center opacity-75 px-3 py-2">No data yet</div> -->
-                <div class="container rounded py-2 px-3">
-                    <a href="">#Math1&nbsp;2015</a>
-                </div>
-                <div class="container rounded py-2 px-3">
-                    <a href="">#Math1&nbsp;2016</a>
-                </div>
-                <div class="container rounded py-2 px-3">
-                    <a href="">#Math1&nbsp;2017</a>
-                </div>
-            </div>
-        </div>
     </section>
     <%- include('includes/script') %>
 </body>

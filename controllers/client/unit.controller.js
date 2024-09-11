@@ -39,6 +39,12 @@ exports.getUnit = {
                                                     {
                                                         model: db.subjects,
                                                         as: "Subject",
+                                                        include: [
+                                                            {
+                                                                model: db.unit,
+                                                                as: "Unit",
+                                                            },
+                                                        ],
                                                     },
                                                 ],
                                             },
