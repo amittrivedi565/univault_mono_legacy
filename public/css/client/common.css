@@ -7,6 +7,9 @@
 .main-text-color {
     color: #3e38f5;
 }
+.main-bg-color {
+    background-color: #3e38f5;
+}
 
 
 @font-face {
@@ -18,4 +21,9 @@
     font-family: "Telegraph Regular";
     src: url(../fonts/telegraf_regular.otf);
     font-weight: regular;
+}
+
+
+footer p:nth-child(2) {
+    font-size: 0.7rem;
 }
