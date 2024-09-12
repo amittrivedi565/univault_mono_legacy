@@ -1,0 +1,7 @@
+a{
+    text-decoration: none;
+  }
+  .accordion {
+     --bs-accordion-btn-color: black;
+     --bs-accordion-btn-bg: ghostwhite;
+ }

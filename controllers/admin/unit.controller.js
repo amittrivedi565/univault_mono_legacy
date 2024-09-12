@@ -49,9 +49,6 @@ exports.getUnit = {
                   },
                   include : [{
                     model : db.unit , as : "Unit",
-                    where : {
-                      subId : req.params.id
-                    }
                   }]
                 }]
               }]
@@ -112,12 +109,12 @@ exports.getUnit = {
         },
         {
           label: req.params.year,
-          link: `/close/${req.params.university}/${req.params.course}/${req.params.branch}/${req.params.year}/${branch}`,
+          link: `/close/${req.params.university}/${req.params.course}/${req.params.branch}/${req.params.year}/${year}`,
           isLink: true,
         },
         {
           label: req.params.semester,
-          link: `/close/${req.params.university}/${req.params.course}/${req.params.branch}/${req.params.year}/${req.params.semester}/${sem.id}`,
+          link: `/close/${req.params.university}/${req.params.course}/${req.params.branch}/${req.params.year}/${req.params.semester}/${sem}`,
           isLink: true,
         },
         {

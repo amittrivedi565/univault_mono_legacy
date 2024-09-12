@@ -90,12 +90,9 @@
                                                       </tr>
                                                    </table>
                                                       <div class="row py-3">
-                                                         <div class="d-flex col">
-                                                            <a
-                                                               href="/close/<%= University.shortname %>/<%= Course.shortname %>/<%= Branch.shortname %>/<%= Year.name %>/<%= Sem.name %>/<%= Subject.code %>/<%= Subject.id %>"><button
-                                                                  class="btn btn-sm btn-outline-primary me-2 ">Next</button></a>
+                                                         <div class="d-flex col justify-content-end">
                                                             <form
-                                                               action="/close/<%= University.shortname %>/<%= Course.shortname %>/<%= Branch.shortname %>/<%=Year.id%>?_method=DELETE"
+                                                               action="/close/<%= University.shortname %>/<%= Course.shortname %>/<%= Branch.shortname %>/<%=Year.name%>/<%= Sem.name %>/<%= Subject.code %>/<%= Unit.id%>/<%= Unit.pdfName %>/?_method=DELETE"
                                                                method="post">
                                                                <button type="submit"
                                                                   class="btn btn-sm btn-outline-danger ">Delete</button>

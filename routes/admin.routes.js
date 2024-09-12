@@ -52,6 +52,6 @@ router.delete("/:university/:course/:branch/:year/:semester/:id",authVerify,subs
 /* Unit Routes */
 router.get("/:university/:course/:branch/:year/:semester/:subject/:id",authVerify,unit.getUnit.controller)
 router.post("/:university/:course/:branch/:year/:semester/:subject/:id",authVerify,upload.single("pdf"),unit.postUnit.controller)
-router.delete("/unit/:id/:fileName",authVerify,unit.deleteNote.controller)
+router.delete("/:university/:course/:branch/:year/:semester/:subject/:id/:fileName",authVerify,unit.deleteNote.controller)
 
 module.exports = router;
