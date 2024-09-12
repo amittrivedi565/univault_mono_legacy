@@ -3,110 +3,110 @@
 <%- include('includes/head.ejs') %>
 
    <body>
-      <div class="main">
-         <%- include('partials/sidebar') %>
+      <%- include('includes/nav') %>
+         <%- include('partials/breadcrumb') %>
 
-            <div class="main-right">
-               <%- include('partials/nav') %>
-                  <div class="main-right-top">
-                     <b>Year Page</b>
+            <!-- Add University Modal -->
+            <form method="post">
+               <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                     <div class="modal-content">
+                        <div class="modal-header">
+                           <h1 class="modal-title fs-5" id="exampleModalLabel">
+                              Year Modal
+                           </h1>
+                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                           <div class="form-group">
+                              <label for="year_name" class="col-form-label">
+                                 Year Name </label>
+                              <select name="name" id="a" class="user-select">
+                                 <option value="" selected data-id="0">Select</option>
+                                 <option value="First Year" data-id="1">First Year</option>
+                                 <option value="Second Year" data-id="2">Second Year</option>
+                                 <option value="Third Year" data-id="3">Third Year</option>
+                                 <option value="Fourth Year" data-id="4">Fourth Year</option>
+                              </select>
+                           </div>
 
-                     <div class="addModal">
-                        <!-- Button trigger modal -->
-                        <form method="post">
-                           <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal"
-                              data-bs-target="#exampleModal">+</button>
-                           <!-- Modal -->
-                           <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                              aria-hidden="true">
-                              <div class="modal-dialog">
-                                 <div class="modal-content">
-                                    <div class="modal-header">
-                                       <h1 class="modal-title fs-5" id="exampleModalLabel">Add Year
-                                       </h1>
-                                       <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                          aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
+                        </div>
+                        <div class="modal-footer">
+                           <button type="submit" class="btn btn-primary">
+                              Save changes
+                           </button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </form>
 
-
-                                       <div class="form-group">
-                                          <label for="year_name" class="col-form-label">
-                                             Year Name :</label>
-                                          <select name="name" id="a" class="user-select">
-                                             <option value="" selected data-id="0">Select</option>
-                                             <option value="First Year" data-id="1">First Year</option>
-                                             <option value="Second Year" data-id="2">Second Year</option>
-                                             <option value="Third Year" data-id="3">Third Year</option>
-                                             <option value="Fourth Year" data-id="4">Fourth Year</option>
-                                          </select>
+            <!-- Information About Universities -->
+            <% var index=0; %>
+            <% Query.forEach(University=> { %> 
+               <% University.Course.forEach(Course => { %>
+                  <% Course.Branch.forEach(Branch => { %>
+                     <% Branch.Year.forEach(Year => { %>
+                        <% index++ %>
+                        <div class="container" style="margin-bottom: 0.5rem">
+                           <div class="accordion accordion-flush shadow-sm bg-white rounded" id="accordionFlushExample"
+                              style="margin-bottom: 0.5rem">
+                              <div class="accordion-item">
+                                 <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                       data-bs-target="#flush-<%=index%>" aria-expanded="false"
+                                       aria-controls="flush-collapseOne">
+                                      # <%= Year.name %>
+                                    </button>
+                                 </h2>
+      
+                                 <div id="flush-<%=index%>" class="accordion-collapse collapse"
+                                    data-bs-parent="#accordionFlushExample">
+                                    <div class="accordion-body">
+                                       <div class="table-responsive-sm">
+                                          <table class="table">
+                                             <tr>
+                                                <thead>
+                                                   <th class="col">University Name</th>
+                                                   <th class="col">University Shortname</th>
+                                                   <th class="col">University Desc</th>
+                                                   <th class="col">University Tags</th>
+                                                </thead>
+                                             </tr>
+                                             <tr>
+                                                <td>
+                                                   <%= University.name %>
+                                                </td>
+                                                <td>
+                                                   <%= University.shortname %>
+                                                </td>
+                                                <td><a href="">View</a></td>
+                                                <td><a href="">View</a></td>
+                                             </tr>
+                                          </table>
                                        </div>
-
-                                    </div>
-                                    <div class="modal-footer">
-                                       <button type="button" class="btn btn-secondary"
-                                          data-bs-dismiss="modal">Close</button>
-                                       <button type="submit" class="btn btn-primary">Save changes</button>
+                                       <div class="row py-3">
+                                          <div class="d-flex col justify-content-end">
+                                             <a href="/close/<%= University.shortname %>/<%= Course.shortname %>/<%= Branch.shortname %>/<%= Year.name %>/<%= Year.id %>"><button class="btn btn-sm btn-outline-primary me-2 ">Next</button></a>
+                                             <form
+                                             action="/close/<%= University.shortname %>/<%= Course.shortname %>/<%= Branch.shortname %>/<%=Year.id%>?_method=DELETE"
+                                             method="post">
+                                             <button type="submit" class="btn btn-sm btn-outline-danger ">Delete</button>
+                                          </form>
+                                       </div>
+                                                
                                     </div>
                                  </div>
                               </div>
                            </div>
-                     </div>
-                     </form>
-                  </div>
-                  <div class="main-right-bottom">
-                     <% if (yearData.length>0) { %>
-                        <% var index=0; %>
-                           <% for( let yearArray of yearData ) { %>
-                              <% index++ %>
-                                 <div class="accordion mb-5 " id="accordionFlushExample">
-                                    <div class="accordion-item">
-                                       <h2 class="accordion-header" id="flush-headingOne">
-                                          <button class="accordion-button collapsed" type="button"
-                                             data-bs-toggle="collapse" data-bs-target="#flush-<%=index%>"
-                                             aria-expanded="false" aria-controls="flush-collapseOne">
-                                             # <%= yearArray.name %>
-                                          </button>
-                                          <div id="flush-<%=index%>" class="accordion-collapse collapse"
-                                             aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                                             <div class="accordion-body">
-                                                <table class="table table-sm table-hover">
-                                                   <thead>
-                                                      <tr>
-                                                         <th scope="col">Year</th>
-                                                         <th scope="col">Semesters</th>
-                                                         <th scope="col">Delete</th>
-                                                      </tr>
-                                                   </thead>
-                                                   <tbody>
-                                                      <tr class="fs-6">
-                                                         <td>
-                                                            <%= yearArray.name %>
-                                                         </td>
-                                                         <td>
-                                                            <a href="/close/semester/<%= yearArray.id %>"><button
-                                                                  type="button"
-                                                                  class="btn btn-outline-primary btn-sm">Next</button></a>
-                                                         </td>
-                                                         <td>
-                                                            <form
-                                                               action="/close/year/<%= yearArray.id %>?_method=DELETE"
-                                                               method="post">
-                                                               <button type="submit"
-                                                                  class="btn btn-sm btn-outline-danger">Delete</button>
-                                                            </form>
-                                                         </td>
-                                                      </tr>
-                                                   </tbody>
-                                                </table>
-                                             </div>
-                                          </div>
-                                    </div>
-                                    <% } %>
-                                 </div>
-                                 <% } %>
-                  </div>
-        <%- include('partials/script.ejs') %>
+                        </div>
+                        </div>
+                  <% }) %>
+                  <% }) %>
+                     <% }) %>
+                        <% }) %>
+                           <%- include('partials/script.ejs') %>
    </body>
+
 </html>
-</div>

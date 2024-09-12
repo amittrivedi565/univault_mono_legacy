@@ -5,14 +5,53 @@ const { celebrate, Joi, Segments } = require("celebrate");
 exports.getBranch = {
   controller: async (req, res) => {
     try {
-      // query to find branch where university id matches
-      const branchData = await db.branches.findAll({
+
+      const Query = await db.university.findAll({
         where: {
-          courseId: req.params.id,
+          shortname: req.params.university,
         },
-        order: ["name"]
+        include: [
+          {
+            where : {
+              shortname : req.params.course,
+            },
+            model: db.courses,
+            as: "Course",
+            include : [{
+              model : db.branches , as : "Branch",
+              where : {
+                courseId : req.params.id
+              }
+            }]
+          },
+        ],
       });
-      res.render("../views/admin/branch.ejs", { branchData });
+      
+
+      // University Id for breadcrumb
+      let u ;
+      Query.forEach(University => {
+        u = University.id
+      });
+
+      const breadcrumb = [
+        {
+          label : "Home",
+          link : "/close/university",
+          isLink : true 
+        },
+        {
+          label : req.params.university,
+          link : `/close/${req.params.university}/${u}`,
+          isLink : true 
+        },
+        {
+          label : req.params.course,
+          isLink : false 
+        }
+      ]
+
+      res.render("../views/admin/branch.ejs",{Query,title : "Branch",breadcrumb});
     } catch (error) {
       console.log(error);
       res.status(201).send("Internal Error");
@@ -39,13 +78,13 @@ exports.postBranch = {
         shortname: req.body.shortname,
         desc: req.body.desc,
         tags: req.body.tags,
-        courseId: req.params.id
+        courseId: req.params.id,
       };
       // Query For Branch to Find One With Name
       const branchExists = await db.branches.findOne({
         where: {
           name: req.body.name,
-          shortname : req.body.name
+          shortname: req.body.name,
         },
       });
       // Check If Branch Exists
@@ -54,7 +93,7 @@ exports.postBranch = {
       res.redirect("back");
     } catch (error) {
       console.log(error.message);
-      res.status(201).send("Internal Error");
+      res.status(201).send(error);
     }
   },
 };
@@ -66,19 +105,19 @@ exports.deleteBranch = {
       // Check If Incoming ID is Valid or Not
       const checkID = await db.branches.findOne({
         where: {
-          id: req.params.id
+          id: req.params.id,
         },
       });
 
-      if(!checkID) return res.send("Invalid ID")
+      if (!checkID) return res.send("Invalid ID");
 
-        // Delete Branch With ID
-        const branchDelete = await db.branches.destroy({
-          where: {
-            id: req.params.id
-          },
-        });
-        res.redirect("back");
+      // Delete Branch With ID
+      const branchDelete = await db.branches.destroy({
+        where: {
+          id: req.params.id,
+        },
+      });
+      res.redirect("back");
     } catch (error) {
       console.log(error);
       res.status(201).send("Internal Error");

@@ -1,152 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('includes/head.ejs',{title:"Subject"}) %>
-<body>
-    <div class="main">
-      <%- include('partials/sidebar') %>
+<%- include('includes/head.ejs') %>
 
-      <div class="main-right">
-        <%- include('partials/nav') %>
-        <div class="main-right-top">
-           <b>Subject Page</b>
-           <div class="addModal">
-              <!-- Button trigger modal -->
-              <form method="post">
-                 <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
-                 <!-- Modal -->
-                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                       <div class="modal-content">
-                          <div class="modal-header">
-                             <h1 class="modal-title fs-5" id="exampleModalLabel">Add Subjects</h1>
-                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                             <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Subject
-                                Code:</label>
-                                <input name="code" type="text" class="form-control" id="recipient-name">
-                             </div>
-                             <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Subject
-                                Name:</label>
-                                <input name="name" type="text" class="form-control" id="recipient-name">
-                             </div>
-                             <div class="form-group">
-                                <label for="message-text" class="col-form-label">Subject
-                                Description:</label>
-                                <textarea name="desc" class="form-control" id="message-text"></textarea>
-                             </div>
-                             <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Subject
-                                Tags:</label>
-                                <input name="tags" type="text" class="form-control" id="recipient-name">
-                             </div>
-                          </div>
-                          <div class="modal-footer">
-                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                             <button type="submit" class="btn btn-primary">Submit</button>
-                          </div>
-                       </div>
-                    </div>
-                 </div>
-              </form>
-           </div>
-        </div>
+   <body>
+      <%- include('includes/nav') %>
+         <%- include('partials/breadcrumb') %>
 
-        <div class="main-right-bottom">
-          <% if (subData.length>0) { %>
-          <% var index=0; %>
-          <% for( let subArray of subData ) { %>
-          <% index++ %>
-          <div class="accordion mb-5 " id="accordionFlushExample">
-             <div class="accordion-item">
-                <h2 class="accordion-header" id="flush-headingOne">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                   data-bs-target="#flush-<%=index%>" aria-expanded="false"
-                   aria-controls="flush-collapseOne">
-                # <%= subArray.name %>
-                </button>
-                <div id="flush-<%=index%>" class="accordion-collapse collapse"
-                   aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                   <div class="accordion-body">
-                      <table class="table align-middle table-sm table-hover">
-                         <thead class="thead-dark">
-                            <tr>
-                               <th scope="col">Name</th>
-                               <th scope="col">Code</th>
-                               <th scope="col">Description</th>
-                               <th scope="col">Tags</th>
-                               <th scope="col">Notes</th>
-                               <th scope="col">Link</th>
-                            </tr>
-                         </thead>
-                         <tbody>
-                            <tr>
-                               <td>
-                                  <%= subArray.name %>
-                               </td>
-                               <td>
-                                  <%= subArray.code %>
-                                 </td>
-                                 <td><button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#desc">
-                                    View
-                                  </button>
-                                  <div class="modal fade" id="desc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h1 class="modal-title fs-5" id="exampleModalLabel">Description</h1>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                          <%= subArray.desc %>
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                          <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                      </div>
+            <!-- Add University Modal -->
+            <form method="post">
+               <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                     <div class="modal-content">
+                        <div class="modal-header">
+                           <h1 class="modal-title fs-5" id="exampleModalLabel">
+                              Semester Modal
+                           </h1>
+                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                           <div class="form-group">
+                              <label for="recipient-name" class="col-form-label">Subject
+                              Code:</label>
+                              <input name="code" type="text" class="form-control" id="recipient-name">
+                           </div>
+                           <div class="form-group">
+                              <label for="recipient-name" class="col-form-label">Subject
+                              Name:</label>
+                              <input name="name" type="text" class="form-control" id="recipient-name">
+                           </div>
+                           <div class="form-group">
+                              <label for="message-text" class="col-form-label">Subject
+                              Description:</label>
+                              <textarea name="desc" class="form-control" id="message-text"></textarea>
+                           </div>
+                           <div class="form-group">
+                              <label for="recipient-name" class="col-form-label">Subject
+                              Tags:</label>
+                              <input name="tags" type="text" class="form-control" id="recipient-name">
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="submit" class="btn btn-primary">
+                              Save changes
+                           </button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </form>
+
+            <!-- Information About Universities -->
+            <% var index=0; %>
+               <% Query.forEach(University=> { %>
+                  <% University.Course.forEach(Course=> { %>
+                     <% Course.Branch.forEach(Branch=> { %>
+                        <% Branch.Year.forEach(Year=> { %>
+                           <% Year.Semester.forEach(Sem=> { %>
+                              <% Sem.Subject.forEach(Subject => { %>
+                                 <% index++ %>
+                                 <div class="container" style="margin-bottom: 0.5rem">
+                                    <div class="accordion accordion-flush shadow-sm bg-white rounded"
+                                       id="accordionFlushExample" style="margin-bottom: 0.5rem">
+                                       <div class="accordion-item">
+                                          <h2 class="accordion-header">
+                                             <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse" data-bs-target="#flush-<%=index%>"
+                                                aria-expanded="false" aria-controls="flush-collapseOne">
+                                               # <%= Subject.name %>
+                                             </button>
+                                          </h2>
+
+                                          <div id="flush-<%=index%>" class="accordion-collapse collapse"
+                                             data-bs-parent="#accordionFlushExample">
+                                             <div class="accordion-body">
+                                                <table class="table">
+                                                   <tr>
+                                                      <thead>
+                                                         <th class="col">Subject Name</th>
+                                                         <th class="col">Subject Code</th>
+                                                         <th class="col">Subject Desc</th>
+                                                         <th class="col">Subject Tags</th>
+
+                                                      </thead>
+                                                   </tr>
+                                                   <tr>
+                                                      <td><%= Subject.name %></td>
+                                                      <td><%= Subject.code %></td>
+                                                      <td><%= Subject.desc %></td>
+                                                      <td><%= Subject.tags %></td>
+                                                   </tr>
+                                                </table>
+
+                                                <div class="table-responsive">
+                                                   <table class="table">
+                                                      <tr>
+                                                         <thead>
+                                                            <th class="col">University</th>
+                                                            <th class="col">Course</th>
+                                                            <th class="col">Branch</th>
+                                                            <th class="col">Year</th>
+                                                            <th class="col">Semester</th>
+                                                         </thead>
+                                                      </tr>
+                                                      <tr>
+                                                         <td>
+                                                            <%= University.name %>
+                                                         </td>
+                                                         <td>
+                                                            <%= Course.name %>
+                                                         </td>
+                                                         <td>
+                                                            <%= Branch.name %>
+                                                         </td>
+                                                         <td>
+                                                            <%= Year.name %>
+                                                         </td>
+                                                         <td>
+                                                            <%= Sem.name %>
+                                                         </td>
+                                                      </tr>
+                                                   </table>
+                                                </div>
+                                                   <div class="row py-3">
+                                                      <div class="d-flex col">
+                                                         <a
+                                                            href="/close/<%= University.shortname %>/<%= Course.shortname %>/<%= Branch.shortname %>/<%= Year.name %>/<%= Sem.name %>/<%= Subject.code %>/<%= Subject.id %>"><button
+                                                               class="btn btn-sm btn-outline-primary me-2 ">Next</button></a>
+                                                         <form
+                                                            action="/close/<%= University.shortname %>/<%= Course.shortname %>/<%= Branch.shortname %>/<%=Year.id%>?_method=DELETE"
+                                                            method="post">
+                                                            <button type="submit"
+                                                               class="btn btn-sm btn-outline-danger ">Delete</button>
+                                                         </form>
+                                                      </div>
+
+                                                   </div>
+                                             </div>
+                                          </div>
+                                       </div>
                                     </div>
-                                  </div></td>
-                                  <td><button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#tags">
-                                    View
-                                  </button>
-                                  <div class="modal fade" id="tags" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h1 class="modal-title fs-5" id="exampleModalLabel">Tags</h1>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                          <%= subArray.tags %>
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                          <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div></td>
-                               <td><a href="/close/unit/<%= subArray.id %>"><button type="button" class="btn btn-outline-primary btn-sm">Click</button></a></td>
-                               <td>
-                                  <form
-                                     action="/close/subject/<%= subArray.id %>?_method=DELETE"
-                                     method="post">
-                                     <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
-                                  </form>
-                               </td>
-                            </tr>
-                         </tbody>
-                      </table>
-                   </div>
-                </div>
-             </div>
-             <% } %>
-          </div>
-          <% } %>
-       </div>
-  <%- include('partials/script') %>
-</body>
+                                 </div>
+                              <% }) %>
+                                 <% }) %>
+                                 <% }) %>
+                                    <% }) %>
+                                       <% }) %>
+                                          <% }) %>
+                                             <%- include('partials/script.ejs') %>
+   </body>
+
 </html>

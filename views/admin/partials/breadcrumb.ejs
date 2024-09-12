@@ -1,16 +1,24 @@
 <div class="container">
-  <div class="row ">
-    <div class=" col-10 d-flex align-items-center" style="height: 8rem;">
+  <div class="row mt-5 mb-3 ">
+    <div class="d-flex justify-content-between">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <% Query.forEach(element => { %>
-            <li class="breadcrumb-item"><a href="#"><%= element.name %></a></li>
-          <% }) %>
+          <% if (breadcrumb.length> 0) { %>
+            <% breadcrumb.forEach(element=> { %>
+              <% if (element.isLink) { %>
+                <li class="breadcrumb-item active" aria-current="page"><a href="<%= element.link %>">
+                    <%= element.label %>
+                  </a></li>
+                <% } else { %>
+                  <li class="breadcrumb-item active " aria-current="page">
+                    <%= element.label %>
+                  </li>
+                  <% } %>
+                    <% }) %>
+                      <% } %>
         </ol>
       </nav>
-    </div>
-    <div class="col d-flex align-items-center">
-      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <button type="button" class=" btn btn-primary my-auto " data-bs-toggle="modal" data-bs-target="#exampleModal">
         +
       </button>
     </div>

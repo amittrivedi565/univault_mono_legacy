@@ -1,3 +1,4 @@
+const { where, QueryTypes } = require("sequelize");
 const db = require("../../models");
 const { celebrate, Joi, Segments } = require("celebrate");
 
@@ -5,14 +6,28 @@ const { celebrate, Joi, Segments } = require("celebrate");
 exports.getCourse = {
   controller: async (req, res) => {
     try {
-      // Query To Find Courses With Branch ID
-      const courseData = await db.courses.findAll({
-        where: {
-          uniId: req.params.id
+
+      const Query = await db.university.findAll({
+        where : {
+          id : req.params.id
         },
-        order: ["name"],
+        include : [{
+          model : db.courses , as : "Course"
+        }]
       });
-      res.render("../views/admin/course.ejs", { courseData });
+
+      const breadcrumb = [
+        {
+          label : "Home",
+          link : "/close/university",
+          isLink : true 
+        },
+        {
+          label : req.params.university,
+          isLink : false 
+        }
+      ]
+      res.render("../views/admin/course.ejs",{Query , title : "Course",breadcrumb});
     } catch (error) {
       console.log(error);
       res.status(201).send("Internal Error");

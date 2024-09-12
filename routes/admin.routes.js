@@ -26,32 +26,32 @@ router.post("/university",authVerify,upload.single("pdf"),uni.postUniversity.val
 router.delete("/university/:id/:imgName",authVerify,uni.deleteUniversity.controller)
 
 /* Course Routes */
-router.get("/course/:id",authVerify,course.getCourse.controller)
-router.post("/course/:id",authVerify,course.postCourse.validator,course.postCourse.controller)
-router.delete("/course/:id",authVerify,course.deleteCourse.controller)
+router.get("/:university/:id",authVerify,course.getCourse.controller)
+router.post("/:university/:id",authVerify,course.postCourse.validator,course.postCourse.controller)
+router.delete("/:university/:id",authVerify,course.deleteCourse.controller)
 
 /* Branch Routes */
-router.get("/branch/:id",authVerify,branch.getBranch.controller)
-router.post("/branch/:id",authVerify,branch.postBranch.validator,branch.postBranch.controller)
-router.delete("/branch/:id",authVerify,branch.deleteBranch.controller)
+router.get("/:university/:course/:id",authVerify,branch.getBranch.controller)
+router.post("/:university/:course/:id",authVerify,branch.postBranch.validator,branch.postBranch.controller)
+router.delete("/:university/:course/:id",authVerify,branch.deleteBranch.controller)
 
 /* Year Routes */
-router.get("/year/:id",authVerify,year.getYear.controller)
-router.post("/year/:id",authVerify,year.postYear.validator,year.postYear.controller)
-router.delete("/year/:id",authVerify,year.deleteYear.controller)
+router.get("/:university/:course/:branch/:id",authVerify,year.getYear.controller)
+router.post("/:university/:course/:branch/:id",authVerify,year.postYear.validator,year.postYear.controller)
+router.delete("/:university/:course/:branch/:id",authVerify,year.deleteYear.controller)
 
 /* Semester Routes */
-router.get("/semester/:id",authVerify,sem.getSem.controller)
-router.post("/semester/:id",authVerify,sem.postSem.controller)
+router.get("/:university/:course/:branch/:year/:id",authVerify,sem.getSem.controller)
+router.post("/:university/:course/:branch/:year/:id",authVerify,sem.postSem.controller)
 
 /* Subject Routes */
-router.get("/subject/:id",authVerify,subs.getSubject.controller)
-router.post("/subject/:id",authVerify,subs.postSubject.validator,subs.postSubject.controller)
-router.delete("/subject/:id",authVerify,subs.deleteSubject.controller)
+router.get("/:university/:course/:branch/:year/:semester/:id",authVerify,subs.getSubject.controller)
+router.post("/:university/:course/:branch/:year/:semester/:id",authVerify,subs.postSubject.validator,subs.postSubject.controller)
+router.delete("/:university/:course/:branch/:year/:semester/:id",authVerify,subs.deleteSubject.controller)
 
 /* Unit Routes */
-router.get("/unit/:id",authVerify,unit.getUnit.controller)
-router.post("/unit/:id",authVerify,upload.single("pdf"),unit.postUnit.controller)
+router.get("/:university/:course/:branch/:year/:semester/:subject/:id",authVerify,unit.getUnit.controller)
+router.post("/:university/:course/:branch/:year/:semester/:subject/:id",authVerify,upload.single("pdf"),unit.postUnit.controller)
 router.delete("/unit/:id/:fileName",authVerify,unit.deleteNote.controller)
 
 module.exports = router;

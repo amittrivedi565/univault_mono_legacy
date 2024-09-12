@@ -15,15 +15,16 @@ const s3 = new S3({
 exports.getUniversity = {
   controller: async (req, res) => {
     try {
-      const Query = await db.admins.findAll({
-        where : {
-          id : req.adminId
-        },
-        include : [{
-          model : db.university , as : 'University'
-        }]
-      })
-      res.render("../views/admin/university",{Query , message : req.flash("Error")});
+
+      const breadcrumb = [
+        {
+          label : "Home",
+          link : "/close/university",
+          isLink : false 
+        }
+      ]
+      const Query = await db.university.findAll({})
+      res.render("../views/admin/university",{Query , message : req.flash("Error"),title : "University",breadcrumb});
     } catch (error) {
       console.log(error);
       res.status(201).send("Internal Error");
@@ -63,16 +64,12 @@ exports.postUniversity = {
       var uniCheck = await db.university.findOne({
         where: { name: req.body.name }
       });
-      // Check If AdminId is Valid or Not
-      const adminCheck = await db.admins.findOne({
-        where : {
-          id : req.adminId
-        }
-      })
-      if(!adminCheck) return res.send("AdminID is invalid") ;
+
       // Create University Record
       await db.university.create(data);
+
       res.redirect("back");
+      
     } catch (error) {
       if(uniCheck) req.flash("Error",error.message)
       res.redirect("back")
@@ -96,7 +93,7 @@ exports.deleteUniversity = {
           });
           // Delete University Record
           await db.university.destroy({
-            where: { id: req.params.id },
+            where: { id : req.params.id },
           });
           res.redirect("back");
     } catch (error) {

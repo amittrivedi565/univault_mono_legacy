@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('includes/head.ejs',{title:"University"}) %>
+<%- include('includes/head.ejs') %>
 
    <body>
-      <%- include('partials/nav') %>
-      <%- include('partials/breadcrumb') %>
-
+      <%- include('includes/nav') %>
+         <%- include('partials/breadcrumb') %>
             <!-- Add University Modal -->
             <form method="post" enctype="multipart/form-data">
                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -13,43 +12,44 @@
                   <div class="modal-dialog modal-lg">
                      <div class="modal-content">
                         <div class="modal-header">
-                           <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                           <h1 class="modal-title fs-5" id="exampleModalLabel">
+                              Modal title
+                           </h1>
                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-
                            <div class="form-group">
-                              <label for="shortname" class="col-form-label">University
-                                 Shortname :</label>
-                              <input name="shortname" type="text" class="form-control" id="shortname">
+                              <label for="shortname" class="col-form-label">University Shortname :</label>
+                              <input name="shortname" type="text" class="form-control" id="shortname" />
                            </div>
 
                            <div class="form-group">
-                              <label for="name" class="col-form-label">University
-                                 Name :</label>
-                              <input name="name" type="text" class="form-control" id="name">
+                              <label for="name" class="col-form-label">University Name :</label>
+                              <input name="name" type="text" class="form-control" id="name" />
                            </div>
 
                            <div class="form-group">
-                              <label for="desc" class="col-form-label">University
-                                 Description :</label>
+                              <label for="desc" class="col-form-label">University Description :</label>
                               <textarea name="desc" class="form-control" id="desc"></textarea>
                            </div>
 
                            <div class="form-group">
-                              <label for="tags" class="col-form-label">University
-                                 Tags :</label>
-                              <input name="tags" type="text" class="form-control" id="tags">
+                              <label for="tags" class="col-form-label">University Tags :</label>
+                              <input name="tags" type="text" class="form-control" id="tags" />
                            </div>
 
                            <div class="form-group">
                               <label for="imgFile" class="col-form-label">Upload University Logo</label>
-                              <input name="pdf" type="file" class="form-control" id="imgFile">
+                              <input name="pdf" type="file" class="form-control" id="imgFile" />
                            </div>
                         </div>
                         <div class="modal-footer">
-                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                           <button type="submit" class="btn btn-primary">Save changes</button>
+                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                              Close
+                           </button>
+                           <button type="submit" class="btn btn-primary">
+                              Save changes
+                           </button>
                         </div>
                      </div>
                   </div>
@@ -58,35 +58,64 @@
 
             <!-- Information About Universities -->
             <% var index=0; %>
-               <% for( let admin of Query ) { %>
-                  <% admin.University.forEach(element => { %>
-                     <% index++ %>
-                     <div class="container">
-                        <div class="accordion accordion-flush shadow-sm bg-white rounded" id="accordionFlushExample" style="margin-bottom: .5rem;">
+               <% for( let University of Query ) { %>
+                  <% index++ %>
+                     <div class="container" style="margin-bottom: 0.5rem">
+                        <div class="accordion accordion-flush shadow-sm bg-light rounded" id="accordionFlushExample"
+                           style="margin-bottom: 0.5rem">
                            <div class="accordion-item">
                               <h2 class="accordion-header">
                                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#flush-<%=index%>" aria-expanded="false"
-                                    aria-controls="flush-collapseOne"> 
-                                       <%= element.name %>
-                                    </button>
-                                 </h2>
-                                 <div id="flush-<%=index%>" class="accordion-collapse collapse"
-                                    data-bs-parent="#accordionFlushExample">
-                                    <div class="accordion-body">
-                                       <ul>
-                                          <table>
-                                             
-                                          </table>
-                                       </ul>
+                                    aria-controls="flush-collapseOne">
+                                    # <%= University.name %>
+                                 </button>
+                              </h2>
+
+                              <div id="flush-<%=index%>" class="accordion-collapse collapse"
+                                 data-bs-parent="#accordionFlushExample">
+                                 <div class="accordion-body">
+                                    <div class="table-responsive-sm">
+                                       <table class="table">
+                                          <tr>
+                                             <thead>
+                                                <th class="col">University Name</th>
+                                                <th class="col">University Shortname</th>
+                                                <th class="col">University Desc</th>
+                                                <th class="col">University Tags</th>
+                                             </thead>
+                                          </tr>
+                                          <tr>
+                                             <td>
+                                                <%= University.name %>
+                                             </td>
+                                             <td>
+                                                <%= University.shortname %>
+                                             </td>
+                                             <td><a href="">View</a></td>
+                                             <td><a href="">View</a></td>
+                                          </tr>
+                                       </table>
+                                    </div>
+                                    <div class="row py-3">
+                                       <div class="d-flex col">
+                                          <a href="/close/<%= University.shortname %>/<%= University.id %>"><button
+                                                class="btn btn-sm btn-outline-primary me-2 ">Next</button></a>
+                                          <form
+                                             action="/close/university/<%= University.id %>/<%= University.imgName %>?_method=DELETE"
+                                             method="post">
+                                             <button type="submit"
+                                                class="btn btn-sm btn-outline-danger ">Delete</button>
+                                          </form>
+                                       </div>
                                     </div>
                                  </div>
                               </div>
                            </div>
                         </div>
-                        <% }) %>
-               <% } %>
-      <%- include('partials/script.ejs') %>
+                     </div>
+                     </div>
+                     <% } %> <%- include('partials/script.ejs') %>
    </body>
 
 </html>

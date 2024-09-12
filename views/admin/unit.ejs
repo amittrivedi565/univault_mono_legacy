@@ -1,146 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('includes/head.ejs',{title:"note"}) %>
-<body>
-    <div class="main">
-      <%- include('partials/sidebar') %>
+<%- include('includes/head.ejs') %>
 
-        <div class="main-right">
-            <%- include('partials/nav') %>
-            <div class="main-right-top">
-              <b>Unit Page</b>
-              <div class="addModal">
-                 <form method="post" enctype="multipart/form-data" >
-                    <button type="button" class="btn btn-primary btn-sm " data-bs-toggle="modal" data-bs-target="#exampleModal">+</button>
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                       <div class="modal-dialog">
-                          <div class="modal-content">
-                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Add Unit</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                             </div>
-                             <div class="modal-body">
-                                <div class="form-group">
-                                   <label for="recipient-name" class="col-form-label">Unit
-                                   Name:</label>
-                                   <input name="name" type="text" class="form-control" id="recipient-name">
-                                </div>
-                                <div class="form-group">
-                                   <label for="message-text" class="col-form-label">Unit
-                                   Description:</label>
-                                   <textarea name="desc" class="form-control" id="message-text"></textarea>
-                                </div>
-                                <div class="form-group">
-                                   <label for="recipient-name" class="col-form-label">Unit
-                                   Tags:</label>
-                                   <input name="tags" type="text" class="form-control" id="recipient-name">
-                                </div>
-                                <div class="form-group">
-                                   <label for="recipient-name" class="col-form-label">Upload File
-                                   :</label>
-                                   <input name="pdf" type="file" class="form-control" id="recipient-name">
-                                </div>
-                             </div>
-                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                             </div>
-                          </div>
-                       </div>
-                    </div>
-                 </form>
-              </div>
-           </div>
+   <body>
+      <%- include('includes/nav') %>
+         <%- include('partials/breadcrumb') %>
 
-           <div class="main-right-bottom">
-            <% if (noteData.length>0) { %>
-            <% var index=0; %>
-            <% for( let noteArray of noteData ) { %>
-            <% index++ %>
-            <div class="accordion mb-5 " id="accordionFlushExample">
-               <div class="accordion-item">
-                  <h2 class="accordion-header" id="flush-headingOne">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                     data-bs-target="#flush-<%=index%>" aria-expanded="false"
-                     aria-controls="flush-collapseOne">
-                  #<%= noteArray.name %>
-                  </button>
-                  <div id="flush-<%=index%>" class="accordion-collapse collapse"
-                     aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                     <div class="accordion-body">
-                        <table class="table align-middle table-sm table-hover">
-                           <thead class="thead-dark">
-                              <tr>
-                                 <td>Name</td>
-                                 <td>Description</td>
-                                 <td>Tags</td>
-                                 <td>View Pdf</td>
-                                 <td>Action</td>
-                              </tr>
-                           </thead>
-                           <tbody>
-                              <tr class="fs-6"> 
-                                 <td><%= noteArray.name %></td>
-                                 <td><button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#desc">
-                                    View
-                                  </button>
-                                  <div class="modal fade" id="desc" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h1 class="modal-title fs-5" id="exampleModalLabel">Description</h1>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                          <%= noteArray.desc %>
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                          <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div></td>
-                                  <td><button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#tags">
-                                    View
-                                  </button>
-                                  <div class="modal fade" id="tags" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                      <div class="modal-content">
-                                        <div class="modal-header">
-                                          <h1 class="modal-title fs-5" id="exampleModalLabel">Tags</h1>
-                                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                          <%= noteArray.tags %>
-                                        </div>
-                                        <div class="modal-footer">
-                                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                          <button type="button" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div></td>
-                                 <td><a href="<%= noteArray.url %>"><button type="button" class="btn btn-sm btn-outline-success">Click</button></a></td>
-                                 <td>
-                                    <form
-                                       action="/close/unit/<%= noteArray.id %>/<%= noteArray.pdfName %>?_method=DELETE"
-                                       method="post">
-                                       <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
-                                    </form>
-                                 </td>
-                              </tr>
-                           </tbody>
-                        </table>
+            <!-- Add University Modal -->
+            <form method="post" enctype="multipart/form-data">
+               <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                  aria-hidden="true">
+                  <div class="modal-dialog modal-lg">
+                     <div class="modal-content">
+                        <div class="modal-header">
+                           <h1 class="modal-title fs-5" id="exampleModalLabel">
+                              Semester Modal
+                           </h1>
+                           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                           <div class="form-group">
+                              <label for="recipient-name" class="col-form-label">Unit
+                              Name:</label>
+                              <input name="name" type="text" class="form-control" id="recipient-name">
+                           </div>
+                           <div class="form-group">
+                              <label for="message-text" class="col-form-label">Unit
+                              Description:</label>
+                              <textarea name="desc" class="form-control" id="message-text"></textarea>
+                           </div>
+                           <div class="form-group">
+                              <label for="recipient-name" class="col-form-label">Unit
+                              Tags:</label>
+                              <input name="tags" type="text" class="form-control" id="recipient-name">
+                           </div>
+                           <div class="form-group">
+                              <label for="recipient-name" class="col-form-label">Upload Pdf
+                              :</label>
+                              <input name="pdf" type="file" class="form-control" id="recipient-name">
+                           </div>
+                        </div>
+                        <div class="modal-footer">
+                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                           <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
                      </div>
                   </div>
                </div>
-               <% } %>
-            </div>
-            <% } %>
-         </div>
+            </form>
 
-         <%- include('partials/script') %>
- </body>
+            <!-- Information About Universities -->
+            <% var index=0; %>
+               <% Query.forEach(University=> { %>
+                  <% University.Course.forEach(Course=> { %>
+                     <% Course.Branch.forEach(Branch=> { %>
+                        <% Branch.Year.forEach(Year=> { %>
+                           <% Year.Semester.forEach(Sem=> { %>
+                              <% Sem.Subject.forEach(Subject => { %>
+                                 <% Subject.Unit.forEach(Unit => { %>
+                                    <% index++ %>
+                                    <div class="container" style="margin-bottom: 0.5rem">
+                                       <div class="accordion accordion-flush shadow-sm bg-white rounded"
+                                          id="accordionFlushExample" style="margin-bottom: 0.5rem">
+                                          <div class="accordion-item">
+                                             <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed" type="button"
+                                                   data-bs-toggle="collapse" data-bs-target="#flush-<%=index%>"
+                                                   aria-expanded="false" aria-controls="flush-collapseOne">
+                                                   #&nbsp;<%= Unit.name %>
+                                                </button>
+                                             </h2>
+   
+                                             <div id="flush-<%=index%>" class="accordion-collapse collapse"
+                                                data-bs-parent="#accordionFlushExample">
+                                                <div class="accordion-body">
+                                                   <table class="table">
+                                                      <tr>
+                                                         <thead>
+                                                            <th class="col">Unit Name</th>
+                                                            <th class="col">Unit Desc</th>
+                                                            <th class="col">Unit Tags</th>
+   
+                                                         </thead>
+                                                      </tr>
+                                                      <tr>
+                                                         <td><%= Unit.name %></td>
+                                                         <td><%= Unit.desc %></td>
+                                                         <td><%= Unit.tags %></td>
+                                                      </tr>
+                                                   </table>
+                                                      <div class="row py-3">
+                                                         <div class="d-flex col">
+                                                            <a
+                                                               href="/close/<%= University.shortname %>/<%= Course.shortname %>/<%= Branch.shortname %>/<%= Year.name %>/<%= Sem.name %>/<%= Subject.code %>/<%= Subject.id %>"><button
+                                                                  class="btn btn-sm btn-outline-primary me-2 ">Next</button></a>
+                                                            <form
+                                                               action="/close/<%= University.shortname %>/<%= Course.shortname %>/<%= Branch.shortname %>/<%=Year.id%>?_method=DELETE"
+                                                               method="post">
+                                                               <button type="submit"
+                                                                  class="btn btn-sm btn-outline-danger ">Delete</button>
+                                                            </form>
+                                                         </div>
+   
+                                                      </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 <% }) %>
+                              <% }) %>
+                                 <% }) %>
+                                 <% }) %>
+                                    <% }) %>
+                                       <% }) %>
+                                          <% }) %>
+                                             <%- include('partials/script.ejs') %>
+   </body>
+
 </html>
