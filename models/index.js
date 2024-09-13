@@ -32,6 +32,8 @@ db.sequelize = sequelize;
 
 db.admins = require("./admin.model")(sequelize, DataTypes);
 
+db.actions = require("./admin_actions.model")(sequelize, DataTypes);
+
 db.university = require("./university.model")(sequelize, DataTypes);
 
 db.branches = require("./branch.model")(sequelize, DataTypes);
@@ -46,6 +48,19 @@ db.subjects = require("./subject.model")(sequelize, DataTypes);
 
 db.unit = require("./unit.model")(sequelize, DataTypes);
 
+// 1 : M (Admin : Actions)
+db.admins.hasMany(db.actions, {
+  foreignKey: "adminId",
+  as: "Action",
+  onDelete: "SET NULL",
+  hooks: true
+})
+db.actions.belongsTo(db.admins,{
+  foreignKey: "adminId",
+  as: "Admin",
+  onDelete: "SET NULL",
+  hooks: true
+})
 
 // 1 : M (Admin : Universities)
 db.admins.hasMany(db.university, {
