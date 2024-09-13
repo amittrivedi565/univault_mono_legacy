@@ -1,0 +1,18 @@
+
+#dashboard .stat-info .card {
+    width: 140px;
+    height: 80px;
+}
+
+#dashboard .stat-info .stat-name {
+    font-family: "Roboto", sans-serif;
+    font-size: 0.9rem;
+}
+
+#dashboard .action-performed {
+    height: 80vh;
+}
+
+#dashboard .action-performed .header {
+    font-family: "Roboto", sans-serif;
+}
