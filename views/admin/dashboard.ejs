@@ -58,36 +58,22 @@
                     <section class="action-performed d-flex card shadow-sm position-relative">
                         <div class="header px-2 py-1 border-bottom">Actions Performed</div>
                         <div class="body vstack gap-1 p-2 overflow-auto bg-light flex-grow-1">
+                        <% for(let i=0;i< actions.length; i++ ){ %>
+                        <% action = actions[i] %>
                             <div class="card">
                                 <div class="info px-1 pt-1 font-monospace d-flex justify-content-between">
-                                    <small class="badge text-bg-primary">Admin</small>
-                                    <small>28/09/2024</small>
+                                    <span>
+                                        <small class="badge text-bg-primary"><%= action.admin %></small>
+                                        <small class="badge <%= (action.status == 'SUCCESS')? 'text-bg-success':(action.status == 'ERROR')? 'text-bg-danger': 'text-bg-warning'  %>"><%= action.status %></small>
+                                    </span>
+                                    <small class="date-time fw-semibold"><%= action.date %> <%= action.time %></small>
                                 </div>
                                 <div class="action-info p-1 font-monospace">
-                                    <span class="text-success fw-semibold">Create</span>
-                                    <span>university: "RGPV"</span>
+                                    <span class="fw-semibold"><%= action.type %></span>
+                                    <span class="action"><%= action.action %></span>
                                 </div>
                             </div>
-                            <div class="card">
-                                <div class="info px-1 pt-1 font-monospace d-flex justify-content-between">
-                                    <small class="badge text-bg-primary">User1</small>
-                                    <small>28/09/2024</small>
-                                </div>
-                                <div class="action-info p-1 font-monospace">
-                                    <span class="text-warning fw-semibold">Update</span>
-                                    <span>university: "RGPV"</span>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="info px-1 pt-1 font-monospace d-flex justify-content-between">
-                                    <small class="badge text-bg-primary">User2</small>
-                                    <small>28/09/2024</small>
-                                </div>
-                                <div class="action-info p-1 font-monospace">
-                                    <span class="text-danger fw-semibold">Delete</span>
-                                    <span>university: "RGPV"</span>
-                                </div>
-                            </div>
+                        <% } %>
                         </div>
                     </section>
                 </div>

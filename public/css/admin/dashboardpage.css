@@ -16,3 +16,10 @@
 #dashboard .action-performed .header {
     font-family: "Roboto", sans-serif;
 }
+
+#dashboard .action-performed .card .info .date-time {
+    font-size: 0.7rem;
+}
+#dashboard .action-performed .card .action-info .action {
+    font-size: 0.7rem;
+}
