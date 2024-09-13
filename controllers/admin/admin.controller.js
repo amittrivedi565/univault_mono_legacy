@@ -42,6 +42,9 @@ exports.adminGet = {
             where: {
                 adminId: req.adminId,
             },
+            order: [
+                ['updatedAt', 'DESC'],
+            ]
         });
 
         let actions = actionsData.map((ac) => {
@@ -55,9 +58,7 @@ exports.adminGet = {
                 time: getTime(ac["updatedAt"]),
             };
         });
-
-        console.log(actions);
-
+        
         res.render("../views/admin/dashboard.ejs", {
             count: {
                 universities,
