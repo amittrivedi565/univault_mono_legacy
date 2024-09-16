@@ -5,11 +5,11 @@ module.exports = (sequelize, DataTypes) => {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV4,
       allowNull: false,
-      primaryKey: true,
+      primaryKey: true
     },
     name:{
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     }
     },{
     timestamps : false

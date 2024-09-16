@@ -5,23 +5,23 @@ module.exports = (sequelize, DataTypes) => {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
-        primaryKey: true,
+        primaryKey: true
       },
       code: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
       },
       desc: {
         type: "LONGTEXT",
-        allowNull: false,
+        allowNull: false
       },
       tags: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
       }
     },
     {

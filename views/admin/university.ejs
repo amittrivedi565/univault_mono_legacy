@@ -18,24 +18,27 @@
                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                           <div class="form-group">
-                              <label for="shortname" class="col-form-label">University Shortname :</label>
-                              <input name="shortname" type="text" class="form-control" id="shortname" />
+
+                           <div class="form-floating mb-3">
+                              <input type="shortname" name="shortname" class="form-control" id="floatingInput"
+                                 placeholder="shortname">
+                              <label for="floatingInput">University Shortname</label>
                            </div>
 
-                           <div class="form-group">
-                              <label for="name" class="col-form-label">University Name :</label>
-                              <input name="name" type="text" class="form-control" id="name" />
+                           <div class="form-floating mb-3">
+                              <input type="name" name="name" class="form-control" id="floatingInput" placeholder="name">
+                              <label for="floatingInput">University Name</label>
                            </div>
 
-                           <div class="form-group">
-                              <label for="desc" class="col-form-label">University Description :</label>
-                              <textarea name="desc" class="form-control" id="desc"></textarea>
+                           <div class="form-floating mb-3">
+                              <input type="description" name="desc" class="form-control" id="floatingInput"
+                                 placeholder="description">
+                              <label for="floatingInput">University Description</label>
                            </div>
 
-                           <div class="form-group">
-                              <label for="tags" class="col-form-label">University Tags :</label>
-                              <input name="tags" type="text" class="form-control" id="tags" />
+                           <div class="form-floating mb-3">
+                              <input type="tag" name="tags" class="form-control" id="floatingInput" placeholder="tags">
+                              <label for="floatingInput">University Tags</label>
                            </div>
 
                            <div class="form-group">
@@ -44,11 +47,8 @@
                            </div>
                         </div>
                         <div class="modal-footer">
-                           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-                              Close
-                           </button>
                            <button type="submit" class="btn btn-primary">
-                              Save changes
+                              Save
                            </button>
                         </div>
                      </div>
@@ -92,8 +92,61 @@
                                              <td>
                                                 <%= University.shortname %>
                                              </td>
-                                             <td><a href="">View</a></td>
-                                             <td><a href="">View</a></td>
+                                             <td><a href="" data-bs-toggle="modal"
+                                                   data-bs-target="#desc">View</a>
+
+                                                <!-- Modal -->
+                                                <div class="modal fade" id="desc" tabindex="-1"
+                                                   aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                   <div class="modal-dialog">
+                                                      <div class="modal-content">
+                                                         <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Description
+                                                            </h5>
+                                                            <button type="button" class="btn-close"
+                                                               data-bs-dismiss="modal" aria-label="Close"></button>
+                                                         </div>
+                                                         <div class="modal-body">
+                                                            <%= University.desc %>
+                                                         </div>
+                                                         <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                               data-bs-dismiss="modal">Close</button>
+                                                            <button type="button" class="btn btn-primary">Save
+                                                               changes</button>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </td>
+
+                                             <td><a href="" data-bs-toggle="modal"
+                                                data-bs-target="#tags">View</a>
+
+                                             <!-- Modal -->
+                                             <div class="modal fade" id="tags" tabindex="-1"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                   <div class="modal-content">
+                                                      <div class="modal-header">
+                                                         <h5 class="modal-title" id="exampleModalLabel">Tags Related To University
+                                                         </h5>
+                                                         <button type="button" class="btn-close"
+                                                            data-bs-dismiss="modal" aria-label="Close"></button>
+                                                      </div>
+                                                      <div class="modal-body">
+                                                         <%= University.tags %>
+                                                      </div>
+                                                      <div class="modal-footer">
+                                                         <button type="button" class="btn btn-secondary"
+                                                            data-bs-dismiss="modal">Close</button>
+                                                         <button type="button" class="btn btn-primary">Save
+                                                            changes</button>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </td>
                                           </tr>
                                        </table>
                                     </div>

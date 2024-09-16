@@ -89,10 +89,81 @@
                                                    <td>
                                                       <%= Branch.shortname %>
                                                    </td>
-                                                   <td><a href="">View</a></td>
-                                                   <td><a href="">View</a></td>
+
+                                                <td>
+                                                   <!-- Button trigger modal -->
+                                                   <a href="" type="button" data-bs-toggle="modal"
+                                                   data-bs-target="#exampleModal1">View</a>
+                                                   <!-- Modal -->
+                                                   <div class="modal fade" id="exampleModal1" tabindex="-1"
+                                                      aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                      <div class="modal-dialog">
+                                                         <div class="modal-content">
+                                                            <div class="modal-header">
+                                                               <h5 class="modal-title" id="exampleModalLabel">Description
+                                                                  </h5>
+                                                               <button type="button" class="btn-close"
+                                                                  data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                               <%= Branch.desc %>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                               <button type="button" class="btn btn-secondary"
+                                                                  data-bs-dismiss="modal">Close</button>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </td>
+
+                                                <td>
+                                                   <!-- Button trigger modal -->
+                                                   <a href="" type="button" data-bs-toggle="modal"
+                                                   data-bs-target="#exampleModal2">View</a>
+                                                   <!-- Modal -->
+                                                   <div class="modal fade" id="exampleModal2" tabindex="-1"
+                                                      aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                      <div class="modal-dialog">
+                                                         <div class="modal-content">
+                                                            <div class="modal-header">
+                                                               <h5 class="modal-title" id="exampleModalLabel">Tags
+                                                                  </h5>
+                                                               <button type="button" class="btn-close"
+                                                                  data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                               <%= Branch.tags %>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                               <button type="button" class="btn btn-secondary"
+                                                                  data-bs-dismiss="modal">Close</button>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </td>
                                                 </tr>
                                              </table>
+
+                                             <div class="table-responsive">
+                                                <table class="table">
+                                                   <tr>
+                                                      <thead>
+                                                         <th class="col">University</th>
+                                                         <th class="col">Course</th>
+                                                      </thead>
+                                                   </tr>
+                                                   <tr>
+                                                      <td>
+                                                         <%= University.name %>
+                                                      </td>
+                                                      <td>
+                                                         <%= Course.name %>
+                                                      </td>
+                                                   </tr>
+                                                </table>
+                                             </div>
                                           </div>
                                           <div class="row py-3">
                                              <div class="d-flex col justify-content-end">

@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       type: Sequelize.UUID,
       defaultValue: Sequelize.UUIDV4,
       allowNull: false,
-      primaryKey: true,
+      primaryKey: true
     },
     shortname : {
       type: DataTypes.STRING,
@@ -21,11 +21,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     desc: {
       type: "LONGTEXT",
-      allowNull: false,
+      allowNull: false
     },
     tags: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
 
     },
     imgUrl : {
@@ -38,11 +38,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     adminId: {
       type: Sequelize.UUID,
-      allowNull: false,
+      allowNull: false
     },
     adminName: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
   // If don't want updatedAt
   },{

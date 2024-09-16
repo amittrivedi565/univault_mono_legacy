@@ -5,31 +5,31 @@ module.exports = (sequelize, DataTypes) => {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4,
         allowNull: false,
-        primaryKey: true,
+        primaryKey: true
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
       },
       desc: {
         type: "LONGTEXT",
-        allowNull: false,
+        allowNull: false
       },
       url: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
       },
       tags: {
         type: DataTypes.STRING,
-        allowNull: false,
+        allowNull: false
       },
       pdfName: {
         type: DataTypes.STRING,
-        allowNull: true,
+        allowNull: true
       },
       subId: {
         type: Sequelize.UUID,
-        allowNull: false,
+        allowNull: false
       },
     },
     {
