@@ -16,16 +16,15 @@ body{
 }
 
 @font-face {
-    font-family: "Telegraph";
-    src: url(../../fonts/telegraf_light.otf);
+    font-family: "Telegraph Light";
+    src: url(../../fonts/telegraph.light.otf);
     font-weight: light;
 }
 @font-face {
     font-family: "Telegraph Regular";
-    src: url(../../fonts/telegraf_regular.otf);
+    src: url(../../fonts/telegraph.regular.otf);
     font-weight: regular;
 }
-
 
 footer p:nth-child(2) {
     font-size: 0.7rem;
