@@ -1,6 +1,7 @@
 const { errors } = require("celebrate");
 const db = require("../../models");
 const flash = require("connect-flash");
+const { query } = require("express");
 /**
  * @Rout: GET /:uni
  **/
@@ -8,25 +9,26 @@ exports.getCourse = {
     controller: async (req, res) => {
         try {
             var checkUni = await db.university.findOne({
+                attributes: ['name', 'shortname'],
                 where: {
                     shortname: req.params.uni,
-                },
+                }
             });
             if (!checkUni) {
                 req.flash("error", "No University Exists With This ID");
             }
+
             const uniQuery = await db.university.findAll({
                 where: {
                     shortname: req.params.uni,
                 },
-                exclude :['id','desc','tags'],
+                attributes: ['name', 'shortname'],
                 include: [
                     {
                         model: db.courses,
                         as: "Course",
-                        attributes: {
-                            exclude: ["desc", "tags", "id", "uniId"],
-                        },
+                        attributes: ['name', 'shortname'],
+
                     },
                 ],
             });
