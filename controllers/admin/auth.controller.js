@@ -11,7 +11,7 @@ exports.signInGet = {
             if(req.cookies['api-auth']){
                 return res.redirect('/close/dashboard');
             }
-            res.render("../views/admin/auth.ejs")
+            res.render("../views/auth/login.ejs")
         } catch (error) {
             console.log(error);
             res.status(201).send("Internal Error");

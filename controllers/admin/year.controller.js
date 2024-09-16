@@ -73,6 +73,7 @@ exports.getYear = {
                 Query,
                 breadcrumb,
                 title: "Year",
+                cssfilename : "admin"
             });
         } catch (error) {
             console.log(error);

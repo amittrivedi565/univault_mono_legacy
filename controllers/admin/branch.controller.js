@@ -57,6 +57,7 @@ exports.getBranch = {
                 Query,
                 title: "Branch",
                 breadcrumb,
+                cssfilename : "admin"
             });
         } catch (error) {
             console.log(error);

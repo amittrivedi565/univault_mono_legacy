@@ -34,6 +34,8 @@ exports.getCourse = {
                 Query,
                 title: "Course",
                 breadcrumb,
+                cssfilename : "admin"
+
             });
         } catch (error) {
             console.log(error);

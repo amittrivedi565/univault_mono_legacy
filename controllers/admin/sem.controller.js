@@ -86,6 +86,8 @@ exports.getSem = {
                 Query,
                 title: "Sem",
                 breadcrumb,
+                cssfilename : "admin"
+
             });
         } catch (error) {
             console.log(error);

@@ -1,7 +1,18 @@
 a{
     text-decoration: none;
-  }
-  .accordion {
-     --bs-accordion-btn-color: black;
-     --bs-accordion-btn-bg: ghostwhite;
- }
+}
+
+@font-face {
+  font-family: "Telegraph";
+  src: url(../../fonts/telegraf_light.otf);
+  font-weight: light;
+}
+@font-face {
+  font-family: "Telegraph Regular";
+  src: url(../../fonts/telegraf_regular.otf);
+  font-weight: regular;
+}
+
+body{
+  font-family: "Telegraph";
+}

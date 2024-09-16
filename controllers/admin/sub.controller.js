@@ -113,6 +113,8 @@ exports.getSubject = {
                 Query,
                 title: "Subject",
                 breadcrumb,
+                cssfilename : "admin"
+
             });
         } catch (error) {
             console.log(error);

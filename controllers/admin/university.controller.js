@@ -28,6 +28,7 @@ exports.getUniversity = {
                 message: req.flash("Error"),
                 title: "University",
                 breadcrumb,
+                cssfilename : "admin"
             });
         } catch (error) {
             console.log(error);
