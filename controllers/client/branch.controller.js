@@ -9,7 +9,6 @@ exports.getBranch = {
         where: {
           shortname: req.params.uni,
         },
-        attributes: ["name", "shortname"],
         include: [
           {
             model: db.courses,
@@ -17,12 +16,10 @@ exports.getBranch = {
             where: {
               shortname: req.params.course,
             },
-            attributes: ["name", "shortname"],
             include: [
               {
                 model: db.branches,
-                as: "Branch",
-                attributes: ["name", "shortname"],
+                as: "Branch"
               },
             ],
           },

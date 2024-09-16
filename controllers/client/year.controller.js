@@ -16,7 +16,6 @@ exports.getYear = {
                         where: {
                             shortname: req.params.course,
                         },
-                        exclude :['id','desc','tags'],
                         include: [
                             {
                                 model: db.branches,
@@ -24,14 +23,9 @@ exports.getYear = {
                                 where: {
                                     shortname: req.params.branch,
                                 },
-                                exclude :['id','desc','tags'],
-                                include: [
-                                    {
-                                        model: db.years,
-                                        as: "Year",
-                                        exclude :['id','desc','tags'],
-                                    },
-                                ],
+                                include : [{
+                                     model : db.years , as : "Year"
+                                }]
                             },
                         ],
                     },

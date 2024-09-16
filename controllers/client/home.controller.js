@@ -7,7 +7,6 @@ exports.getHome = {
     try {
       const uniQuery = await db.university.findAll({
         order: ["name"],
-        attributes: ["name", "shortname"],
       });
       res.render("../views/client/home", { uniQuery });
     } catch (error) {

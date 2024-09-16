@@ -9,7 +9,6 @@ exports.getUnit = {
         where: {
           shortname: req.params.uni,
         },
-        attributes: ["name", "shortname"],
         include: [
           {
             model: db.courses,
@@ -17,8 +16,6 @@ exports.getUnit = {
             where: {
               shortname: req.params.course,
             },
-            attributes: ["name", "shortname"],
-
             include: [
               {
                 model: db.branches,
@@ -26,8 +23,6 @@ exports.getUnit = {
                 where: {
                   shortname: req.params.branch,
                 },
-                attributes: ["name", "shortname"],
-
                 include: [
                   {
                     model: db.years,
@@ -35,25 +30,20 @@ exports.getUnit = {
                     where: {
                       name: req.params.year,
                     },
-                    attributes: ["name", "shortname"],
-
                     include: [
                       {
                         model: db.sems,
                         as: "Semester",
-                        attributes: ["name", "shortname"],
 
                         include: [
                           {
                             model: db.subjects,
                             as: "Subject",
-                            attributes: ["name", "shortname"],
 
                             include: [
                               {
                                 model: db.unit,
                                 as: "Unit",
-                                attributes: ["name", "shortname"],
                               },
                             ],
                           },
