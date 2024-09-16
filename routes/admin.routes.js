@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const auth  = require("../controllers/admin/auth.controller.js")
+const auth  = require("../controllers/auth/auth.controller.js")
 const admin = require("../controllers/admin/admin.controller.js")
 const uni = require("../controllers/admin/university.controller.js");
 const course = require("../controllers/admin/course.controller.js")
