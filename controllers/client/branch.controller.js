@@ -9,6 +9,7 @@ exports.getBranch = {
                 where: {
                     shortname: req.params.uni,
                 },
+                exclude :['id','desc','tags'],
                 include: [
                     {
                         model: db.courses,
@@ -16,10 +17,12 @@ exports.getBranch = {
                         where: {
                             shortname: req.params.course,
                         },
+                        exclude :['id','desc','tags'],
                         include: [
                             {
                                 model: db.branches,
                                 as: "Branch",
+                                exclude :['id','desc','tags'],
                             },
                         ],
                     },

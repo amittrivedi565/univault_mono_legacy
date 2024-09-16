@@ -9,6 +9,7 @@ exports.getUnit = {
                 where: {
                     shortname: req.params.uni,
                 },
+                exclude :['id','desc','tags'],
                 include: [
                     {
                         model: db.courses,
@@ -16,6 +17,7 @@ exports.getUnit = {
                         where: {
                             shortname: req.params.course,
                         },
+                        exclude :['id','desc','tags'],
                         include: [
                             {
                                 model: db.branches,
@@ -23,6 +25,7 @@ exports.getUnit = {
                                 where: {
                                     shortname: req.params.branch,
                                 },
+                                exclude :['id','desc','tags'],
                                 include: [
                                     {
                                         model: db.years,
@@ -30,19 +33,22 @@ exports.getUnit = {
                                         where: {
                                             name: req.params.year,
                                         },
+                                        exclude :['id','desc','tags'],
                                         include: [
                                             {
                                                 model: db.sems,
                                                 as: "Semester",
-
+                                                exclude :['id','desc','tags'],
                                                 include: [
                                                     {
                                                         model: db.subjects,
                                                         as: "Subject",
+                                                        exclude :['id','desc','tags'],
                                                         include: [
                                                             {
                                                                 model: db.unit,
                                                                 as: "Unit",
+                                                                exclude :['id','desc','tags']
                                                             },
                                                         ],
                                                     },

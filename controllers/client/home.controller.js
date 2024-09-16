@@ -5,7 +5,9 @@ const db = require("../../models");
 exports.getHome = {
     controller: async (req, res) => {
         try {
-            const uniQuery = await db.university.findAll({ order: ["name"] });
+            const uniQuery = await db.university.findAll({ order: ["name"],
+                exclude :['id','desc','tags']
+             });
             res.render("../views/client/home", { uniQuery });
         } catch (error) {
             console.log(error);

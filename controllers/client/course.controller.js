@@ -19,6 +19,7 @@ exports.getCourse = {
                 where: {
                     shortname: req.params.uni,
                 },
+                exclude :['id','desc','tags'],
                 include: [
                     {
                         model: db.courses,

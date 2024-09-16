@@ -14,7 +14,7 @@ exports.getCourse = {
                 include: [
                     {
                         model: db.courses,
-                        as: "Course",
+                        as: "Course"
                     },
                 ],
             });

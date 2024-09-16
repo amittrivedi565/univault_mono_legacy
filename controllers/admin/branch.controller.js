@@ -22,7 +22,7 @@ exports.getBranch = {
                                 model: db.branches,
                                 as: "Branch",
                                 where: {
-                                    courseId: req.params.id,
+                                    courseId: req.params.id
                                 },
                             },
                         ],
