@@ -2,21 +2,21 @@
 
 ```
 ## Env Development
-NODE_ENV='development'
-HOST='XX.X.X.X'
-PORT='port_number'
+NODE_ENV = 'development'
+HOST = 'XX.X.X.X'
+PORT = 'port_number'
 
 ## DB
-DB_HOST='XXX.X.X.X'
-DB_USER_NAME='db_user'
-DB_PORT='db_port'
-DB_PSWD='db_password'
-DB_NAME='db_name'
-DB_DIALECT='mysql'
+DB_HOST = 'XXX.X.X.X'
+DB_USER_NAME = 'db_user'
+DB_PORT = 'db_port'
+DB_PSWD =' db_password'
+DB_NAME = 'db_name'
+DB_DIALECT = 'mysql'
 
 ## JWT Token
-JWT_SECRET_KEY='jwt_secret'
-JWT_TOKEN_EXP_TIME='expiry_duration'
+JWT_SECRET_KEY = 'jwt_secret'
+JWT_TOKEN_EXP_TIME = 'expiry_duration'
 
 ## AWS S3 BUCKET CONFIG
 AWS_REGION = "region-name"
