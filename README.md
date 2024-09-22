@@ -3,11 +3,11 @@
 ```
 ## Env Development
 NODE_ENV='development'
-HOST='1xx.x.x.x'
+HOST='XX.X.X.X'
 PORT='port_number'
 
 ## DB
-DB_HOST='1xx.x.x.x'
+DB_HOST='XXX.X.X.X'
 DB_USER_NAME='db_user'
 DB_PORT='db_port'
 DB_PSWD='db_password'
