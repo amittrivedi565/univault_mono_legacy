@@ -103,7 +103,7 @@ exports.getUnit = {
         title: String(
 
           // req.params.uni + " " + req.params.course + " " + req.params.year
-          uniQuery[0].shotname + " " + uniQuery[0].Course[0].shortname + " " + uniQuery[0].Course[0].Branch[0].Year[0].Semester[0].Subject[0].code
+          uniQuery[0].shortname + " " + uniQuery[0].Course[0].shortname + " " + uniQuery[0].Course[0].Branch[0].Year[0].Semester[0].Subject[0].code
         ).toUpperCase(),
       });
     } catch (error) {
