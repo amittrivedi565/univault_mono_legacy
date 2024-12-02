@@ -38,7 +38,7 @@
                                                                 <div class="text-center opacity-75 p-0">No data yet</div>
                                                             <% } %>
                                                             <% Subject.Unit.forEach(unit => { %>
-                                                                <button class="badge border-0 m-1 text-bg-primary"> <%= unit.name %> </button>
+                                                                <a href="<%= unit.url %>" class="badge border-0 m-1 text-bg-primary"> <%= unit.name %> </a>
                                                             <% }) %>
                                                         </div>
                                                     </div>

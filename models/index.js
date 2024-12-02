@@ -170,12 +170,20 @@ db.unit.belongsTo(db.subjects, {
 });
 
 db.sequelize.sync({ force: false }).then(async () => {
-  // let data = ({
-  //   email: "abc@xyz.com",
-  //   name: "admin",
-  //   password: bcrypt.hashSync("123", salt),
-  // })
-  // await db.admins.create(data)
+  let data = ({
+    email: process.env.ADMIN_EMAIL,
+    name: process.env.ADMIN_NAME,
+    password: bcrypt.hashSync(process.env.ADMIN_PASSWORD, salt),
+  })
+  let user = await db.admins.findAll({
+    where: {
+      email: data.email,
+    }
+  });
+  
+  if(!user[0]) {
+    await db.admins.create(data)
+  }
 });
 
 module.exports = db;
