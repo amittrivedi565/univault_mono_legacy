@@ -51,8 +51,7 @@ exports.getUnit = {
                                                         model: db.subjects,
                                                         as: "Subject",
                                                         where: {
-                                                            code: req.params
-                                                                .subject,
+                                                            code: req.params.subject,
                                                         },
                                                         include: [
                                                             {
@@ -69,6 +68,18 @@ exports.getUnit = {
                             },
                         ],
                     },
+                ],
+                order: [
+                    [
+                        { model: db.courses, as: "Course" },
+                        { model: db.branches, as: "Branch" },
+                        { model: db.years, as: "Year" },
+                        { model: db.sems, as: "Semester" },
+                        { model: db.subjects, as: "Subject" },
+                        { model: db.unit, as: "Unit" },
+                        "name",
+                        "ASC",
+                    ],
                 ],
             });
 
