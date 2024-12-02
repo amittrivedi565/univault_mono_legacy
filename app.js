@@ -38,6 +38,9 @@ app.use(cors(corsOptions));
 app.use(bodyparser.json({ limit: "50mb" }));
 app.use(methodOverride("_method"))
 
+// Serve the favicon
+app.use('/favicon.ico', express.static(path.join(__dirname, 'public', 'favicon.ico')));
+
 // Set Static Folder
 app.use("/public", express.static(path.join(__dirname, "/public")));
 
