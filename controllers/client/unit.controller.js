@@ -56,6 +56,18 @@ exports.getUnit = {
             ],
           },
         ],
+        order: [
+          [
+              { model: db.courses, as: "Course" },
+              { model: db.branches, as: "Branch" },
+              { model: db.years, as: "Year" },
+              { model: db.sems, as: "Semester" },
+              { model: db.subjects, as: "Subject" },
+              { model: db.unit, as: "Unit" },
+              "name",
+              "ASC",
+          ],
+      ],
       });
       // Create Breadcrumb Items
       let breadcrumb_items = [
