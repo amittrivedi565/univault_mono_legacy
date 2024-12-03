@@ -146,18 +146,18 @@ exports.postSubject = {
                 semId: req.params.id,
             };
 
-            // Check If Subject Exists
-            const subjectExists = await db.subjects.findOne({
-                where: {
-                    [Op.and]: [
-                        { code: req.body.code },
-                        { name: req.body.name },
-                        { semId: req.params.id },
-                    ],
-                },
-            });
+            // // Check If Subject Exists
+            // const subjectExists = await db.subjects.findOne({
+            //     where: {
+            //         [Op.and]: [
+            //             { code: req.body.code },
+            //             { name: req.body.name },
+            //             { semId: req.params.id },
+            //         ],
+            //     },
+            // });
 
-            if (subjectExists) return res.status(201).send("Internal Error");
+            // if (subjectExists) return res.status(201).send("Internal Error");
             await db.subjects.create(data);
             updateActionStatus(
                 req.adminId,
