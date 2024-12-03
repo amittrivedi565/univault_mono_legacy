@@ -185,11 +185,19 @@ exports.postUnit = {
                 subId: req.params.id,
             };
             // Check If Note Exists
-            const unitExists = await db.unit.findOne({
+            const unitExists = await db.subjects.findOne({
                 where: {
-                    name: req.body.name,
+                    id : req.params.id,
                 },
-            });
+                    include : [{
+                        model : db.unit,
+                        as : "Unit",
+                        where : {
+                            name  : req.body.name
+                        }
+                    }]
+                },
+            );
             // If Exits Stop
             if (unitExists) return res.status(201).send("Unit Already Exists");
             // Create Note Record
